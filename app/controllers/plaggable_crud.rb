@@ -122,7 +122,7 @@ module PlaggableCrud
       else
         label = "更新"
       end
-      redirect_to redirect_to_where, :notice => "#{label}しました"
+      redirect_to params[:redirect_to_where] || redirect_to_where, :notice => "#{label}しました"
     end
 
     def current_record_valid?

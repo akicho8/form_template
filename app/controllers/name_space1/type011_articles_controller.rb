@@ -16,6 +16,10 @@ module NameSpace1
   class Type011ArticlesController < ApplicationController
     include PlaggableCrud::All
 
+    def page_header_show_title
+      current_record.title
+    end
+
     def raw_current_record
       super.tap do |e|
         e.title ||= "スレッド#{current_model.maximum(:id).to_i.next}"
