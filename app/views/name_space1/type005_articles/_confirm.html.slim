@@ -1,0 +1,39 @@
+= controller.current_delete_ids.collect { |e| hidden_field_tag("delete_ids[]", e) }.join("\n").html_safe
+= controller.current_reject_codes.collect { |e| hidden_field_tag("reject_codes[]", e) }.join("\n").html_safe
+
+.form-group
+  = form.label(:title, :class => "col-sm-2 control-label")
+  .col-sm-10
+    p.form-control-static= form.object.title
+
+.form-group
+  = form.label(:up_files, :class => "col-sm-2 control-label")
+  .col-sm-10
+    p.form-control-static
+      - if form.object.type005_files.present?
+        - if form.object.persisted_type005_files.present?
+          = "既存のアップロードファイル"
+          ul.list-unstyled
+            - form.object.persisted_type005_files.each do |e|
+              li
+                - if controller.current_delete_ids.include?(e.id)
+                  = image_tag(e.pixer.url, :height => 64, :class => "img-rounded")
+                  span.label.label-warning= "削除"
+                - else
+                  = image_tag(e.pixer.url, :height => 128, :class => "img-rounded")
+                  span.label.label-info= "保持"
+
+        - if form.object.temp_type005_files.present?
+          = "今アップロードしたファイル"
+          ul.list-unstyled
+            - form.object.temp_type005_files.each do |e|
+              li
+                - if controller.current_reject_codes.include?(e.pixer_cache)
+                  = image_tag(e.pixer.url, :height => 64, :class => "img-rounded")
+                  span.label.label-warning= "削除"
+                - else
+                  = image_tag(e.pixer.url, :height => 128, :class => "img-rounded")
+                  span.label.label-success= "追加"
+
+        - if form.object.type005_files_all_remove?
+          = "全削除します"

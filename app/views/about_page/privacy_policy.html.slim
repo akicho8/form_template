@@ -1,0 +1,3 @@
+.panel.panel-info
+  .panel-body
+    = Rails.root.join("config/privacy_policy.txt").read.gsub(/\R/, "<br/>").html_safe

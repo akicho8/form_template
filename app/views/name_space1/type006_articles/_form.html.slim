@@ -1,0 +1,13 @@
+/ 名前
+.form-group
+  = form.label(:name, :class => "col-sm-2 control-label")
+  .col-sm-10
+    = form.text_field(:name, :class => "form-control")
+
+/ 「横」並びチェックボックス
+.form-group
+  label.col-md-2.control-label= "曜日"
+  .col-md-10
+    - SevenDay.all.each do |e|
+      label.checkbox-inline
+        = check_box_tag("type006_article[seven_day_ids][]", e.id, form.object.seven_day_ids.include?(e.id)) + e.name

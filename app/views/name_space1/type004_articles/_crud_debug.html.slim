@@ -1,0 +1,6 @@
+- if Rails.env.development?
+  = params.to_h.to_quick_table(:title => "params の内容")
+  - if respond_to?(:current_record)
+    = current_record.attributes.to_quick_table(:title => "オブジェクトの内容")
+    = session[current_single_key].to_h.to_quick_table(:title => "セッションに保存したフォーム内容")
+    = [:pixer_cache, :pixer?, :pixer_url, :remove_pixer?].inject({}) {|a, e| a.merge(e => current_record.send(e)) }.to_quick_table(:title => "画像")

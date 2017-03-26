@@ -1,0 +1,11 @@
+- if controller.page_header_show_title.present?
+  .page-header
+    h2= controller.page_header_show_title
+
+= render :partial => "show"
+
+hr
+=<> link_to("一覧", [controller.class.parent_name.underscore, current_plural_key], :class => "btn btn-default")
+=<> link_to("編集", [:edit, controller.class.parent_name.underscore, current_record], :class => "btn btn-success")
+- if controller.respond_to_destroy?
+  =<> link_to("削除", [controller.class.parent_name.underscore, current_record], :method => :delete, :data => {:confirm => "本当に削除してもよろしいですか？"}, :class => "btn btn-danger")

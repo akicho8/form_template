@@ -1,0 +1,38 @@
+/ 本体
+.form-group
+  = form.label(:comment0, :class => "col-sm-2 control-label")
+  .col-sm-10
+    = form.text_field(:comment0, :class => "form-control")
+
+- if true
+  / ひとつめ
+  - form.object.type012_s1_articles.each do |e|
+    = form.fields_for(:type012_s1_articles, e) do |form|
+      .form-group
+        = form.label("コメント#{e.id}", :class => "col-sm-2 control-label")
+        .col-sm-10
+          = form.text_field(:comment1, class: "form-control")
+          label.checkbox-inline=<> form.check_box(:_destroy) + "削除"
+
+          - if true
+            / ふたつめ
+            - e.type012_s2_articles.each.with_index do |e|
+              = form.fields_for(:type012_s2_articles, e) do |form|
+                .form-group
+                  = form.label("コメント#{e.id}", :class => "col-sm-2 control-label")
+                  .col-sm-10.form-inline
+                    = form.text_field(:comment2, class: "form-control")
+                    label.checkbox-inline=<> form.check_box(:_destroy) + "削除"
+            / ふたつめの「書き込む」
+            = form.fields_for(:type012_s2_articles, form.object.type012_s2_articles.build) do |form|
+              .form-group
+                = form.label(:comment_new, :class => "col-sm-2 control-label")
+                .col-sm-10
+                 = form.text_field(:comment2, class: "form-control")
+
+  / ひとつめの「書き込む」
+  = form.fields_for(:type012_s1_articles, form.object.type012_s1_articles.build) do |form|
+    .form-group
+      = form.label(:comment_new, :class => "col-sm-2 control-label")
+      .col-sm-10
+        = form.text_field(:comment1, class: "form-control")

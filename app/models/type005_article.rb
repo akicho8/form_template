@@ -1,0 +1,50 @@
+# -*- coding: utf-8 -*-
+# == Schema Information ==
+#
+# 確認付き複数ファイルアップロードテーブル (type005_articles as Type005Article)
+#
+# +------------+----------+----------+-------------+------+-------+
+# | カラム名   | 意味     | タイプ   | 属性        | 参照 | INDEX |
+# +------------+----------+----------+-------------+------+-------+
+# | id         | ID       | integer  | NOT NULL PK |      |       |
+# | title      | タイトル | string   |             |      |       |
+# | created_at | 作成日時 | datetime | NOT NULL    |      |       |
+# | updated_at | 更新日時 | datetime | NOT NULL    |      |       |
+# +------------+----------+----------+-------------+------+-------+
+
+class Type005Article < ApplicationRecord
+  has_many :type005_files, :inverse_of => :type005_article, :dependent => :destroy
+  accepts_nested_attributes_for :type005_files
+
+  with_options(:presence => true) do
+    validates :title
+  end
+
+  concerning :AllRemoveMethods do
+    attr_accessor :type005_files_all_remove
+
+    def type005_files_all_remove?
+      type005_files_all_remove.to_s == "1"
+    end
+
+    included do
+      after_save do
+        if type005_files_all_remove?
+          type005_files.destroy_all
+        end
+      end
+    end
+  end
+
+  concerning :ConfirmMethods do
+    # 中間ファイルの情報を持っているもののみ
+    def temp_type005_files
+      type005_files.find_all(&:pixer_cache)
+    end
+
+    # 保存済みのファイルのみ
+    def persisted_type005_files
+      type005_files - temp_type005_files
+    end
+  end
+end

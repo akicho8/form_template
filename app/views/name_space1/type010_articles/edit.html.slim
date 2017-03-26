@@ -1,0 +1,76 @@
+/ type010_file_a_attributes が衝突するため、2つのフォームをまぜてはいけない
+
+.container
+  .page-header
+    h2= current_record.new_record? ? "新規登録" : "編集"
+
+  = form_with(:model => [controller.class.parent_name.underscore, current_record], :html => {:class => "form-horizontal"}, :local => true) do |form|
+    = render :partial => "error_messages", :locals => {:form => form}
+    fieldset
+      legend
+        = "なくてもいいアップロードだけのフォーム"
+      / まとめてアップロードしたいとき用
+      .form-group
+        = form.label(:up_files, :class => "col-sm-2 control-label")
+        .col-sm-10
+          = form.file_field("up_files", :class => "form-control", :multiple => true)
+
+      / 位置指定で個別にアップロードしたいとき用
+      - Type010Article.file_column_keys.each do |key|
+        = form.fields_for(key, Type010File.new) do |sub_form|
+          .form-group
+            = form.label(key, class: "col-sm-2 control-label")
+            .col-sm-10
+              = sub_form.file_field("pixer", class: "form-control")
+    .form-group
+      .col-sm-offset-2.col-sm-10
+        =<> form.submit(class: "btn btn-primary")
+
+  / ここに page-header っていいのかな？
+  .page-header
+    h3
+      = "自分と子の名前を一気に更新"
+      small=<> "削除するとその場所にアップロードフィールドがでる"
+
+  = form_with(:model => [controller.class.parent_name.underscore, current_record], :html => {:class => "form-horizontal"}, :local => true) do |form|
+    = render :partial => "error_messages", :locals => {:form => form}
+
+    / タイトル変更用
+    .form-group
+      .col-sm-12
+        = form.text_field(:name, :class => "form-control")
+
+    / 一つ目のフォーム
+    / 画像表示を兼ねて位置指定のアップロード
+    .form-group
+      - current_record.filled_file_column_objs.each do |key, e|
+        .col-md-4
+          .thumbnail
+            - if e.persisted?
+              = image_tag(e.pixer.url)
+              .caption
+                .h3= e.id
+                / fields_for には key を指定してもいいけど type010_files の方が汎用的。レコードは id で特定できる。
+                p= current_model.human_attribute_name(key) + "側に表示する画像です"
+                = form.fields_for(:type010_files, e) do |sub_form|
+                  = sub_form.text_field(:name, class: "form-control", :placeholder => "タイトル")
+                  .text-right
+                    label.checkbox-inline= check_box_tag("type010_article[delete_ids][]", sub_form.object.id) + "削除"
+            - else
+              .caption
+                p
+                  = current_model.human_attribute_name(key) + "側に表示する画像を指定してください"
+              / この key で場所は特定できているので position の指定は不要
+              = form.fields_for(key) do |sub_form|
+                = sub_form.file_field(:pixer, class: "form-control")
+
+    .form-group
+      .col-sm-12
+        = form.submit(:name => :_submit, :class => "btn btn-primary")
+
+  hr
+  =<> link_to("一覧", [controller.class.parent_name.underscore, current_plural_key], :class => "btn btn-default")
+  - if current_record.persisted?
+    =<> link_to("詳細", [controller.class.parent_name.underscore, current_record], :class => "btn btn-info")
+  - if controller.respond_to_destroy? && current_record.persisted?
+    =<> link_to("削除", [controller.class.parent_name.underscore, current_record], :method => :delete, :data => {:confirm => "本当に削除してもよろしいですか？"}, :class => "btn btn-danger")

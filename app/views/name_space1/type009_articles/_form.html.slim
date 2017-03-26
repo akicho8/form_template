@@ -1,0 +1,14 @@
+/ タイトル
+.form-group
+  = form.label(:title, :class => "col-sm-2 control-label")
+  .col-sm-10
+    = form.text_field(:title, :class => "form-control")
+
+/ ファイル
+.form-group
+  = form.label(:up_files, :class => "col-sm-2 control-label")
+  .col-sm-10
+    / フォームを multipart にするための裏技
+    = form.file_field("__dummy_file_field__", :disabled => true, :style => "display:none")
+    / トップレベルで定義
+    = file_field_tag("up_files[]", :class => "form-control", :multiple => true)

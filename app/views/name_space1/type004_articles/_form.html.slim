@@ -1,0 +1,24 @@
+/ ファイル
+.form-group
+  = form.label(:pixer, :class => "col-sm-2 control-label")
+  .col-sm-10
+    = form.hidden_field(:pixer_cache)
+    = form.file_field(:pixer, :class => "form-control")
+    - if form.object.pixer?
+      .help-block
+        = "アップロード済みファイル"
+        = image_tag(form.object.pixer.url, :height => 64, :class => "img-rounded")
+
+/ コメント
+.form-group
+  = form.label(:comment, :class => "col-sm-2 control-label")
+  .col-sm-10
+    = form.text_field(:comment, :class => "form-control")
+
+/ 削除
+- if form.object.pixer?
+  .form-group
+    = form.label(:remove_pixer, :class => "col-sm-2 control-label")
+    .col-sm-10
+      label.checkbox-inline
+        = form.check_box(:remove_pixer) + "削除する"

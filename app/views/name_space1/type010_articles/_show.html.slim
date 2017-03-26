@@ -1,0 +1,10 @@
+.container
+  .row
+   - current_record.filled_file_column_objs.each do |key, e|
+     .col-md-4
+       .thumbnail
+         = image_tag(e.pixer.url)
+         .caption
+           .h3= current_model.human_attribute_name(key) + "側"
+           p
+             = e.name

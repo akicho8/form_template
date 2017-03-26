@@ -1,0 +1,20 @@
+-*- truncate-lines: t -*-
+
+# == Schema Information ==
+#
+# Sessionテーブル (sessions as ActiveRecord::SessionStore::Session)
+#
+# +------------+----------+----------+-------------+------+-------+
+# | カラム名   | 意味     | タイプ   | 属性        | 参照 | INDEX |
+# +------------+----------+----------+-------------+------+-------+
+# | id         | ID       | integer  | NOT NULL PK |      |       |
+# | session_id | Session  | string   | NOT NULL    |      | B!    |
+# | data       | Data     | text     |             |      |       |
+# | created_at | 作成日時 | datetime | NOT NULL    |      |       |
+# | updated_at | 更新日時 | datetime | NOT NULL    |      | A     |
+# +------------+----------+----------+-------------+------+-------+
+#
+#- 備考 -------------------------------------------------------------------------
+# ・【警告】ActiveRecord::SessionStore::Session モデルに belongs_to :session を追加してください
+#--------------------------------------------------------------------------------
+

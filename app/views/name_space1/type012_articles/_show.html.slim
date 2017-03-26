@@ -1,0 +1,9 @@
+h2= current_record.comment0
+ul
+  - current_record.type012_s1_articles.each do |e|
+    li
+      = e.comment1
+      ul
+        - e.type012_s2_articles.each do |e|
+          li
+            = e.comment2

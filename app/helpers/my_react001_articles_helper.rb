@@ -1,0 +1,2 @@
+module MyReact001ArticlesHelper
+end

@@ -1,0 +1,25 @@
+/ 本体
+- depth ||= 0
+.form-group
+  - label = []
+  - if form.object.commentable
+    - label << form.object.commentable.id
+  - if form.object.persisted?
+    - label << form.object.id
+  label.col-sm-2.control-label= label.join(".")
+  .col-sm-10
+    = form.text_field(:comment, class: "form-control")
+    - if depth >= 1
+      / _destroy に対応できるのは子供の comments_attributes だけだから
+      label.checkbox-inline=<> form.check_box(:_destroy) + "削除"
+    p
+      / 子供たち
+      - form.object.comments.each do |e|
+        = form.fields_for(:comments, e) do |form|
+          = render :partial => "form", :locals => {:form => form, :depth => depth.next}
+      / 「書き込む」
+      = form.fields_for(:comments, form.object.comments.build) do |form|
+        .form-group
+          label.col-sm-2.control-label= ">>#{form.object.commentable&.id}"
+          .col-sm-10
+            = form.text_field(:comment, class: "form-control")

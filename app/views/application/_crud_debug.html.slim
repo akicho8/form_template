@@ -1,0 +1,3 @@
+- if Rails.env.development?
+  = current_record.attributes.to_h.to_quick_table(:title => "オブジェクトの内容")
+  = session[current_single_key].to_h.to_quick_table(:title => "セッションに保存したフォーム内容")
