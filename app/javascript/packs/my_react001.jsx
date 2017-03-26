@@ -3,21 +3,21 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-const Hello = props => (
-  <div>Hello {props.name}</div>
+const MyReact001 = props => (
+  <div>MyReact001 {props.name}</div>
 )
 
-Hello.defaultProps = {
+MyReact001.defaultProps = {
   name: 'David'
 }
 
-Hello.propTypes = {
+MyReact001.propTypes = {
   name: React.PropTypes.string
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <Hello name="Reactの動作OK" />,
+    <MyReact001 name="Reactの動作OK" />,
     document.body.appendChild(document.createElement('div')),
   )
 })

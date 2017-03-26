@@ -8,7 +8,7 @@
 module.exports = {
   data: function () {
     return {
-      message: "Vueの動作OK"
+      message: "Hello Vue!"
     }
   }
 }
