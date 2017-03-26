@@ -1,7 +1,16 @@
-.page-header
-  h2= current_record.comment
-
 - if current_record.pixer?
   .row
-    .col-md-3
-      = link_to(image_tag(current_record.pixer.url), asset_path(current_record.pixer.url), :class => "thumbnail")
+    .col-md-12
+      - if current_record.pixer.content_type.start_with?("image")
+        = image_tag(current_record.pixer.url, :class => "img-thumbnail")
+      - elsif current_record.pixer.content_type.match?(/video|mp4/)
+        = video_tag(current_record.pixer.url, :controls => true, :class => "img-thumbnail")
+      - elsif current_record.pixer.content_type.start_with?("text")
+        pre
+          = open(current_record.pixer.path, &:read)
+      - else
+        = link_to(current_record.pixer.filename, asset_path(current_record.pixer.url))
+  .row
+    .col-md-12
+      p
+        .well.well-sm= current_record.pixer.inspect

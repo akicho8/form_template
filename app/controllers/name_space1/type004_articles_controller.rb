@@ -17,8 +17,8 @@ module NameSpace1
   class Type004ArticlesController < ApplicationController
     include PlaggableCrud::AllWithConfirm
 
-    def current_permit_columns
-      super + [:pixer_cache, :remove_pixer]
+    def page_header_show_title
+      current_record.comment
     end
 
     # 確認画面に行く直前にセッションに保存しておく値たち
