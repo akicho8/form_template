@@ -16,22 +16,8 @@ module NameSpace1
   class Type009ArticlesController < ApplicationController
     include PlaggableCrud::All
 
-    # 「新規」→「管理画面 or 更新」のときに assign_attributes に渡す属性
-    def current_record_params
-      if attrs = super
-        attrs.merge(:type009_files_attributes => current_up_files)
-      end
-    end
-
     def page_header_show_title
       current_record.title
-    end
-
-    private
-
-    # トップレベルで定義した file_field_tag(:up_files) を受け取って current_record_params 用に加工する
-    def current_up_files
-      Array(params[:up_files]).collect { |e| {:pixer => e} }
     end
 
     def raw_current_record

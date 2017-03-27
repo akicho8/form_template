@@ -19,4 +19,8 @@ class Type009Article < ApplicationRecord
   with_options(:presence => true) do
     validates :title
   end
+
+  def up_files=(v)
+    assign_attributes(:type009_files_attributes => v.collect { |e| {:pixer => e} })
+  end
 end
