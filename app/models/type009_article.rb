@@ -13,14 +13,14 @@
 # +------------+----------+----------+-------------+------+-------+
 
 class Type009Article < ApplicationRecord
-  has_many :type009_files, :inverse_of => :type009_article, :dependent => :destroy
-  accepts_nested_attributes_for :type009_files
+  has_many :type009_attachments, :inverse_of => :type009_article, :dependent => :destroy
+  accepts_nested_attributes_for :type009_attachments
 
   with_options(:presence => true) do
     validates :title
   end
 
-  def up_files=(v)
-    assign_attributes(:type009_files_attributes => v.collect { |e| {:pixer => e} })
+  def type009_attachment_files=(v)
+    assign_attributes(:type009_attachments_attributes => v.collect { |e| {:pixer => e} })
   end
 end

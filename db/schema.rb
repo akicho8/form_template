@@ -148,12 +148,12 @@ ActiveRecord::Schema.define(version: 20170324213300) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "type009_files", force: :cascade do |t|
+  create_table "type009_attachments", force: :cascade do |t|
     t.integer "type009_article_id"
     t.string "pixer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["type009_article_id"], name: "index_type009_files_on_type009_article_id"
+    t.index ["type009_article_id"], name: "index_type009_attachments_on_type009_article_id"
   end
 
   create_table "type010_articles", force: :cascade do |t|

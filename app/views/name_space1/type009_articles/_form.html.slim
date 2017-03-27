@@ -1,11 +1,11 @@
 / タイトル
 .form-group
-  = form.label(:title, :class => "col-sm-2 control-label")
+  = form.label(:title, class: "col-sm-2 control-label")
   .col-sm-10
-    = form.text_field(:title, :class => "form-control")
+    = form.text_field(:title, class: "form-control")
 
 / ファイル
 .form-group
   = form.label(:type009_attachment_files, class: "col-sm-2 control-label")
   .col-sm-10
-    = form.file_field("up_files", :class => "form-control", :multiple => true)
+    = form.file_field(:type009_attachment_files, class: "form-control", multiple: true)

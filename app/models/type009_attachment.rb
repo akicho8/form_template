@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # == Schema Information ==
 #
-# ファイル1つの情報テーブル (type009_files as Type009File)
+# ファイル1つの情報テーブル (type009_attachments as Type009Attachment)
 #
 # +--------------------+-----------------+----------+-------------+----------------------+-------+
 # | カラム名           | 意味            | タイプ   | 属性        | 参照                 | INDEX |
@@ -14,11 +14,11 @@
 # +--------------------+-----------------+----------+-------------+----------------------+-------+
 #
 #- 備考 -------------------------------------------------------------------------
-# ・Type009File モデルは Type009Article モデルから has_many :type009_files されています。
+# ・Type009Attachment モデルは Type009Article モデルから has_many :type009_attachments されています。
 #--------------------------------------------------------------------------------
 
-class Type009File < ApplicationRecord
+class Type009Attachment < ApplicationRecord
   mount_uploader :pixer, AttachmentUploader
 
-  belongs_to :type009_article, :inverse_of => :type009_files
+  belongs_to :type009_article, :inverse_of => :type009_attachments
 end

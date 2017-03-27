@@ -18,7 +18,7 @@ class CreateType009Articles < ActiveRecord::Migration[5.1]
       t.string :title
       t.timestamps :null => false
     end
-    create_table :type009_files, :force => true do |t|
+    create_table :type009_attachments, :force => true do |t|
       t.belongs_to :type009_article
       t.string :pixer
       t.timestamps :null => false
