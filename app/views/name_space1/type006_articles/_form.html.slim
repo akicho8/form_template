@@ -8,6 +8,11 @@
 .form-group
   label.col-md-2.control-label= "曜日"
   .col-md-10
-    - SevenDay.all.each do |e|
-      label.checkbox-inline
-        = check_box_tag("type006_article[seven_day_ids][]", e.id, form.object.seven_day_ids.include?(e.id)) + e.name
+    - if false
+      - SevenDay.all.each do |e|
+        label.checkbox-inline
+          = check_box_tag("type006_article[seven_day_ids][]", e.id, form.object.seven_day_ids.include?(e.id)) + e.name
+    - else
+      / こっちを使うと label for=xxx しているのに input 側に id 属性がないため、テキスト部分を触っても、チェックできない。だから噛み合っていない for を消すことで有効化する。
+      = form.collection_check_boxes(:seven_day_ids, SevenDay.all, :id, :name) do |b|
+        = b.label(:class => "checkbox-inline", :for => nil) { b.check_box + b.text }
