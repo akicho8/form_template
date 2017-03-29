@@ -16,3 +16,5 @@
       / こっちを使うと label for=xxx しているのに input 側に id 属性がないため、テキスト部分を触っても、チェックできない。だから噛み合っていない for を消すことで有効化する。
       = form.collection_check_boxes(:seven_day_ids, SevenDay.all, :id, :name) do |b|
         = b.label(:class => "checkbox-inline", :for => nil) { b.check_box + b.text }
+      / = form.collection_radio_buttons(:seven_day_ids, SevenDay.all, :id, :name) do |b|
+      /   = b.label(:class => "radio-inline", :for => nil) { b.radio_button + b.text }
