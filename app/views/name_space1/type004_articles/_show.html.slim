@@ -1,10 +1,12 @@
 - if current_record.pixer?
   .row
     .col-md-12
-      - if current_record.pixer.content_type.start_with?("image")
+      - if current_record.pixer.content_type.match?(/image/)
         = image_tag(current_record.pixer.url, :class => "img-thumbnail")
       - elsif current_record.pixer.content_type.match?(/video|mp4/)
-        = video_tag(current_record.pixer.url, :controls => true, :class => "img-thumbnail")
+        = video_tag(current_record.pixer.url, :class => "img-thumbnail", :controls => true)
+      - elsif current_record.pixer.content_type.match?(/audio/)
+        = audio_tag(current_record.pixer.url)
       - elsif current_record.pixer.content_type.start_with?("text")
         pre
           = open(current_record.pixer.path, &:read)
@@ -12,5 +14,19 @@
         = link_to(current_record.pixer.filename, asset_path(current_record.pixer.url))
   .row
     .col-md-12
-      p
-        .well.well-sm= current_record.pixer.inspect
+      .label.label-default= "URL"
+      pre= link_to(asset_url(current_record.pixer.url), asset_path(current_record.pixer.url))
+  .row
+    .col-md-12
+      .label.label-default= "pixer inspect"
+      = debug current_record.pixer
+  .row
+    .col-md-12
+      .label.label-default= "image_tag"
+      p= image_tag(current_record.pixer.url, :class => "img-thumbnail")
+
+      .label.label-default= "video_tag"
+      p= video_tag(current_record.pixer.url, :class => "img-thumbnail", :controls => true)
+
+      .label.label-default= "audio_tag"
+      p= audio_tag(current_record.pixer.url)

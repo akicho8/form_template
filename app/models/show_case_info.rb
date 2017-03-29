@@ -5,7 +5,7 @@ class ShowCaseInfo
     {:model => Type002Article, :confirm => true,  :tables => 2, :desc => "画像認証対応。ボットを防げる。シンプルだが確認画面でリロードすると画像認証が作動して元に戻ってしまう。", },
     {:model => Type015Article, :confirm => true,  :tables => 2, :desc => "画像認証対応。ボットを防げる。認証は一回だけにしたバージョン。確認画面でリロードしても元に戻らない。",   },
     {:model => Type003Article, :confirm => true,  :tables => 1, :desc => "氏名・住所・連絡先。確認画面はスマホにも対応",                                                           },
-    {:model => Type004Article, :confirm => true,  :tables => 1, :desc => "従来の単一ファイルアップロードフォーム。詳細はいろんなファイル形式に対応(予定)",                         },
+    {:model => Type004Article, :confirm => true,  :tables => 1, :desc => "従来の単一ファイルアップロードフォーム。詳細はいろんなファイル形式に対応",                               },
     {:model => Type009Article, :confirm => false, :tables => 2, :desc => "不親切。エラー時に再アップが必要。だが、とてもシンプル",                                                 },
     {:model => Type005Article, :confirm => true,  :tables => 2, :desc => "個別の削除にも対応。いちばん高機能",                                                                     },
     {:model => Type010Article, :confirm => false, :tables => 2, :desc => "1対多。オークション商品画像などを想定。位置重要。画像に説明を追加可。",                                  },

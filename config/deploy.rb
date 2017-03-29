@@ -80,6 +80,9 @@ namespace :deploy do
   # -    end
   # -  end
 
+  
+  
+  
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
       # Here we can do anything such as:
@@ -110,7 +113,7 @@ namespace :deploy do
       # execute :rake, "db:create"
     end
   end
-  before 'deploy:starting', 'deploy:app_clean'
+  # before 'deploy:starting', 'deploy:app_clean'
 
   # desc 'Runs rake db:migrate if migrations are set'
   task :db_create => [:set_rails_env] do
@@ -123,7 +126,7 @@ namespace :deploy do
       end
     end
   end
-  before 'deploy:migrate', 'deploy:db_create'
+  # before 'deploy:migrate', 'deploy:db_create'
 end
 
 # set :passenger_restart_with_touch, true

@@ -32,6 +32,12 @@ module NameSpace1
 
       attrs
     end
+
+    def raw_current_record
+      super.tap do |e|
+        e.comment ||= "#{current_model.maximum(:id).to_i.next}つめ"
+      end
+    end
   end
 end
 
