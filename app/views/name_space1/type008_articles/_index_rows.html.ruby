@@ -1,6 +1,6 @@
 current_records.collect {|e|
   {
-    "ID"   => e.id,
+    "ID"   => link_to(e.id, [controller.class.parent_name.underscore, e]),
     "名前" => e.name,
     "曜日" => e.seven_days.collect(&:name).join,
   }.merge({"操作" => [

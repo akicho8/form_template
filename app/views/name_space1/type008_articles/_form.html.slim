@@ -7,4 +7,4 @@
 .form-group
   = form.label(:seven_days, :class => "col-sm-2 control-label")
   .col-sm-2
-    = form.select(:temp_seven_day_ids, options_for_select(SevenDay.all.inject({}) {|a, e| a.merge(e.name => e.id) }, form.object.current_seven_day_ids), {:include_blank => false}, {:class => "form-control", :multiple => true})
+    = form.collection_select(:temp_seven_day_ids, SevenDay.all, :id, :name, {:include_blank => false}, {:class => "form-control", :multiple => true})
