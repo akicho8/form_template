@@ -8,6 +8,5 @@
 .form-group
   label.col-md-2.control-label= "曜日"
   .col-md-10
-    - SevenDay.all.each do |e|
-      label.checkbox-inline
-        = check_box_tag("type007_article[temp_seven_day_ids][]", e.id, form.object.current_seven_day_ids.include?(e.id)) + e.name
+    = form.collection_check_boxes(:temp_seven_day_ids, SevenDay.all, :id, :name) do |b|
+      = b.label(:class => "checkbox-inline", :for => nil) { b.check_box + b.text }

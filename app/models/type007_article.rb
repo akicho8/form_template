@@ -25,7 +25,7 @@ class Type007Article < ApplicationRecord
 
     # チェックボックスの状態を確認するにはフォーム入力の情報を優先する、このメソッドを使うこと
     # また presence? のものだけにしているのはmultipleセレクトボックスで空文字列が常に飛んでくるためが常に来てしまうため
-    def current_seven_day_ids
+    def temp_seven_day_ids
       (@temp_seven_day_ids || seven_day_ids).find_all(&:present?).collect(&:to_i)
     end
 
