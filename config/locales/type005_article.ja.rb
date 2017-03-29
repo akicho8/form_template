@@ -20,7 +20,7 @@
           :type005_files_all_remove => "アップロード済みファイルの全削除",
         },
         :type005_file => {
-          :pixer => "ファイル",
+          :media_file => "ファイル",
         },
       },
     },

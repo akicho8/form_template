@@ -20,7 +20,7 @@ class CreateType005Articles < ActiveRecord::Migration[5.1]
     end
     create_table :type005_files, :force => true do |t|
       t.belongs_to :type005_article
-      t.string :pixer
+      t.string :media_file
       t.timestamps :null => false
     end
   end

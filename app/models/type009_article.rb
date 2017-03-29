@@ -21,6 +21,6 @@ class Type009Article < ApplicationRecord
   end
 
   def type009_attachment_files=(v)
-    assign_attributes(:type009_attachments_attributes => v.collect { |e| {:pixer => e} })
+    assign_attributes(:type009_attachments_attributes => v.collect { |e| {:media_file => e} })
   end
 end

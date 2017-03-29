@@ -14,7 +14,7 @@
       },
       :attributes => {
         :type004_article => {
-          :pixer        => "ファイル",
+          :media_file        => "ファイル",
           :comment      => "コメント",
           :remove_pixer => "アップロード済みファイルの削除",
         },

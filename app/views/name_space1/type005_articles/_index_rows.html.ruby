@@ -1,7 +1,7 @@
 current_records.collect {|e|
   {
     current_model.human_attribute_name(:title) => link_to(e.title, [controller.class.parent_name.underscore, e]),
-    "画像"     => e.type005_files.collect{|e| image_tag(e.pixer.url, :height => "16") }.join(" ").html_safe,
+    "画像"     => e.type005_files.collect{|e| image_tag(e.media_file.url, :height => "16") }.join(" ").html_safe,
     "操作" => [
       link_to("詳細", [controller.class.parent_name.underscore, e]),
       link_to("編集", [:edit, controller.class.parent_name.underscore, e]),

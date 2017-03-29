@@ -22,7 +22,7 @@ class CreateType010Articles < ActiveRecord::Migration[5.1]
     create_table :type010_files, force: true do |t|
       t.belongs_to :type010_article, null: false, index: true
       t.string :name
-      t.string :pixer, null: false
+      t.string :media_file, null: false
       t.integer :position, null: false
       t.timestamps null: false
 

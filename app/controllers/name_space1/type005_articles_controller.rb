@@ -63,7 +63,7 @@ module NameSpace1
 
     # トップレベルで定義した file_field_tag(:up_files) を受け取って current_record_params 用に加工する
     def current_up_files
-      Array(params[:up_files]).collect { |e| {:pixer => e} }
+      Array(params[:up_files]).collect { |e| {:media_file => e} }
     end
 
     def raw_current_record

@@ -21,7 +21,7 @@
           .form-group
             = form.label(key, class: "col-sm-2 control-label")
             .col-sm-10
-              = sub_form.file_field("pixer", class: "form-control")
+              = sub_form.file_field("media_file", class: "form-control")
     .form-group
       .col-sm-offset-2.col-sm-10
         =<> form.submit(class: "btn btn-primary")
@@ -47,7 +47,7 @@
         .col-md-4
           .thumbnail
             - if e.persisted?
-              = image_tag(e.pixer.url)
+              = image_tag(e.media_file.url)
               .caption
                 .h3= e.id
                 / fields_for には key を指定してもいいけど type010_files の方が汎用的。レコードは id で特定できる。
@@ -62,7 +62,7 @@
                   = current_model.human_attribute_name(key) + "側に表示する画像を指定してください"
               / この key で場所は特定できているので position の指定は不要
               = form.fields_for(key) do |sub_form|
-                = sub_form.file_field(:pixer, class: "form-control")
+                = sub_form.file_field(:media_file, class: "form-control")
 
     .form-group
       .col-sm-12

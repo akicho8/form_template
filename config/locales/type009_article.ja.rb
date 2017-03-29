@@ -19,7 +19,7 @@
           :title         => "タイトル",
         },
         :type009_attachment => {
-          :pixer => "ファイル",
+          :media_file => "ファイル",
         },
       },
     },

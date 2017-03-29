@@ -20,7 +20,7 @@
           :seven_days        => "曜日",
         },
         :type007_file => {
-          :pixer => "ファイル",
+          :media_file => "ファイル",
         },
       },
     },

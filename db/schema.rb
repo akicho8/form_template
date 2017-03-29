@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 20170324213300) do
   end
 
   create_table "type004_articles", force: :cascade do |t|
-    t.string "pixer"
+    t.string "media_file"
     t.string "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -91,7 +91,7 @@ ActiveRecord::Schema.define(version: 20170324213300) do
 
   create_table "type005_files", force: :cascade do |t|
     t.integer "type005_article_id"
-    t.string "pixer"
+    t.string "media_file"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["type005_article_id"], name: "index_type005_files_on_type005_article_id"
@@ -150,7 +150,7 @@ ActiveRecord::Schema.define(version: 20170324213300) do
 
   create_table "type009_attachments", force: :cascade do |t|
     t.integer "type009_article_id"
-    t.string "pixer"
+    t.string "media_file"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["type009_article_id"], name: "index_type009_attachments_on_type009_article_id"
@@ -165,7 +165,7 @@ ActiveRecord::Schema.define(version: 20170324213300) do
   create_table "type010_files", force: :cascade do |t|
     t.integer "type010_article_id", null: false
     t.string "name"
-    t.string "pixer", null: false
+    t.string "media_file", null: false
     t.integer "position", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

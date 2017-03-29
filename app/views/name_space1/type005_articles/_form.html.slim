@@ -24,7 +24,7 @@
           ul.list-unstyled
             - form.object.persisted_type005_files.each do |e|
               li
-                = image_tag(e.pixer.url, :height => "128", :class => "img-rounded")
+                = image_tag(e.media_file.url, :height => "128", :class => "img-rounded")
                 label.checkbox-inline= check_box_tag("delete_ids[]", e.id, controller.current_delete_ids.include?(e.id)) + "削除する"
 
         / 今UPしたファイルたち
@@ -34,7 +34,7 @@
             - form.object.temp_type005_files.each do |e|
               li
                 = hidden_field_tag("up_caches[]", e.pixer_cache)
-                = image_tag(e.pixer.url, :height => "128", :class => "img-rounded")
+                = image_tag(e.media_file.url, :height => "128", :class => "img-rounded")
                 label.checkbox-inline= check_box_tag("reject_codes[]", e.pixer_cache, controller.current_reject_codes.include?(e.pixer_cache)) + "削除する"
 
 / 削除

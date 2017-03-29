@@ -8,7 +8,7 @@
 # +--------------------+-----------------+----------+-------------+----------------------+-------+
 # | id                 | ID              | integer  | NOT NULL PK |                      |       |
 # | type005_article_id | Type005 article | integer  |             | => Type005Article#id | A     |
-# | pixer              | ファイル        | string   |             |                      |       |
+# | media_file              | ファイル        | string   |             |                      |       |
 # | created_at         | 作成日時        | datetime | NOT NULL    |                      |       |
 # | updated_at         | 更新日時        | datetime | NOT NULL    |                      |       |
 # +--------------------+-----------------+----------+-------------+----------------------+-------+
@@ -18,7 +18,7 @@
 #--------------------------------------------------------------------------------
 
 class Type005File < ApplicationRecord
-  mount_uploader :pixer, AttachmentUploader
+  mount_uploader :media_file, AttachmentUploader
 
   belongs_to :type005_article, :inverse_of => :type005_files
 end

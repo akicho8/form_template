@@ -1,8 +1,8 @@
 .form-group
-  = form.label(:pixer, :class => "col-sm-2 control-label")
+  = form.label(:media_file, :class => "col-sm-2 control-label")
   .col-sm-10
-    - if form.object.pixer?
-      = image_tag(form.object.pixer.url, :height => 64, :class => "img-rounded")
+    - if form.object.media_file?
+      = image_tag(form.object.media_file.url, :height => 64, :class => "img-rounded")
       - if form.object.remove_pixer?
         = "を削除します"
 

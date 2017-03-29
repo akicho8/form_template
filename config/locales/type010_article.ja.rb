@@ -22,7 +22,7 @@
           :type010_file_c => "右",
         },
         :type010_file => {
-          :pixer       => "ファイル",
+          :media_file       => "ファイル",
           :type010_article_id => "画像セット情報",
         },
       },

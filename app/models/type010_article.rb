@@ -57,7 +57,7 @@ class Type010Article < ApplicationRecord
     end
 
     def up_files=(v)
-      assign_attributes(:type010_files_attributes => v.collect.with_index { |e, i| {:pixer => e, :position => i} })
+      assign_attributes(:type010_files_attributes => v.collect.with_index { |e, i| {:media_file => e, :position => i} })
     end
   end
 

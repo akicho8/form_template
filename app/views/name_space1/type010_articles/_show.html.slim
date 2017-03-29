@@ -3,7 +3,7 @@
    - current_record.filled_file_column_objs.each do |key, e|
      .col-md-4
        .thumbnail
-         = image_tag(e.pixer.url)
+         = image_tag(e.media_file.url)
          .caption
            .h3= e.name
            / p

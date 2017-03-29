@@ -1,4 +1,4 @@
 .row
   - current_record.type009_attachments.each do |type009_attachment|
     .col-md-3
-      = link_to(image_tag(type009_attachment.pixer.url), asset_path(type009_attachment.pixer.url), :class => "thumbnail")
+      = link_to(image_tag(type009_attachment.media_file.url), asset_path(type009_attachment.media_file.url), :class => "thumbnail")
