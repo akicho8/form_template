@@ -8,7 +8,7 @@
 # +--------------------+-----------------+----------+-------------+----------------------+-------+
 # | id                 | ID              | integer  | NOT NULL PK |                      |       |
 # | type005_article_id | Type005 article | integer  |             | => Type005Article#id | A     |
-# | media_file              | ファイル        | string   |             |                      |       |
+# | media_file         | ファイル        | string   |             |                      |       |
 # | created_at         | 作成日時        | datetime | NOT NULL    |                      |       |
 # | updated_at         | 更新日時        | datetime | NOT NULL    |                      |       |
 # +--------------------+-----------------+----------+-------------+----------------------+-------+

@@ -9,7 +9,7 @@
 # | id                 | ID             | integer  | NOT NULL PK |                      |       |
 # | type010_article_id | 画像セット情報 | integer  | NOT NULL    | => Type010Article#id | B     |
 # | name               | Name           | string   |             |                      |       |
-# | media_file              | ファイル       | string   | NOT NULL    |                      |       |
+# | media_file         | ファイル       | string   | NOT NULL    |                      |       |
 # | position           | 順序           | integer  | NOT NULL    |                      | A     |
 # | created_at         | 作成日時       | datetime | NOT NULL    |                      |       |
 # | updated_at         | 更新日時       | datetime | NOT NULL    |                      |       |
