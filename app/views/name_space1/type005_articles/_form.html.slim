@@ -1,6 +1,6 @@
 / コメント未入力エラー時でもアップした一時ファイル情報を保持する
 / = form.fields_for(:type005_files) do |f|
-/   = f.hidden_field(:pixer_cache)
+/   = f.hidden_field(:media_file_cache)
 
 / タイトル
 .form-group
@@ -12,10 +12,8 @@
 .form-group
   = form.label(:up_files, :class => "col-sm-2 control-label")
   .col-sm-10
-    / フォームを multipart にするための裏技
-    = form.file_field("__dummy_file_field__", :disabled => true, :style => "display:none")
     / トップレベルで定義
-    = file_field_tag("up_files[]", :class => "form-control", :multiple => true)
+    = form.file_field(:up_files, :class => "form-control", :multiple => true)
     - if form.object.type005_files.present?
       .help-block
         / 既存ファイルたち
@@ -24,7 +22,7 @@
           ul.list-unstyled
             - form.object.persisted_type005_files.each do |e|
               li
-                = image_tag(e.media_file.url, :height => "128", :class => "img-rounded")
+                = image_tag(e.media_file.url, :height => 128, :class => "img-rounded")
                 label.checkbox-inline= check_box_tag("delete_ids[]", e.id, controller.current_delete_ids.include?(e.id)) + "削除する"
 
         / 今UPしたファイルたち
@@ -33,9 +31,11 @@
           ul.list-unstyled
             - form.object.temp_type005_files.each do |e|
               li
-                = hidden_field_tag("up_caches[]", e.pixer_cache)
-                = image_tag(e.media_file.url, :height => "128", :class => "img-rounded")
-                label.checkbox-inline= check_box_tag("reject_codes[]", e.pixer_cache, controller.current_reject_codes.include?(e.pixer_cache)) + "削除する"
+                = form.fields_for(:type005_files, e) do |sub_form|
+                  = sub_form.hidden_field(:media_file_cache)
+                = image_tag(e.media_file.url, :height => 128, :class => "img-rounded")
+                / FIXME: もっと綺麗にかけないか？
+                label.checkbox-inline= check_box_tag("cancel_caches[]", e.media_file_cache, controller.current_cancel_caches.include?(e.media_file_cache)) + "削除する"
 
 / 削除
 - if form.object.type005_files.present?

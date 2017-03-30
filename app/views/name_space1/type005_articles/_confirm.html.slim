@@ -1,5 +1,5 @@
 = controller.current_delete_ids.collect { |e| hidden_field_tag("delete_ids[]", e) }.join("\n").html_safe
-= controller.current_reject_codes.collect { |e| hidden_field_tag("reject_codes[]", e) }.join("\n").html_safe
+= controller.current_cancel_caches.collect { |e| hidden_field_tag("cancel_caches[]", e) }.join("\n").html_safe
 
 .form-group
   = form.label(:title, :class => "col-sm-2 control-label")
@@ -28,7 +28,7 @@
           ul.list-unstyled
             - form.object.temp_type005_files.each do |e|
               li
-                - if controller.current_reject_codes.include?(e.pixer_cache)
+                - if controller.current_cancel_caches.include?(e.media_file_cache)
                   = image_tag(e.media_file.url, :height => 64, :class => "img-rounded")
                   span.label.label-warning= "削除"
                 - else

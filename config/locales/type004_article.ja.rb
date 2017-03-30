@@ -16,7 +16,7 @@
         :type004_article => {
           :media_file        => "ファイル",
           :comment      => "コメント",
-          :remove_pixer => "アップロード済みファイルの削除",
+          :remove_media_file => "アップロード済みファイルの削除",
         },
       },
     },

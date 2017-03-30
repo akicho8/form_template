@@ -20,6 +20,10 @@ class Type005Article < ApplicationRecord
     validates :title
   end
 
+  def up_files=(v)
+    assign_attributes(:type005_files_attributes => v.collect { |e| {:media_file => e} })
+  end
+
   concerning :AllRemoveMethods do
     attr_accessor :type005_files_all_remove
 
@@ -39,7 +43,7 @@ class Type005Article < ApplicationRecord
   concerning :ConfirmMethods do
     # 中間ファイルの情報を持っているもののみ
     def temp_type005_files
-      type005_files.find_all(&:pixer_cache)
+      type005_files.find_all(&:media_file_cache)
     end
 
     # 保存済みのファイルのみ

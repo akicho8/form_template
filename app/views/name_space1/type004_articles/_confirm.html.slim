@@ -3,7 +3,7 @@
   .col-sm-10
     - if form.object.media_file?
       = image_tag(form.object.media_file.url, :height => 64, :class => "img-rounded")
-      - if form.object.remove_pixer?
+      - if form.object.remove_media_file?
         = "を削除します"
 
 .form-group

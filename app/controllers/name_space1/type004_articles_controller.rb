@@ -23,11 +23,11 @@ module NameSpace1
 
     # 確認画面に行く直前にセッションに保存しておく値たち
     def current_session_attributes
-      attrs = current_record_params.except(:media_file) # pixerはオブジェクトは巨大なので退ける
+      attrs = current_record_params.except(:media_file) # media_fileはオブジェクトは巨大なので退ける
 
       # すでにアップロード済みの状態ならそのキーをセッションに保存
-      if v = current_record.pixer_cache
-        attrs[:pixer_cache] = v
+      if v = current_record.media_file_cache
+        attrs[:media_file_cache] = v
       end
 
       attrs
