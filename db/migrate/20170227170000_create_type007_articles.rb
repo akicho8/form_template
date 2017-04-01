@@ -18,9 +18,9 @@ class CreateType007Articles < ActiveRecord::Migration[5.1]
       t.string :name
       t.timestamps :null => false
     end
-    create_table :type007_seven_ships, :force => true do |t|
+    create_table :type007_team_ships, :force => true do |t|
       t.belongs_to :type007_article, :null => false
-      t.belongs_to :seven_day, :null => false
+      t.belongs_to :team, :null => false
       t.timestamps :null => false
     end
   end

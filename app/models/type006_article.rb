@@ -13,8 +13,8 @@
 # +------------+----------+----------+-------------+------+-------+
 
 class Type006Article < ApplicationRecord
-  has_many :type006_seven_ships, :dependent => :destroy
-  has_many :seven_days, :through => :type006_seven_ships
+  has_many :type006_team_ships, :dependent => :destroy
+  has_many :teams, :through => :type006_team_ships
 
   with_options(:presence => true) do
     validates :name

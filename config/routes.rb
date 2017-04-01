@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     resources :type013_articles
     resources :type014_articles
     resources :type015_articles
+    resources :type016_articles
   end
 
   get "tops/show"

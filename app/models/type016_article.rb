@@ -18,22 +18,22 @@ class Type016Article < ApplicationRecord
   
   concerning :ManyMethods do
     included do
-      has_many :v1_type016_seven_ships, -> { where(:relation_key => "many") }, :dependent => :destroy, :class_name => "Type016SevenShip", :inverse_of => :type016_article
-      has_many :v1_seven_days, :through => :v1_type016_seven_ships, :source => :seven_day
-      accepts_nested_attributes_for :v1_type016_seven_ships
+      has_many :v1_type016_team_ships, -> { where(:relation_key => "many") }, :dependent => :destroy, :class_name => "Type016TeamShip", :inverse_of => :type016_article
+      has_many :v1_teams, :through => :v1_type016_team_ships, :source => :team
+      accepts_nested_attributes_for :v1_type016_team_ships
     end
   end
 
   concerning :OneMethods do
     included do
-      has_one :v2_type016_seven_ship, -> { where(:relation_key => "one") }, :dependent => :destroy, :class_name => "Type016SevenShip", :inverse_of => :type016_article
-      accepts_nested_attributes_for :v2_type016_seven_ship
+      has_one :v2_type016_team_ship, -> { where(:relation_key => "one") }, :dependent => :destroy, :class_name => "Type016TeamShip", :inverse_of => :type016_article
+      accepts_nested_attributes_for :v2_type016_team_ship
     end
 
-    # 新規でも form.fields_for(:v2_type016_seven_ship) do |form| のまま書けるようにするため。
-    # form.fields_for(:v2_type016_seven_ship, form.object.v2_type016_seven_ship || form.object.build_v2_type016_seven_ship) do |form|
-    def v2_type016_seven_ship
-      super || build_v2_type016_seven_ship
+    # 新規でも form.fields_for(:v2_type016_team_ship) do |form| のまま書けるようにするため。
+    # form.fields_for(:v2_type016_team_ship, form.object.v2_type016_team_ship || form.object.build_v2_type016_team_ship) do |form|
+    def v2_type016_team_ship
+      super || build_v2_type016_team_ship
     end
   end
 

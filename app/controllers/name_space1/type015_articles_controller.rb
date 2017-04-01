@@ -27,7 +27,7 @@ module NameSpace1
       self.captcha_status = false # 「新規」から開始すると再び画像認証を有効にする
       super
     end
-    
+
     private
 
     def raw_current_record
@@ -61,7 +61,7 @@ module NameSpace1
     def captcha_status=(v)
       v.tap { Rails.cache.write(current_captcha_session_key, v, :expires_in => Rails.env.production? ? 10.minutes : 30.seconds) }
     end
-    
+
     def current_captcha_session_key
       [current_single_key, :captcha_key, session.id].join("_")
     end

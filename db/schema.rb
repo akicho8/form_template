@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170324213300) do
+ActiveRecord::Schema.define(version: 20170401105800) do
 
   create_table "sessions", force: :cascade do |t|
     t.string "session_id", null: false
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20170324213300) do
     t.index ["updated_at"], name: "index_sessions_on_updated_at"
   end
 
-  create_table "seven_days", force: :cascade do |t|
+  create_table "teams", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -103,13 +103,13 @@ ActiveRecord::Schema.define(version: 20170324213300) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "type006_seven_ships", force: :cascade do |t|
+  create_table "type006_team_ships", force: :cascade do |t|
     t.integer "type006_article_id", null: false
-    t.integer "seven_day_id", null: false
+    t.integer "team_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["seven_day_id"], name: "index_type006_seven_ships_on_seven_day_id"
-    t.index ["type006_article_id"], name: "index_type006_seven_ships_on_type006_article_id"
+    t.index ["team_id"], name: "index_type006_team_ships_on_team_id"
+    t.index ["type006_article_id"], name: "index_type006_team_ships_on_type006_article_id"
   end
 
   create_table "type007_articles", force: :cascade do |t|
@@ -118,13 +118,13 @@ ActiveRecord::Schema.define(version: 20170324213300) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "type007_seven_ships", force: :cascade do |t|
+  create_table "type007_team_ships", force: :cascade do |t|
     t.integer "type007_article_id", null: false
-    t.integer "seven_day_id", null: false
+    t.integer "team_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["seven_day_id"], name: "index_type007_seven_ships_on_seven_day_id"
-    t.index ["type007_article_id"], name: "index_type007_seven_ships_on_type007_article_id"
+    t.index ["team_id"], name: "index_type007_team_ships_on_team_id"
+    t.index ["type007_article_id"], name: "index_type007_team_ships_on_type007_article_id"
   end
 
   create_table "type008_articles", force: :cascade do |t|
@@ -133,13 +133,13 @@ ActiveRecord::Schema.define(version: 20170324213300) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "type008_seven_ships", force: :cascade do |t|
+  create_table "type008_team_ships", force: :cascade do |t|
     t.integer "type008_article_id", null: false
-    t.integer "seven_day_id", null: false
+    t.integer "team_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["seven_day_id"], name: "index_type008_seven_ships_on_seven_day_id"
-    t.index ["type008_article_id"], name: "index_type008_seven_ships_on_type008_article_id"
+    t.index ["team_id"], name: "index_type008_team_ships_on_team_id"
+    t.index ["type008_article_id"], name: "index_type008_team_ships_on_type008_article_id"
   end
 
   create_table "type009_articles", force: :cascade do |t|
@@ -240,6 +240,22 @@ ActiveRecord::Schema.define(version: 20170324213300) do
     t.string "remote_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "type016_articles", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "type016_team_ships", force: :cascade do |t|
+    t.integer "type016_article_id", null: false
+    t.integer "team_id", null: false
+    t.string "relation_key"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_type016_team_ships_on_team_id"
+    t.index ["type016_article_id"], name: "index_type016_team_ships_on_type016_article_id"
   end
 
 end

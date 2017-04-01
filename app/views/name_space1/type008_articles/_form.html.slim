@@ -5,6 +5,6 @@
     = form.text_field(:name, :class => "form-control")
 
 .form-group
-  = form.label(:seven_days, :class => "col-sm-2 control-label")
+  = form.label(:teams, :class => "col-sm-2 control-label")
   .col-sm-2
-    = form.collection_select(:temp_seven_day_ids, SevenDay.all, :id, :name, {:include_blank => false}, {:class => "form-control", :multiple => true})
+    = form.collection_select(:temp_team_ids, Team.all, :id, :name, {:include_blank => false}, {:class => "form-control", :multiple => true})

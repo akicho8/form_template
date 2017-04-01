@@ -1,5 +1,5 @@
-if SevenDay.all.empty?
-  "日月火水木金土".chars.each do |e|
-    p SevenDay.create!(:name => e)
+if Team.all.empty?
+  "ABC".chars.each do |e|
+    p Team.create!(:name => e)
   end
 end

@@ -4,6 +4,6 @@
     p.form-control-static= form.object.name
 
 .form-group
-  = form.label(:seven_days, :class => "col-sm-2 control-label")
+  = form.label(:teams, :class => "col-sm-2 control-label")
   .col-sm-10
-    p.form-control-static= SevenDay.find(form.object.temp_seven_day_ids).collect(&:name).join
+    p.form-control-static= Team.find(form.object.temp_team_ids).collect(&:name).join

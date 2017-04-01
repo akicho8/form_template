@@ -10,6 +10,7 @@ class ShowCaseInfo
     {:model => Type005Article, :confirm => true,  :tables => 2, :desc => "個別の削除にも対応。いちばん高機能",                                                                     },
     {:model => Type010Article, :confirm => false, :tables => 2, :desc => "1対多。オークション商品画像などを想定。位置重要。画像に説明を追加可。",                                  },
     {:model => Type006Article, :confirm => false, :tables => 3, :desc => "1対多。とてもシンプル。",                                                                                },
+    {:model => Type016Article, :confirm => false, :tables => 3, :desc => "1対多。同じモデルに対して has_many と has_one で干渉しないようにのそれぞのリレーション",                 },
     {:model => Type007Article, :confirm => true,  :tables => 3, :desc => "1対多。確認画面対応で一気にコードが煩雑になる",                                                          },
     {:model => Type008Article, :confirm => true,  :tables => 3, :desc => "1対多。モデルはチェックボックスの場合と同じコードで良い",                                                },
     {:model => Type011Article, :confirm => false, :tables => 2, :desc => "スレッドの作成と同時に1を自分で書き込むタイプ。",                                                        },

@@ -2,7 +2,7 @@ current_records.collect {|e|
   {
     "ID"   => e.id,
     "名前" => e.name,
-    "曜日" => e.seven_days.collect(&:name).join,
+    "曜日" => e.teams.collect(&:name).join,
   }.merge({"操作" => [
         link_to("詳細", [controller.class.parent_name.underscore, e]),
         link_to("編集", [:edit, controller.class.parent_name.underscore, e]),

@@ -13,28 +13,28 @@
 # +------------+----------+----------+-------------+------+-------+
 
 class Type007Article < ApplicationRecord
-  has_many :type007_seven_ships, :dependent => :destroy
-  has_many :seven_days, :through => :type007_seven_ships
+  has_many :type007_team_ships, :dependent => :destroy
+  has_many :teams, :through => :type007_team_ships
 
   with_options(:presence => true) do
     validates :name
   end
 
   concerning :ConfirmMethods do
-    attr_accessor :temp_seven_day_ids # 更新するときはこれに設定して確認画面にいく
+    attr_accessor :temp_team_ids # 更新するときはこれに設定して確認画面にいく
 
     # チェックボックスの状態を確認するにはフォーム入力の情報を優先する、このメソッドを使うこと
     # また presence? のものだけにしているのはmultipleセレクトボックスで空文字列が常に飛んでくるためが常に来てしまうため
-    def temp_seven_day_ids
-      (@temp_seven_day_ids || seven_day_ids).find_all(&:present?).collect(&:to_i)
+    def temp_team_ids
+      (@temp_team_ids || team_ids).find_all(&:present?).collect(&:to_i)
     end
 
     included do
-      # 保存し終わったときに @temp_seven_day_ids を反映する
+      # 保存し終わったときに @temp_team_ids を反映する
       after_save do
-        if @temp_seven_day_ids
-          self.seven_day_ids = @temp_seven_day_ids # ここで中間テーブルが整理される
-          @temp_seven_day_ids = nil
+        if @temp_team_ids
+          self.team_ids = @temp_team_ids # ここで中間テーブルが整理される
+          @temp_team_ids = nil
         end
       end
     end
