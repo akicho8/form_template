@@ -1,0 +1,22 @@
+/ 名前
+.form-group
+  = form.label(:name, :class => "col-sm-2 control-label")
+  .col-sm-10
+    = form.text_field(:name, :class => "form-control")
+
+/ 「横」並びチェックボックス
+.form-group
+  label.col-md-2.control-label= "曜日(複)"
+  .col-md-10
+    / こっちを使うと label for=xxx しているのに input 側に id 属性がないため、テキスト部分を触っても、チェックできない。だから噛み合っていない for を消すことで有効化する。
+    = form.collection_check_boxes(:v1_seven_day_ids, SevenDay.all, :id, :name) do |b|
+      = b.label(:class => "checkbox-inline", :for => nil) { b.check_box + b.text }
+
+.form-group
+  label.col-md-2.control-label= "曜日(単)"
+  .col-md-10
+    / モデル側で super || build_v2_type016_seven_ship としない場合は次の書き方が必要
+    / = form.fields_for(:v2_type016_seven_ship, form.object.v2_type016_seven_ship || form.object.build_v2_type016_seven_ship) do |form|
+    = form.fields_for(:v2_type016_seven_ship) do |form|
+      = form.collection_radio_buttons(:seven_day_id, SevenDay.all, :id, :name) do |b|
+        = b.label(:class => "radio-inline", :for => nil) { b.radio_button + b.text }
