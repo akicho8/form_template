@@ -8,7 +8,7 @@
 # +--------------------+-----------------+----------+-------------+----------------------+-------+
 # | id                 | ID              | integer  | NOT NULL PK |                      |       |
 # | type016_article_id | Type016 article | integer  | NOT NULL    | => Type016Article#id | B     |
-# | team_id       | Seven day       | integer  | NOT NULL    | => Team#id       | A     |
+# | team_id            | Team            | integer  | NOT NULL    | => Team#id           | A     |
 # | relation_key       | Relation key    | string   |             |                      |       |
 # | created_at         | 作成日時        | datetime | NOT NULL    |                      |       |
 # | updated_at         | 更新日時        | datetime | NOT NULL    |                      |       |

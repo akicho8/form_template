@@ -8,7 +8,7 @@
 # +--------------------+-----------------+----------+-------------+----------------------+-------+
 # | id                 | ID              | integer  | NOT NULL PK |                      |       |
 # | type007_article_id | Type007 article | integer  | NOT NULL    | => Type007Article#id | B     |
-# | team_id       | Seven day       | integer  | NOT NULL    | => Team#id       | A     |
+# | team_id            | Team            | integer  | NOT NULL    | => Team#id           | A     |
 # | created_at         | 作成日時        | datetime | NOT NULL    |                      |       |
 # | updated_at         | 更新日時        | datetime | NOT NULL    |                      |       |
 # +--------------------+-----------------+----------+-------------+----------------------+-------+

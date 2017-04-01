@@ -21,18 +21,18 @@ ActiveRecord::Schema.define(version: 20170401105800) do
     t.index ["updated_at"], name: "index_sessions_on_updated_at"
   end
 
-  create_table "teams", force: :cascade do |t|
-    t.string "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "simple_captcha_data", force: :cascade do |t|
     t.string "key", limit: 40
     t.string "value", limit: 6
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["key"], name: "index_simple_captcha_data_on_key"
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "type001_articles", force: :cascade do |t|
