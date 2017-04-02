@@ -22,6 +22,7 @@ module NameSpace1
     end
 
     def raw_current_record
+      # raise params.inspect
       super.tap do |e|
         e.name ||= "#{current_model.count.next}つ目"
       end
