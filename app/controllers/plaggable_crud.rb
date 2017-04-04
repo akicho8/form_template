@@ -1,6 +1,14 @@
 module PlaggableCrud
   concern :Base do
     included do
+      if Rails.env.development?
+        before_action do
+          unless request.get?
+            Rails.cache.write(:before_post_params, params.permit!.to_h.except(:utf8), expires_in: 1.minutes)
+          end
+        end
+      end
+
       before_action :record_load
 
       helper_method :current_model
