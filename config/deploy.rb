@@ -102,7 +102,7 @@ namespace :deploy do
       end
     end
   end
-  # after 'deploy:migrate', 'deploy:db_seed'
+  after 'deploy:migrate', 'deploy:db_seed'
 
   task :app_clean do
     on roles :all do
