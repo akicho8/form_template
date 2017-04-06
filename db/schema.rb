@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170401105800) do
+ActiveRecord::Schema.define(version: 20170406134200) do
 
   create_table "sessions", force: :cascade do |t|
     t.string "session_id", null: false
@@ -256,6 +256,13 @@ ActiveRecord::Schema.define(version: 20170401105800) do
     t.datetime "updated_at", null: false
     t.index ["team_id"], name: "index_type016_team_ships_on_team_id"
     t.index ["type016_article_id"], name: "index_type016_team_ships_on_type016_article_id"
+  end
+
+  create_table "type017_articles", force: :cascade do |t|
+    t.string "map_address"
+    t.text "geocode_hash"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

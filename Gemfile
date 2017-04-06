@@ -91,6 +91,7 @@ gem 'kaminari'
 gem 'simple_captcha2'
 gem 'carrierwave'
 gem 'rmagick'
+gem "geokit"
 
 gem 'static_record', :github => "akicho8/static_record"
 gem 'rain_table',    :github => 'akicho8/rain_table'

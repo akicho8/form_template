@@ -17,6 +17,7 @@ class ShowCaseInfo
     {:model => Type012Article, :confirm => false, :tables => 3, :desc => "異なる3つのモデルで構成する木構造。向こうの向こうまで一気に作る。",                                      },
     {:model => Type013Article, :confirm => false, :tables => 1, :desc => "自分にもコメントできるツリー構造。フォームは再帰",                                                       },
     {:model => Type014Article, :confirm => false, :tables => 1, :desc => "HTML5の特殊入力列挙。month, week の受け取りはスムーズにいかない。iPhoneでcolorは非対応",                 },
+    {:model => Type017Article, :confirm => false, :tables => 1, :desc => "GoogleMap対応のテスト。_show.html.slim が汚い",                                                          },
   ], :attr_reader_auto => true
 
   def self.to_html(h)
