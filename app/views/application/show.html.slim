@@ -2,7 +2,7 @@
   .page-header
     h2= controller.page_header_show_title
 
-= render :partial => "show"
+= render :partial => params[:show_partial] || "show"
 
 p
   .panel.panel-default

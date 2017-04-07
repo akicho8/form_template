@@ -1,0 +1,68 @@
+.row
+  .col-md-12
+    #message
+    #latlon_div
+    #radius_div
+    #callback_counter
+.row
+  .col-md-12
+    #gmap_canvas style="width:99%;height:99vh"
+    #gmap_canvas_sv style="width:99%;height:99vh"
+
+javascript:
+  function gmap_load_func() { $("#message").text("GoogleMaps読み込み完了") };
+
+ruby:
+  goolemaps_url_args = {
+    :key         => "AIzaSyCuRVZQBIM7XAhSvKl7nfZA-N2FhT-u1o8",
+    :callback    => "gmap_load_func",  # 読み込まれたあとに呼ぶ関数
+    # :libraries => ["drawing", "geometry", "places", "visualization"].join(","),
+    :lang        => "en",            # ← 効いてないっぽい
+    # :signed_in => "true",        # 効いてない？
+  }
+
+/ async をつけると動かなくなるので注意
+/ 「,」がエスケープされるので html_safe が必要
+/ ? がエスケープされるので == が必要
+script src=="//maps.googleapis.com/maps/api/js?#{goolemaps_url_args.to_query.html_safe}"
+
+ruby:
+  gmap_params = {
+    :map_address => current_record.map_address,
+    :latitude    => current_record.geocode_hash[:lat],
+    :longitude   => current_record.geocode_hash[:lng],
+  }
+
+javascript:
+  var gmap_params = #{gmap_params.to_json.html_safe};
+
+coffee:
+  # コールバック回数をチェックするため(別にいらない)
+  callback_counter = 0
+
+  # 本体起動
+  gmap = new google.maps.Map(document.getElementById("gmap_canvas"), {zoom: 13, center: new google.maps.LatLng(gmap_params.latitude, gmap_params.longitude)})
+
+  # マーカー設置
+  marker = new google.maps.Marker(map: gmap, position: gmap.getCenter(), draggable: true)
+
+  # 情報ウィンドウ設置
+  info_window = new google.maps.InfoWindow(content: gmap_params.map_address, position: gmap.getCenter())
+  info_window.open(gmap)
+
+  # 円設置
+  circle = new google.maps.Circle(map: gmap, center: gmap.getCenter(), radius: 1000, draggable: true, editable: true)
+  # 地図のビューポート調整 (なんと円がいちばん綺麗に見れるところまでズームしてくれる)
+  gmap.fitBounds(circle.getBounds())
+  # 半径が変更されたときのコールバック
+  google.maps.event.addListener circle, "radius_changed", ->
+    $("#radius_div").text(circle.getRadius())
+
+  # 中心が変更されたときのコールバック
+  google.maps.event.addListener gmap, "center_changed", ->
+    callback_counter += 1
+    $("#callback_counter").text(callback_counter)
+    $("#latlon_div").text(gmap.getCenter())
+
+  # ストリートビューも設置
+  street = new google.maps.StreetViewPanorama(document.getElementById("gmap_canvas_sv"), position: gmap.getCenter())
