@@ -1,6 +1,7 @@
 current_records.collect {|e|
   {
     "名前" => link_to(e.handle_name, [controller.class.parent_name.underscore, e]),
+    "メールアドレス" => e.email,
   }.merge({"操作" => [
         link_to("ログイン", [:new, controller.class.parent_name.underscore, :type018_session, :type018_user => {:email => e.email, :password => "password"}]),
         link_to("詳細", [controller.class.parent_name.underscore, e]),

@@ -32,9 +32,11 @@ module NameSpace1
       super.tap do |e|
         e.handle_name ||= "#{current_model.count.next}人目のユーザー"
         e.type018_email_activation ||= current_type018_email_activation
-        if e.email.blank?
+        unless e.email
           if e.type018_email_activation
             e.email ||= e.type018_email_activation.email
+          else
+            e.email ||= "direct.user#{current_model.count.next}@localhost.net"
           end
         end
         if e.new_record?

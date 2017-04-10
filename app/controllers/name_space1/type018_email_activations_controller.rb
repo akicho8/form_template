@@ -25,7 +25,7 @@ module NameSpace1
 
     def raw_current_record
       super.tap do |e|
-        e.email ||= "alice@localhost.net"
+        e.email ||= "email.user#{Type018User.count.next}@localhost.net"
       end
     end
   end

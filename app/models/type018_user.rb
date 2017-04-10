@@ -53,7 +53,7 @@ class Type018User < ApplicationRecord
         validates :email, :uniqueness => true
       end
 
-      # メール認証で自分が作られたらメール認証側のレコードに使用済みの日付を入れておく
+      # メール認証経由ならメール認証側のレコードに使用済みマークをつける
       after_create do
         if type018_email_activation
           type018_email_activation.update!(:activated_at => created_at)
@@ -65,10 +65,10 @@ class Type018User < ApplicationRecord
 
     def salted_password_generate(password)
       papper = "67f641e55ecf6b62ac665ae8fcbc438f"
-      stretch = 103
-      value = nil
-      stretch.times { value = Digest::SHA1.hexdigest([value, password, salt, papper].join("_")) }
-      value
+      stretch = 10000
+      stretch.times.inject("") do |a, i|
+        Digest::SHA1.hexdigest([a, password, salt, papper, i].join("_"))
+      end
     end
   end
 
