@@ -18,16 +18,17 @@ class Type017Article < ApplicationRecord
 
   with_options(:presence => true) do
     validates :map_address
-    validates :geocode_hash
   end
 
   before_validation do
     if changes[:map_address] && map_address.present?
-      geocode = Geokit::Geocoders::GoogleGeocoder.geocode(map_address)
-      if geocode.success
-        self.geocode_hash = geocode.to_hash
-      else
-        self.geocode_hash = nil
+      geocode = Geokit::Geocoders::GoogleGeocoder.geocode(map_address) # オフラインでは例外がでず警告を表示する
+      if geocode
+        if geocode.success
+          self.geocode_hash = geocode.to_hash
+        else
+          self.geocode_hash = nil
+        end
       end
     end
   end

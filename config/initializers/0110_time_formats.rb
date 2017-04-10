@@ -1,1 +1,4 @@
-Time::DATE_FORMATS[:ymdhm] = "%Y-%m-%d %H:%M"
+Time::DATE_FORMATS.update({
+    :ymdhm  => "%F %H:%M",
+    :ymdhms => "%F %T",
+  })

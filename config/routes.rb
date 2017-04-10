@@ -23,6 +23,10 @@ Rails.application.routes.draw do
     resources :type015_articles
     resources :type016_articles
     resources :type017_articles
+    resources :type018_email_activations
+    resources :type018_users
+    resource :type018_session, :except => [:edit, :update]
+    resource :type018_home, :only => [:show]
   end
 
   get "tops/show"

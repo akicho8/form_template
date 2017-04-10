@@ -22,6 +22,10 @@ module FormTemplate
       config.app_config = AppConfig
     end
 
+    if Rails.env.development?
+      config.action_mailer.default_url_options = { host: "localhost:5000" }
+    end
+
     config.action_view.field_error_proc = proc { |html_tag, instance|
       if instance.kind_of?(ActionView::Helpers::Tags::Label)
         html_tag.html_safe
