@@ -1,3 +1,25 @@
+# -*- coding: utf-8 -*-
+# == Schema Information ==
+#
+# メール認証可能ユーザーテーブル (type018_users as Type018User)
+#
+# +-----------------------------+----------------------+----------+-------------+------------------------------+-------+
+# | カラム名                    | 意味                 | タイプ   | 属性        | 参照                         | INDEX |
+# +-----------------------------+----------------------+----------+-------------+------------------------------+-------+
+# | id                          | ID                   | integer  | NOT NULL PK |                              |       |
+# | type018_email_activation_id | メール認証ID         | integer  |             | => Type018EmailActivation#id | B     |
+# | handle_name                 | 名前                 | string   | NOT NULL    |                              |       |
+# | email                       | メールアドレス       | string   | NOT NULL    |                              | A!    |
+# | salt                        | 塩                   | string   | NOT NULL    |                              |       |
+# | hashed_password             | ハッシュ化パスワード | string   | NOT NULL    |                              |       |
+# | created_at                  | 作成日時             | datetime | NOT NULL    |                              |       |
+# | updated_at                  | 更新日時             | datetime | NOT NULL    |                              |       |
+# +-----------------------------+----------------------+----------+-------------+------------------------------+-------+
+#
+#- 備考 -------------------------------------------------------------------------
+# ・Type018User モデルは Type018EmailActivation モデルから has_many :type018_users されています。
+#--------------------------------------------------------------------------------
+
 module NameSpace1
   class Type018UsersController < ApplicationController
     include PlaggableCrud::All

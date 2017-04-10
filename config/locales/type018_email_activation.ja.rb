@@ -14,8 +14,10 @@
       },
       :attributes => {
         :type018_email_activation => {
-          :email  => "メールアドレス",
-          :activate_token => "期限付きトークン",
+          :email          => "メールアドレス",
+          :activate_token => "トークン",
+          :expired_at     => "期限",
+          :activated_at   => "本登録日時",
         },
       },
     },

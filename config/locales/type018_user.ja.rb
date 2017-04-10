@@ -14,6 +14,7 @@
       },
       :attributes => {
         :type018_user => {
+          :type018_email_activation => "メール認証",
           :handle_name        => "名前",
           :email           => "メールアドレス",
           :password        => "パスワード",
