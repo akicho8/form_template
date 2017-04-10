@@ -11,7 +11,7 @@
 # | handle_name                 | 名前                 | string   | NOT NULL    |                              |       |
 # | email                       | メールアドレス       | string   | NOT NULL    |                              | A!    |
 # | salt                        | 塩                   | string   | NOT NULL    |                              |       |
-# | hashed_password             | ハッシュ化パスワード | string   | NOT NULL    |                              |       |
+# | salted_password             | ハッシュ化パスワード | string   | NOT NULL    |                              |       |
 # | created_at                  | 作成日時             | datetime | NOT NULL    |                              |       |
 # | updated_at                  | 更新日時             | datetime | NOT NULL    |                              |       |
 # +-----------------------------+----------------------+----------+-------------+------------------------------+-------+

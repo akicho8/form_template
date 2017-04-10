@@ -13,7 +13,7 @@ module NameSpace1
         return
       end
 
-      unless user.hashed_password == user.hashed_password_generate(@type018_user.password)
+      unless user.salted_password == user.salted_password_generate(@type018_user.password)
         flash.now[:alert] = "パスワードが違う (本当は明示してはいけない)"
         render :new
         return

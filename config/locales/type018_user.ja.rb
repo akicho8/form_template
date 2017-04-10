@@ -19,7 +19,7 @@
           :email           => "メールアドレス",
           :password        => "パスワード",
           :salt            => "塩",
-          :hashed_password => "ハッシュ化パスワード",
+          :salted_password => "ハッシュ化パスワード",
         },
       },
     },

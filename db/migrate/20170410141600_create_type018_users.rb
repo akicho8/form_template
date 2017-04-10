@@ -11,7 +11,7 @@
 # | handle_name                 | 名前                 | string   | NOT NULL    |                              |       |
 # | email                       | メールアドレス       | string   | NOT NULL    |                              | A!    |
 # | salt                        | 塩                   | string   | NOT NULL    |                              |       |
-# | hashed_password             | ハッシュ化パスワード | string   | NOT NULL    |                              |       |
+# | salted_password             | ハッシュ化パスワード | string   | NOT NULL    |                              |       |
 # | created_at                  | 作成日時             | datetime | NOT NULL    |                              |       |
 # | updated_at                  | 更新日時             | datetime | NOT NULL    |                              |       |
 # +-----------------------------+----------------------+----------+-------------+------------------------------+-------+
@@ -36,7 +36,7 @@ class CreateType018Users < ActiveRecord::Migration[5.1]
       t.string :handle_name,     :null => false
       t.string :email,           :null => false
       t.string :salt,            :null => false
-      t.string :hashed_password, :null => false
+      t.string :salted_password, :null => false
       t.timestamps               :null => false
       t.index :email, :unique => true
     end

@@ -280,7 +280,7 @@ ActiveRecord::Schema.define(version: 20170410141600) do
     t.string "handle_name", null: false
     t.string "email", null: false
     t.string "salt", null: false
-    t.string "hashed_password", null: false
+    t.string "salted_password", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_type018_users_on_email", unique: true
