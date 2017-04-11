@@ -5,4 +5,8 @@ class Type018FooPreview < ActionMailer::Preview
   def activation_mail
     Type018FooMailer.activation_mail(Type018EmailActivation.first)
   end
+
+  def welcome_mail
+    Type018FooMailer.welcome_mail(Type018User.first)
+  end
 end

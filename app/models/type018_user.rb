@@ -53,11 +53,12 @@ class Type018User < ApplicationRecord
         validates :email, :uniqueness => true
       end
 
-      # メール認証経由ならメール認証側のレコードに使用済みマークをつける
       after_create do
+        # メール認証経由ならメール認証側のレコードに使用済みマークをつける
         if type018_email_activation
           type018_email_activation.update!(:activated_at => created_at)
         end
+        Type018FooMailer.welcome_mail(self).deliver_now
       end
     end
 
