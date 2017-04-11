@@ -93,6 +93,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # ################################################################################ ActionMailer
+  config.action_mailer.show_previews = true
   config.action_mailer.default_url_options = { host: "tk2-221-20341.vs.sakura.ne.jp" }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.raise_delivery_errors = true
