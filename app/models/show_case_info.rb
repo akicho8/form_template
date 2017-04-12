@@ -21,6 +21,7 @@ class ShowCaseInfo
     {:model => Type018User,    :confirm => false, :tables => 2, :desc => proc {|h| [
           h.link_to("メール認証から開始", [:new, :name_space1, :type018_email_activation]),
           h.link_to("いきなり登録", [:new, :name_space1, :type018_user]),
+          h.link_to("ユーザー一覧", [:name_space1, :type018_users]),
           h.link_to("ログイン", [:new, :name_space1, :type018_session]),
           h.link_to("ホーム", [:name_space1, :type018_home]),
           h.link_to("ログアウト", [:name_space1, :type018_session], :method => :delete),
