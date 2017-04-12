@@ -40,5 +40,27 @@ class CreateType018Users < ActiveRecord::Migration[5.1]
       t.timestamps               :null => false
       t.index :email, :unique => true
     end
+
+    create_table :type018_password_reset_url_notifications, :force => true do |t|
+      t.belongs_to :type018_user, :null => false, :index => false # FIXME: index は有効にすること
+      t.string :email, :null => false
+      t.string :notice_token, :null => false
+      t.datetime :expired_at,   :null => false
+      t.datetime :used_at
+      t.timestamps              :null => false
+      # t.index :notice_token, :unique => true
+    end
+
+    create_table :type018_password_reseters, :force => true do |t|
+      t.belongs_to :type018_user, :null => false
+      t.belongs_to :type018_password_reset_url_notification, :index => false
+      t.string :notice_token
+      # t.string :email, :null => false
+      # t.string :notice_token, :null => false
+      # t.datetime :expired_at,   :null => false
+      # t.datetime :used_at
+      t.timestamps              :null => false
+      # t.index :notice_token, :unique => true
+    end
   end
 end

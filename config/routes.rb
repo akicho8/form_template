@@ -25,6 +25,8 @@ Rails.application.routes.draw do
     resources :type017_articles
     resources :type018_email_activations
     resources :type018_users
+    resources :type018_password_reset_url_notifications
+    resources :type018_password_reseters
     resource :type018_session, :except => [:edit, :update]
     resource :type018_home, :only => [:show]
   end

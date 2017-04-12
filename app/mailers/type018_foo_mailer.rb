@@ -16,4 +16,14 @@ class Type018FooMailer < ApplicationMailer
     @user = user
     mail to: user.email, :subject => "本登録が完了しました"
   end
+
+  def password_reset_url_notice_mail(type018_password_reset_url_notification)
+    @type018_password_reset_url_notification = type018_password_reset_url_notification
+    mail to: type018_password_reset_url_notification.email, :subject => "パスワード変更"
+  end
+
+  def type018_password_reseter_mail(type018_password_reseter)
+    @type018_password_reseter = type018_password_reseter
+    mail to: type018_password_reseter.type018_user.email, :subject => "パスワードを再設定しました。"
+  end
 end

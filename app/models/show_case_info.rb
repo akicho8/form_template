@@ -19,13 +19,14 @@ class ShowCaseInfo
     {:model => Type014Article, :confirm => false, :tables => 1, :desc => proc {|h| "HTML5の特殊入力列挙。month, week の受け取りはスムーズにいかない。iPhoneでcolorは非対応" },                 },
     {:model => Type017Article, :confirm => false, :tables => 1, :desc => proc {|h| "GoogleMap対応のテスト。_show.html.slim が汚い" },                                                          },
     {:model => Type018User,    :confirm => false, :tables => 2, :desc => proc {|h| [
-          h.link_to("メール認証から開始", [:new, :name_space1, :type018_email_activation]),
+          h.link_to("メールで登録", [:new, :name_space1, :type018_email_activation]),
           h.link_to("いきなり登録", [:new, :name_space1, :type018_user]),
-          h.link_to("ユーザー一覧", [:name_space1, :type018_users]),
           h.link_to("ログイン", [:new, :name_space1, :type018_session]),
           h.link_to("ホーム", [:name_space1, :type018_home]),
           h.link_to("ログアウト", [:name_space1, :type018_session], :method => :delete),
-          h.link_to("メールプレビュー", "/rails/mailers/type018_foo/activation_mail"),
+          h.link_to("ユーザー一覧(admin用)", [:name_space1, :type018_users]),
+          h.link_to("パス再設定通知(admin用)", [:name_space1, :type018_password_reset_url_notifications]),
+          h.link_to("パス変更履歴(admin用)", [:name_space1, :type018_password_reseters]),
         ].join(" ") },                                                                                         },
     # {:name  => "ログイン",  :url => proc {|h| [:new, :name_space1, :type018_session] } , :desc => "ユーザー登録",                                                                                         },
   ], :attr_reader_auto => true

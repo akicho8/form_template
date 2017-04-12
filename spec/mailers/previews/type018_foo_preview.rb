@@ -9,4 +9,12 @@ class Type018FooPreview < ActionMailer::Preview
   def welcome_mail
     Type018FooMailer.welcome_mail(Type018User.first)
   end
+
+  def password_reset_url_notice_mail
+    Type018FooMailer.password_reset_url_notice_mail(Type018PasswordResetUrlNotification.first)
+  end
+
+  def type018_password_reseter_mail
+    Type018FooMailer.type018_password_reseter_mail(Type018PasswordReseter.first)
+  end
 end

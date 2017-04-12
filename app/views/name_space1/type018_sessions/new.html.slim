@@ -17,8 +17,9 @@
       =<> form.submit("ログイン", :name => nil, :class => "btn btn-primary")
   .form-group
     .col-sm-offset-2.col-sm-10
-      p= link_to("新規アカウント登録する(メールアドレス認証)", [:new, :name_space1, :type018_email_activation])
+      p= link_to("新規アカウント登録する(メール認証)", [:new, :name_space1, :type018_email_activation])
       p= link_to("新規アカウント登録する(仮・認証なし)", [:new, :name_space1, :type018_user])
+      p= link_to("パスワードを忘れた", [:new, :name_space1, :type018_password_reset_url_notification])
 
 - if true
   = Type018User.all.collect(&:attributes).to_quick_table

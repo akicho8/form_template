@@ -18,15 +18,15 @@
 class Type018EmailActivation < ApplicationRecord
   has_many :type018_users, :dependent => :restrict_with_exception
 
-  with_options(:presence => true) do
-    validates :email
-    validates :activate_token
-  end
-
   before_validation :on => :create do
     self.activate_token ||= SecureRandom.hex
     self.expired_at ||= 1.days.from_now
     true
+  end
+
+  with_options(:presence => true) do
+    validates :email
+    validates :activate_token
   end
 
   after_create do

@@ -73,7 +73,13 @@ class Type018User < ApplicationRecord
     end
   end
 
-  with_options(:presence => true) do
-    validates :handle_name
+  # 「パスワードを忘れた」関連
+  concerning :ForgetPasswordMethods do
+    included do
+      with_options(:dependent => :destroy) do
+        has_many :type018_password_reset_url_notifications
+        has_many :type018_password_reseters
+      end
+    end
   end
 end

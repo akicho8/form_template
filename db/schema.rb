@@ -275,6 +275,25 @@ ActiveRecord::Schema.define(version: 20170410141600) do
     t.index ["activate_token"], name: "index_type018_email_activations_on_activate_token", unique: true
   end
 
+  create_table "type018_password_reset_url_notifications", force: :cascade do |t|
+    t.integer "type018_user_id", null: false
+    t.string "email", null: false
+    t.string "notice_token", null: false
+    t.datetime "expired_at", null: false
+    t.datetime "used_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "type018_password_reseters", force: :cascade do |t|
+    t.integer "type018_user_id", null: false
+    t.integer "type018_password_reset_url_notification_id"
+    t.string "notice_token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["type018_user_id"], name: "index_type018_password_reseters_on_type018_user_id"
+  end
+
   create_table "type018_users", force: :cascade do |t|
     t.integer "type018_email_activation_id"
     t.string "handle_name", null: false

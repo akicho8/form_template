@@ -1,5 +1,7 @@
 module NameSpace1
   class Type018SessionsController < ApplicationController
+    include Type018HomesController::Type018UserSessionMethods
+
     def new
       @type018_user = Type018User.new(type018_user_params)
     end
@@ -26,8 +28,13 @@ module NameSpace1
     end
 
     def destroy
+      if current_type018_user
+        notice = "ログアウトしました"
+      else
+        notice = "すでにログアウトしています"
+      end
       reset_session
-      redirect_to :root, :notice => "ログアウトしました"
+      redirect_to :root, :notice => notice
     end
 
     private
