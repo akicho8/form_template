@@ -92,6 +92,7 @@ gem 'simple_captcha2'
 gem 'carrierwave'
 gem 'rmagick'
 gem "geokit"
+gem 'airbrake', '~> 5.0'
 
 gem 'static_record', :github => "akicho8/static_record"
 gem 'rain_table',    :github => 'akicho8/rain_table'
