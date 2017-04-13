@@ -28,22 +28,33 @@ class ShowCaseInfo
           h.link_to("パス再設定通知(admin用)", [:name_space1, :type018_password_reset_url_notifications]),
           h.link_to("パス変更履歴(admin用)", [:name_space1, :type018_password_reseters]),
         ].join(" ") },                                                                                         },
+    {:name => "BASIC認証のみを使ったログイン", :desc => proc {|h| [h.link_to("ホーム", [:name_space1, :type019_home])].join(" ") },                                                                                         },
     # {:name  => "ログイン",  :url => proc {|h| [:new, :name_space1, :type018_session] } , :desc => "ユーザー登録",                                                                                         },
   ], :attr_reader_auto => true
 
   def self.to_html(h)
     collect { |e|
       {}.tap do |row|
-        row["名前"] = h.link_to(e.model.model_name.human, [:new, :name_space1, e.model.name.demodulize.underscore.to_sym])
-        row["確認機能"] = e.confirm ? "★" : ""
-        row["テーブル数"] = e.tables
+        if e.name
+          row["名前"] = e.name
+        end
+        if e.model
+          row["名前"] ||= h.link_to(e.model.model_name.human, [:new, :name_space1, e.model.name.demodulize.underscore.to_sym])
+          row["確認機能"] = e.confirm ? "★" : ""
+          row["テーブル数"] = e.tables
+        end
+
         row["説明"] = e.desc.call(h).html_safe
         if Rails.env.development?
-          row["対応モデル"] = e.model.name
+          if e.model
+            row["対応モデル"] = e.model.name
+          end
         end
-        row[""] = [
-          h.link_to("一覧", [:name_space1, e.model.name.demodulize.underscore.pluralize.to_sym], :class => "btn btn-default btn-xs"),
-        ].join(" ").html_safe
+        links = []
+        if e.model
+          links << h.link_to("一覧", [:name_space1, e.model.name.demodulize.underscore.pluralize.to_sym], :class => "btn btn-default btn-xs")
+        end
+        row[""] = links.join(" ").html_safe
       end
     }.to_quick_table
   end

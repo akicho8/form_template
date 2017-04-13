@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     resources :type018_password_reseters
     resource :type018_session, :except => [:edit, :update]
     resource :type018_home, :only => [:show]
+    resource :type019_home, :only => [:show]
   end
 
   get "tops/show"
