@@ -36,7 +36,6 @@ class Type018PasswordReseter < ApplicationRecord
 
   with_options(:presence => true) do
     validates :type018_user_id
-    validates :notice_token
   end
   with_options(:allow_blank => true) do
     validates :notice_token, :uniqueness => true
