@@ -1,20 +1,20 @@
 # -*- coding: utf-8 -*-
 # == Schema Information ==
 #
-# Type018 password reset url notificationテーブル (type018_password_reset_url_notifications as Type018PasswordResetUrlNotification)
+# パスワード変更URL通知テーブル (type018_password_reset_url_notifications as Type018PasswordResetUrlNotification)
 #
-# +-----------------+--------------+----------+-------------+-------------------+-------+
-# | カラム名        | 意味         | タイプ   | 属性        | 参照              | INDEX |
-# +-----------------+--------------+----------+-------------+-------------------+-------+
-# | id              | ID           | integer  | NOT NULL PK |                   |       |
-# | type018_user_id | Type018 user | integer  | NOT NULL    | => Type018User#id |       |
-# | email           | Email        | string   | NOT NULL    |                   |       |
-# | notice_token    | Notice token | string   | NOT NULL    |                   |       |
-# | expired_at      | Expired at   | datetime | NOT NULL    |                   |       |
-# | used_at         | Used at      | datetime |             |                   |       |
-# | created_at      | 作成日時     | datetime | NOT NULL    |                   |       |
-# | updated_at      | 更新日時     | datetime | NOT NULL    |                   |       |
-# +-----------------+--------------+----------+-------------+-------------------+-------+
+# +-----------------+--------------------+----------+-------------+-------------------+-------+
+# | カラム名        | 意味               | タイプ   | 属性        | 参照              | INDEX |
+# +-----------------+--------------------+----------+-------------+-------------------+-------+
+# | id              | ID                 | integer  | NOT NULL PK |                   |       |
+# | type018_user_id | ユーザー           | integer  | NOT NULL    | => Type018User#id |       |
+# | email           | メールアドレス     | string   | NOT NULL    |                   |       |
+# | notice_token    | トークン           | string   | NOT NULL    |                   |       |
+# | expired_at      | 有効期限           | datetime | NOT NULL    |                   |       |
+# | used_at         | パスワード変更日時 | datetime |             |                   |       |
+# | created_at      | 作成日時           | datetime | NOT NULL    |                   |       |
+# | updated_at      | 更新日時           | datetime | NOT NULL    |                   |       |
+# +-----------------+--------------------+----------+-------------+-------------------+-------+
 #
 #- 備考 -------------------------------------------------------------------------
 # ・【警告:インデックス欠如】create_type018_password_reset_url_notifications マイグレーションに add_index :type018_password_reset_url_notifications, :type018_user_id を追加してください

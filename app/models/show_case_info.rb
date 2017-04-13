@@ -29,6 +29,7 @@ class ShowCaseInfo
           h.link_to("パス変更履歴(admin用)", [:name_space1, :type018_password_reseters]),
         ].join(" ") },                                                                                         },
     {:name => "BASIC認証のみを使ったログイン", :desc => proc {|h| [h.link_to("ホーム", [:name_space1, :type019_home])].join(" ") },                                                                                         },
+    {:model => Type020User, :desc => proc {|h| [h.link_to("ホーム", [:name_space1, :type020_home])].join(" ") },                                                                                         },
     # {:name  => "ログイン",  :url => proc {|h| [:new, :name_space1, :type018_session] } , :desc => "ユーザー登録",                                                                                         },
   ], :attr_reader_auto => true
 
@@ -40,9 +41,9 @@ class ShowCaseInfo
         end
         if e.model
           row["名前"] ||= h.link_to(e.model.model_name.human, [:new, :name_space1, e.model.name.demodulize.underscore.to_sym])
-          row["確認機能"] = e.confirm ? "★" : ""
-          row["テーブル数"] = e.tables
         end
+        row["確認機能"] = e.confirm ? "★" : ""
+        row["テーブル数"] = e.tables
 
         row["説明"] = e.desc.call(h).html_safe
         if Rails.env.development?

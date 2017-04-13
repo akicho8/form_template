@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170413133100) do
+ActiveRecord::Schema.define(version: 20170413145700) do
 
   create_table "sessions", force: :cascade do |t|
     t.string "session_id", null: false
@@ -306,14 +306,12 @@ ActiveRecord::Schema.define(version: 20170413133100) do
     t.index ["type018_email_activation_id"], name: "index_type018_users_on_type018_email_activation_id"
   end
 
-  create_table "type019_users", force: :cascade do |t|
-    t.string "handle_name", null: false
+  create_table "type020_users", force: :cascade do |t|
     t.string "email", null: false
-    t.string "salt", null: false
-    t.string "salted_password", null: false
+    t.string "password", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_type019_users_on_email", unique: true
+    t.index ["email"], name: "index_type020_users_on_email", unique: true
   end
 
 end

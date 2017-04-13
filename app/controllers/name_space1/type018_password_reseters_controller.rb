@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
 # == Schema Information ==
 #
-# Type018 password reseterテーブル (type018_password_reseters as Type018PasswordReseter)
+# パスワード変更テーブル (type018_password_reseters as Type018PasswordReseter)
 #
-# +--------------------------------------------+-----------------------------------------+----------+-------------+-------------------------------------------+-------+
-# | カラム名                                   | 意味                                    | タイプ   | 属性        | 参照                                      | INDEX |
-# +--------------------------------------------+-----------------------------------------+----------+-------------+-------------------------------------------+-------+
-# | id                                         | ID                                      | integer  | NOT NULL PK |                                           |       |
-# | type018_user_id                            | Type018 user                            | integer  | NOT NULL    | => Type018User#id                         | A     |
-# | type018_password_reset_url_notification_id | Type018 password reset url notification | integer  |             | => Type018PasswordResetUrlNotification#id |       |
-# | notice_token                               | Notice token                            | string   |             |                                           |       |
-# | created_at                                 | 作成日時                                | datetime | NOT NULL    |                                           |       |
-# | updated_at                                 | 更新日時                                | datetime | NOT NULL    |                                           |       |
-# +--------------------------------------------+-----------------------------------------+----------+-------------+-------------------------------------------+-------+
+# +--------------------------------------------+-------------------------+----------+-------------+-------------------------------------------+-------+
+# | カラム名                                   | 意味                    | タイプ   | 属性        | 参照                                      | INDEX |
+# +--------------------------------------------+-------------------------+----------+-------------+-------------------------------------------+-------+
+# | id                                         | ID                      | integer  | NOT NULL PK |                                           |       |
+# | type018_user_id                            | ユーザーID              | integer  | NOT NULL    | => Type018User#id                         | A     |
+# | type018_password_reset_url_notification_id | パスワード変更URL通知ID | integer  |             | => Type018PasswordResetUrlNotification#id |       |
+# | notice_token                               | トークン                | string   |             |                                           |       |
+# | created_at                                 | 作成日時                | datetime | NOT NULL    |                                           |       |
+# | updated_at                                 | 更新日時                | datetime | NOT NULL    |                                           |       |
+# +--------------------------------------------+-------------------------+----------+-------------+-------------------------------------------+-------+
 #
 #- 備考 -------------------------------------------------------------------------
 # ・Type018PasswordReseter モデルは Type018User モデルから has_many :type018_password_reset_url_notifications されています。

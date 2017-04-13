@@ -30,6 +30,8 @@ Rails.application.routes.draw do
     resource :type018_session, :except => [:edit, :update]
     resource :type018_home, :only => [:show]
     resource :type019_home, :only => [:show]
+    resources :type020_users
+    resource :type020_home, :only => [:show]
   end
 
   get "tops/show"
