@@ -97,14 +97,14 @@ namespace :deploy do
   #   end
   # end
   # before 'deploy:starting', 'deploy:app_clean'
-  # 
+  #
   # desc 'db_seed must be run only one time right after the first deploy'
   # task :db_seed do
   #   on roles(:db) do |host|
   #     within release_path do
   #       # execute :pwd
   #       # execute :ls, "-al app/models"
-  # 
+  #
   #       with rails_env: fetch(:rails_env) do
   #         execute :rake, 'db:seed'
   #       end
@@ -112,7 +112,7 @@ namespace :deploy do
   #   end
   # end
   # after 'deploy:migrate', 'deploy:db_seed'
-  # 
+  #
   # # desc 'Runs rake db:migrate if migrations are set'
   # task :db_create => [:set_rails_env] do
   #   on primary fetch(:migration_role) do
@@ -125,4 +125,7 @@ namespace :deploy do
   #   end
   # end
   # before 'deploy:migrate', 'deploy:db_create'
+
+  set :app_version, '1.2.3'
+  after :finished, 'airbrake:deploy'
 end
