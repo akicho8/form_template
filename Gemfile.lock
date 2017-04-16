@@ -9,6 +9,12 @@ GIT
       rain_table
 
 GIT
+  remote: https://github.com/akicho8/airbrake-ruby.git
+  revision: b008474829186d2284bc48bccc7e87e868f557c0
+  specs:
+    airbrake-ruby (2.0.0)
+
+GIT
   remote: https://github.com/akicho8/daiku.git
   revision: 78a0c0319ac4c4984a814016b433f0a7f5997394
   specs:
@@ -125,7 +131,6 @@ GEM
       public_suffix (~> 2.0, >= 2.0.2)
     airbrake (6.0.0)
       airbrake-ruby (~> 2.0)
-    airbrake-ruby (2.0.0)
     airbrussh (1.1.2)
       sshkit (>= 1.6.1, != 1.7.0)
     arel (8.0.0)
@@ -378,6 +383,7 @@ DEPENDENCIES
   aam!
   activerecord-session_store
   airbrake
+  airbrake-ruby!
   byebug
   capistrano (= 3.6.1)
   capistrano-passenger
