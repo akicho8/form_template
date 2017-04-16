@@ -18,7 +18,12 @@ class ShowCaseInfo
     {:model => Type013Article, :confirm => false, :tables => 1, :desc => proc {|h| "自分にもコメントできるツリー構造。フォームは再帰" },                                                       },
     {:model => Type014Article, :confirm => false, :tables => 1, :desc => proc {|h| "HTML5の特殊入力列挙。month, week の受け取りはスムーズにいかない。iPhoneでcolorは非対応" },                 },
     {:model => Type017Article, :confirm => false, :tables => 1, :desc => proc {|h| "GoogleMap対応のテスト。_show.html.slim が汚い" },                                                          },
-    {:model => Type018User,    :confirm => false, :tables => 2, :desc => proc {|h| [
+    {
+      :model => Type018User,
+      :confirm => false,
+      :tables => 3,
+      :url => proc {|h| [:new, :name_space1, :type018_email_activation] },
+      :desc => proc {|h| [
           h.link_to("メールで登録", [:new, :name_space1, :type018_email_activation]),
           h.link_to("いきなり登録", [:new, :name_space1, :type018_user]),
           h.link_to("ログイン", [:new, :name_space1, :type018_session]),
@@ -27,36 +32,79 @@ class ShowCaseInfo
           h.link_to("ユーザー一覧(admin用)", [:name_space1, :type018_users]),
           h.link_to("パス再設定通知(admin用)", [:name_space1, :type018_password_reset_url_notifications]),
           h.link_to("パス変更履歴(admin用)", [:name_space1, :type018_password_reseters]),
-        ].join(" ") },                                                                                         },
-    {:name => "BASIC認証のみを使ったログイン", :desc => proc {|h| [h.link_to("ホーム", [:name_space1, :type019_home])].join(" ") },                                                                                         },
-    {:model => Type020User, :desc => proc {|h| [h.link_to("ホーム", [:name_space1, :type020_home])].join(" ") },                                                                                         },
-    # {:name  => "ログイン",  :url => proc {|h| [:new, :name_space1, :type018_session] } , :desc => "ユーザー登録",                                                                                         },
+        ].join(" ") },
+    },
+    {
+      :name => "BASIC認証のみを使ったログイン",
+      :url => proc {|h| [:name_space1, :type019_home] },
+      :search_key => "Type019",
+      :desc => proc {|h|
+        [
+          h.link_to("ホーム", [:name_space1, :type019_home]),
+          "名前は何でもよい。パスワードはa。ログアウトできない。DBも使わない。だから user_id がない",
+        ].join(" ")
+      },
+    },
+    {
+      :model => Type020User,
+      :tables => 1,
+      :desc => proc {|h|
+        [
+          h.link_to("ホーム", [:name_space1, :type020_home]),
+          "BASIC認証で名前にメールアドレスを入れてPWを空にするとメールアドレスにPWが届く",
+        ].join(" ")
+      },
+    },
   ], :attr_reader_auto => true
 
   def self.to_html(h)
-    collect { |e|
-      {}.tap do |row|
-        if e.name
-          row["名前"] = e.name
-        end
-        if e.model
-          row["名前"] ||= h.link_to(e.model.model_name.human, [:new, :name_space1, e.model.name.demodulize.underscore.to_sym])
-        end
-        row["確認機能"] = e.confirm ? "★" : ""
-        row["テーブル数"] = e.tables
+    collect { |e| e.to_row(h) }.to_quick_table
+  end
 
-        row["説明"] = e.desc.call(h).html_safe
-        if Rails.env.development?
-          if e.model
-            row["対応モデル"] = e.model.name
-          end
-        end
-        links = []
-        if e.model
-          links << h.link_to("一覧", [:name_space1, e.model.name.demodulize.underscore.pluralize.to_sym], :class => "btn btn-default btn-xs")
-        end
-        row[""] = links.join(" ").html_safe
-      end
-    }.to_quick_table
+  def to_row(h)
+    {}.tap do |row|
+      row["名前"]       = h.link_to(name, url2(h))
+      row["確認機能"]   = confirm ? "★" : ""
+      row["テーブル数"] = tables
+      row["説明"]       = desc.call(h).html_safe
+      row["スコープ"]   = search_key
+      row[""]           = Array(links(h)).join(" ").html_safe
+    end
+  end
+
+  def name
+    v = nil
+    v ||= attributes[:name]
+    if model
+      v ||= model.model_name.human
+    end
+    v
+  end
+
+  def url2(h)
+    v = nil
+    if url
+      v ||= url.call(h)
+    end
+    if model
+      v ||= [:new, :name_space1, model.name.demodulize.underscore.to_sym]
+    end
+    v
+  end
+
+  def links(h)
+    if model
+      h.link_to("一覧", [:name_space1, model.name.demodulize.underscore.pluralize.to_sym], :class => "btn btn-default btn-xs")
+    end
+  end
+
+  def search_key
+    v ||= super
+    if model
+      v ||= model.name
+    end
+    if v
+      v.slice(/\d+/i).underscore
+    end
   end
 end

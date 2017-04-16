@@ -16,12 +16,12 @@ module NameSpace1
         authenticate_or_request_with_http_basic do |email, password|
           Rails.logger.info({:email => email, :password => password}.inspect)
           if email.blank?
-            # メールアドレスの入力がないなら繰り返しダイアログ表示
+            # メールアドレスの入力がないので繰り返しダイアログ表示
             false
           else
             type020_user = Type020User.find_by(:email => email)
-            if type020_user.blank?
-              # メールアドレスに対応するユーザーがいなければ作ってメールで通知する
+            unless type020_user
+              # メールアドレスに対応するユーザーがないので、ユーザーを作成する。このときメールでパスワードを通知する。
               Type020User.create!(:email => email)
               false
             else
