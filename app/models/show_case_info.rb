@@ -55,6 +55,15 @@ class ShowCaseInfo
         ].join(" ")
       },
     },
+    {
+      :name => "チャット雛形",
+      :url => proc {|h| [:name_space1, :type022_chat_room] },
+      :search_key => "Type022",
+      :desc => proc {|h|
+        [
+        ].join(" ")
+      },
+    },
   ], :attr_reader_auto => true
 
   def self.to_html(h)

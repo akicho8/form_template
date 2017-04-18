@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  # mount ActionCable.server => '/cable'
+  
+  get 'type022_chat_rooms/show'
+
   get 'frontend/my_react001'
   get 'frontend/my_vue001'
 
@@ -32,6 +36,7 @@ Rails.application.routes.draw do
     resource :type019_home, :only => [:show]
     resources :type020_users
     resource :type020_home, :only => [:show]
+    resource :type022_chat_room, :only => [:show]
   end
 
   get "tops/show"

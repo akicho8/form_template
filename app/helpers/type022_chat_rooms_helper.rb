@@ -1,0 +1,2 @@
+module Type022ChatRoomsHelper
+end
