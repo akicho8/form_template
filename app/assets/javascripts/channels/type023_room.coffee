@@ -11,10 +11,14 @@ App.type023_room = App.cable.subscriptions.create "Type023RoomChannel",
   received: (data) ->
     canvas = document.getElementById("mycanvas")
     context = canvas.getContext("2d")
+    context.globalAlpha = 0.008
 
-    radius = 24
+    radius = 48
+    context.lineWidth = 1
+    context.beginPath()
     context.fillStyle = data["color"]
-    context.fillRect(data["x"] - radius, data["y"] - radius, radius * 2, radius * 2)
+    context.arc(data["x"], data["y"], radius, 0, Math.PI*2, true)
+    context.fill()
 
   # 2. ここが呼ばれて
   type023_say: (type023_article_params) ->
