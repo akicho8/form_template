@@ -126,6 +126,6 @@ namespace :deploy do
   # end
   # before 'deploy:migrate', 'deploy:db_create'
 
-  set :app_version, '1.2.3'
-  after :finished, 'airbrake:deploy'
+  # set :app_version, '1.2.3'
+  # after :finished, 'airbrake:deploy'
 end

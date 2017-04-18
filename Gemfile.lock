@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: https://github.com/akicho8/airbrake-ruby.git
-  revision: af34ea6de1bd407967bf26f3eab471c4c5652598
+  revision: 1eb748b2f2d2bfa90dc6069c92008737207c674a
   ref: patch-1
   specs:
     airbrake-ruby (2.0.0)
