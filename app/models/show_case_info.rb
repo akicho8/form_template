@@ -75,6 +75,16 @@ class ShowCaseInfo
         ].join(" ")
       },
     },
+    {
+      :name => "スプラトゥーン的なキャンバス共有",
+      :url => proc {|h| [:name_space1, :type023_chat_room] },
+      :search_key => "Type023",
+      :desc => proc {|h|
+        [
+          "保存しないチャットの派生で、キャンバス上でのマウスの「動き」と各自の「色」を共有する"
+        ].join(" ")
+      },
+    },
   ], :attr_reader_auto => true
 
   def self.to_html(h)

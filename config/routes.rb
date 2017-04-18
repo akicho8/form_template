@@ -38,6 +38,7 @@ Rails.application.routes.draw do
     resource :type020_home, :only => [:show]
     resource :type021_chat_room, :only => [:show]
     resource :type022_chat_room, :only => [:show]
+    resource :type023_chat_room, :only => [:show]
   end
 
   get "tops/show"
