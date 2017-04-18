@@ -10,7 +10,9 @@ App.type022_room = App.cable.subscriptions.create "Type022RoomChannel",
     # alert data["message"]
     $("#type022_articles").append(data["type022_article_body"])
 
+  # 自由に定義してよいメソッド
   type022_say: (type022_article_body) ->
+    # app/channels/type022_room_channel.rb の type022_say メソッドに処理が渡る
     @perform("type022_say", type022_article_body: type022_article_body)
 
 $(document).on "keypress", "[data-behavior~=type022_room_speaker]", (event) ->

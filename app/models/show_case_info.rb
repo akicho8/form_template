@@ -56,11 +56,22 @@ class ShowCaseInfo
       },
     },
     {
-      :name => "チャット雛形",
+      :name => "チャット雛形(保存なし)",
+      :url => proc {|h| [:name_space1, :type021_chat_room] },
+      :search_key => "Type021",
+      :desc => proc {|h|
+        [
+          "「発言」を type021_room.coffee#perform から ruby の Type021RoomChannel#type021_say に渡し、加工して ActionCable.server.broadcast でブロードキャストすると、再び type021_room.coffee#received で受け取って jQuery で append する",
+        ].join(" ")
+      },
+    },
+    {
+      :name => "チャット雛形(保存あり)",
       :url => proc {|h| [:name_space1, :type022_chat_room] },
       :search_key => "Type022",
       :desc => proc {|h|
         [
+          "「発言」を type021_room.coffee#perform から ruby の Type021RoomChannel#type021_say に渡し、Type022Article に保存して、after_create_commit でジョブに投げて、そこで加工して ActionCable.server.broadcast でブロードキャストすると、再び type021_room.coffee#received で受け取って jQuery で append する",
         ].join(" ")
       },
     },
@@ -75,7 +86,7 @@ class ShowCaseInfo
       row["名前"]       = h.link_to(name, url2(h))
       row["確認機能"]   = confirm ? "★" : ""
       row["テーブル数"] = tables
-      row["説明"]       = desc.call(h).html_safe
+      row["説明"]       = h.content_tag(:span, desc.call(h).html_safe, :style => "white-space: normal")
       row["スコープ"]   = search_key
       row[""]           = Array(links(h)).join(" ").html_safe
     end

@@ -1,0 +1,5 @@
+tr
+  td.text-nowrap
+    .text-muted
+      = time_ago_in_words(type021_article[:created_at]) + "前"
+  td.col-md-12= auto_link(type021_article[:body])

@@ -92,12 +92,8 @@ gem 'simple_captcha2'
 gem 'carrierwave'
 gem 'rmagick'
 gem "geokit"
-<<<<<<< HEAD
 gem 'airbrake'
 gem 'airbrake-ruby', :github => "akicho8/airbrake-ruby", :ref => "patch-1"
-=======
-gem 'airbrake' # , :github => "akicho8/airbrake"
->>>>>>> チャット雛形→追加
 
 gem 'static_record', :github => "akicho8/static_record"
 gem 'rain_table',    :github => 'akicho8/rain_table'

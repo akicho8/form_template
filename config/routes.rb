@@ -36,6 +36,7 @@ Rails.application.routes.draw do
     resource :type019_home, :only => [:show]
     resources :type020_users
     resource :type020_home, :only => [:show]
+    resource :type021_chat_room, :only => [:show]
     resource :type022_chat_room, :only => [:show]
   end
 
