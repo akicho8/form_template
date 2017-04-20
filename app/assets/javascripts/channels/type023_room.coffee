@@ -9,16 +9,25 @@ App.type023_room = App.cable.subscriptions.create "Type023RoomChannel",
     # Called when the subscription has been terminated by the server
 
   received: (data) ->
-    canvas = document.getElementById("mycanvas")
+    canvas = document.getElementById("chat_room_canvas")
     context = canvas.getContext("2d")
-    context.globalAlpha = 0.008
+    context.globalAlpha = 0.05
+    if data["buttons"] == 0
+      context.globalCompositeOperation = "source-over"
+    else
+      context.globalCompositeOperation = "lighter"
 
-    radius = 48
+    radius = 64
     context.lineWidth = 1
     context.beginPath()
     context.fillStyle = data["color"]
     context.arc(data["x"], data["y"], radius, 0, Math.PI*2, true)
     context.fill()
+
+    # img02 = context.getImageData(0, 0, canvas.width, canvas.height)
+    # # img02 = img02.scale(2.2, 1.2)
+    # context.drawImage(img02, 0, 0, canvas.width, canvas.height, 0, 0, canvas.width * 2, canvas.height * 2)
+
 
   # 2. ここが呼ばれて
   type023_say: (type023_article_params) ->
@@ -27,12 +36,12 @@ App.type023_room = App.cable.subscriptions.create "Type023RoomChannel",
 
 # これ、ここで書いていいの？
 $ ->
-  canvas = document.getElementById("mycanvas")
+  canvas = document.getElementById("chat_room_canvas")
   color = canvas.dataset.color
   canvas.addEventListener "mousemove", (e) ->
     # ローカル座標に変換
     rect = e.target.getBoundingClientRect()
     x = e.clientX - rect.left
     y = e.clientY - rect.top
-    App.type023_room.type023_say(x: x, y: y, color: color)
+    App.type023_room.type023_say(x: x, y: y, color: color, buttons: e.buttons)
   , false
