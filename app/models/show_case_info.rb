@@ -85,6 +85,24 @@ class ShowCaseInfo
         ].join(" ")
       },
     },
+    {
+      :name => "React動作確認用",
+      :url => proc {|h| [:frontend, :type024_article] },
+      :search_key => "Type024",
+      :desc => proc {|h|
+        [
+        ].join(" ")
+      },
+    },
+    {
+      :name => "Vue動作確認用",
+      :url => proc {|h| [:frontend, :type025_article] },
+      :search_key => "Type025",
+      :desc => proc {|h|
+        [
+        ].join(" ")
+      },
+    },
   ], :attr_reader_auto => true
 
   def self.to_html(h)

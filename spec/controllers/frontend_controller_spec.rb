@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe FrontendController, type: :controller do
 
-  describe "GET #my_react001" do
+  describe "GET #type024_article" do
     it "returns http success" do
-      get :my_react001
+      get :type024_article
       expect(response).to have_http_status(:success)
     end
   end

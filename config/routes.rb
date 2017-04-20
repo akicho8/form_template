@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   
   get 'type022_chat_rooms/show'
 
-  get 'frontend/my_react001'
-  get 'frontend/my_vue001'
+  get 'frontend/type024_article'
+  get 'frontend/type025_article'
 
   get 'about_page/privacy_policy'
   match 'privacy_policy' => 'about_page#privacy_policy', via: [:get]

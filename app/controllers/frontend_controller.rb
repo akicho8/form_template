@@ -1,6 +1,6 @@
 class FrontendController < ApplicationController
-  def my_react001
+  def type024_article
   end
-  def my_vue001
+  def type025_article
   end
 end

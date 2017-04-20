@@ -108,5 +108,7 @@ Rails.application.configure do
     :password             => ENV["GMAIL_APP_PASSWORD"],
   }
   # ################################################################################ ActionCable
-  config.action_cable.mount_path = ENV["RAILS_RELATIVE_URL_ROOT"] # /cable の 404 になるのを防ぐため
+  if ENV["RAILS_RELATIVE_URL_ROOT"]
+    config.action_cable.mount_path = ENV["RAILS_RELATIVE_URL_ROOT"] + "/cable" # /cable の 404 になるのを防ぐため
+  end
 end
