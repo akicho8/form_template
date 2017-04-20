@@ -1,7 +1,7 @@
 .page-header
   h2= (current_record.new_record? ? "登録" : "更新") + "の確認"
 
-= form_with(:model => [controller.class.parent_name.underscore, current_record], :html => {:class => "form-horizontal"}, :local => true) do |form|
+= form_with(:model => [:name_space1, current_record], :html => {:class => "form-horizontal"}, :local => true) do |form|
   = render :partial => "confirm", :locals => {:form => form}
   .form-group
     .col-sm-offset-2.col-sm-10
