@@ -36,5 +36,8 @@ module FormTemplate
         "<span class=\"has-error\">#{html_tag}</span>".html_safe
       end
     }
+
+    # production で /cable で 404 になるのを防ぐため
+    config.action_cable.mount_path = ENV["RELATIVE_URL_ROOT"]
   end
 end
