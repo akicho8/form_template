@@ -294,6 +294,7 @@ GEM
     rb-fsevent (0.9.8)
     rb-inotify (0.9.8)
       ffi (>= 0.5.0)
+    redis (3.3.3)
     ref (2.0.0)
     rmagick (2.16.0)
     rspec-core (3.5.4)
@@ -409,6 +410,7 @@ DEPENDENCIES
   rails (~> 5.1.0.beta1)
   rails_autolink
   rain_table!
+  redis (~> 3.0)
   rmagick
   rspec-rails
   sass-rails!
