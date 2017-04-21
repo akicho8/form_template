@@ -38,6 +38,6 @@ module FormTemplate
     }
 
     # production で /cable で 404 になるのを防ぐため
-    # config.action_cable.mount_path = ENV["RELATIVE_URL_ROOT"]
+    config.action_cable.mount_path = ENV["RELATIVE_URL_ROOT"]
   end
 end
