@@ -131,3 +131,47 @@ namespace :deploy do
   # set :app_version, '1.2.3'
   # after :finished, 'airbrake:deploy'
 end
+
+namespace :cable_puma do
+  desc "action_cable 用の puma を deploy:restart にひっかけて再起動"
+  task :restart do
+    on roles(:app) do |host|
+      within current_path do
+        with rails_env: fetch(:rails_env) do
+          execute :ps, "auxww | grep [p]uma || true"
+          execute :bundle, "exec", :pumactl, "-Q -F cable/puma.rb stop || true"
+          execute :ps, "auxww | grep [p]uma || true"
+          execute :bundle, "exec", :pumactl, "-F cable/puma.rb start"
+          execute :ps, "auxww | grep [p]uma || true"
+          execute :bundle, "exec", :pumactl, "-F cable/puma.rb status"
+        end
+      end
+    end
+  end
+  before "deploy:restart", "cable_puma:restart"
+
+  desc "action_cable 用の puma を定義"
+  task :stop do
+    on roles(:app) do |host|
+      within current_path do
+        with rails_env: fetch(:rails_env) do
+          execute :bundle, "exec", :pumactl, "-Q -F cable/puma.rb stop || true"
+          execute :ps, "auxww | grep [p]uma || true"
+        end
+      end
+    end
+  end
+  after "deploy:restart", "cable_puma:status"
+
+  desc "action_cable 用の puma の状態を確認"
+  task :status do
+    on roles(:app) do |host|
+      within current_path do
+        with rails_env: fetch(:rails_env) do
+          execute :bundle, "exec", :pumactl, "-F cable/puma.rb status"
+        end
+      end
+    end
+  end
+  after "deploy:restart", "cable_puma:status"
+end
