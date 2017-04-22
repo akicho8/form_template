@@ -8,7 +8,7 @@ html lang="ja"
     meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     title= content_for?(:title) ? yield(:title) : "FormTemplate"
     = stylesheet_link_tag "application", :media => "all"
-    # = action_cable_meta_tag if ENV["RAILS_RELATIVE_URL_ROOT"]
+    / = action_cable_meta_tag if ENV["RAILS_RELATIVE_URL_ROOT"]
     = action_cable_meta_tag
     = javascript_include_tag "application"
     = javascript_pack_tag "application"

@@ -37,11 +37,12 @@ App.type023_room = App.cable.subscriptions.create "Type023RoomChannel",
 # これ、ここで書いていいの？
 $ ->
   canvas = document.getElementById("chat_room_canvas")
-  color = canvas.dataset.color
-  canvas.addEventListener "mousemove", (e) ->
-    # ローカル座標に変換
-    rect = e.target.getBoundingClientRect()
-    x = e.clientX - rect.left
-    y = e.clientY - rect.top
-    App.type023_room.type023_say(x: x, y: y, color: color, buttons: e.buttons)
-  , false
+  if canvas
+    color = canvas.dataset.color
+    canvas.addEventListener "mousemove", (e) ->
+      # ローカル座標に変換
+      rect = e.target.getBoundingClientRect()
+      x = e.clientX - rect.left
+      y = e.clientY - rect.top
+      App.type023_room.type023_say(x: x, y: y, color: color, buttons: e.buttons)
+    , false

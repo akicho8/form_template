@@ -55,5 +55,8 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  ################################################################################
+  # ################################################################################ ActionCable
+  config.action_cable.allowed_request_origins = [/https?:\/\/.*/]
+  # config.action_cable.mount_path = ENV["RAILS_RELATIVE_URL_ROOT"] + "/cable" # /cable の 404 になるのを防ぐため
+  config.action_cable.url = "ws://localhost:28080"
 end
