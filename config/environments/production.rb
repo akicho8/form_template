@@ -109,6 +109,7 @@ Rails.application.configure do
   }
 
   # ################################################################################ ActionCable
+  config.action_cable.allowed_request_origins = [/https?:\/\/.*/]
   if ENV["RAILS_RELATIVE_URL_ROOT"]
     config.action_cable.mount_path = ENV["RAILS_RELATIVE_URL_ROOT"] + "/cable" # /cable の 404 になるのを防ぐため
   end
