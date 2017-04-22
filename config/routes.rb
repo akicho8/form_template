@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
   # mount ActionCable.server => '/cable'
-  
+
   get 'type022_chat_rooms/show'
 
   get 'frontend/type024_article'
   get 'frontend/type025_article'
+  get 'frontend/type026_article'
 
   get 'about_page/privacy_policy'
   match 'privacy_policy' => 'about_page#privacy_policy', via: [:get]

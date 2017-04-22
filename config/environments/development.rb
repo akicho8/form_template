@@ -58,5 +58,5 @@ Rails.application.configure do
   # ################################################################################ ActionCable
   config.action_cable.allowed_request_origins = [/https?:\/\/.*/]
   # config.action_cable.mount_path = ENV["RAILS_RELATIVE_URL_ROOT"] + "/cable" # /cable の 404 になるのを防ぐため
-  config.action_cable.url = "ws://localhost:28080"
+  # config.action_cable.url = "ws://localhost:28080"
 end

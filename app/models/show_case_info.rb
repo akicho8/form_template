@@ -103,6 +103,7 @@ class ShowCaseInfo
         ].join(" ")
       },
     },
+    {:name => "Vue動作確認用", :url => proc {|h| [:frontend, :type026_article] }, :search_key => "Type026", :desc => proc {|h|}},
   ], :attr_reader_auto => true
 
   def self.to_html(h)
@@ -114,7 +115,7 @@ class ShowCaseInfo
       row["名前"]       = h.link_to(name, url2(h))
       row["確認機能"]   = confirm ? "★" : ""
       row["テーブル数"] = tables
-      row["説明"]       = h.content_tag(:span, desc.call(h).html_safe, :style => "white-space: normal")
+      row["説明"]       = desc ? h.content_tag(:span, desc.call(h).to_s.html_safe, :style => "white-space: normal") : nil
       row["スコープ"]   = search_key
       row[""]           = Array(links(h)).join(" ").html_safe
     end

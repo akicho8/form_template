@@ -1,0 +1,19 @@
+= javascript_pack_tag "type026_article"
+
+#app
+  input type="text" v-model="var1"
+  = " + "
+  input type="text" v-model="var2"
+  = " = {{var3}}"
+
+/ javascript:
+/   var vm = new Vue({
+/     el: '#app',
+/     data: {
+/       var1: 0,
+/       var2: 0,
+/     },
+/     computed: {
+/       var3: function() { return parseInt(this.var1) + parseInt(this.var2) },
+/     },
+/   })
