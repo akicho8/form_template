@@ -1,0 +1,24 @@
+= javascript_pack_tag "type027_article"
+
+#app
+  p
+    textarea.form-control v-model="mondai_body" @change="mondai_henkou"
+  p
+    / a.btn.btn-primary @click="mondai_shuffle_click" =<> "シャッフル"
+    a.btn.btn-danger.btn-xs @click="mondai_reset_click" =<> "リセット"
+    a.btn.btn-primary @click="mondai_next_click" =<> "つぎへ"
+
+  p
+    =<> "{{mondai_index}} / {{mondai_all.length}}"
+
+  / bootstrap の progress は綺麗だけど幅の指定が難しい
+  .progress.progress-striped
+    .progress-bar.progress-bar-info v-bind:style="mondai_progress_bar_width()" = "{{mondai_index / mondai_all.length}}"
+
+  progress v-bind:value="mondai_index / mondai_all.length" style="width: 50vw"
+
+  .panel.panel-primary @click="mondai_next_click"
+    .panel-body
+      p.text-center style="font-size: 16em" = "{{mondai_one}}"
+
+

@@ -103,7 +103,8 @@ class ShowCaseInfo
         ].join(" ")
       },
     },
-    {:name => "Vue動作確認用", :url => proc {|h| [:frontend, :type026_article] }, :search_key => "Type026", :desc => proc {|h|}},
+    {:name => "Vueサンプル・計算機",       :url => proc {|h| [:frontend, :type026_article] }, :search_key => "Type026", :desc => proc {|h|}},
+    {:name => "Vueサンプル・ランダム出題", :url => proc {|h| [:frontend, :type027_article] }, :search_key => "Type027", :desc => proc {|h|}},
   ], :attr_reader_auto => true
 
   def self.to_html(h)
