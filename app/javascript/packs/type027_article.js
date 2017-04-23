@@ -14,9 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
       mondai_body: "",
       mondai_index: 0,
       mondai_one: "",
-      mondai_all: [],
     },
-    methods: {
+    computed: {
       // 問題の配列
       mondai_list: function() {
         if (!this.mondai_body) {
@@ -24,6 +23,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         return this.mondai_body.split(/[,\s]+/);
       },
+      // シャッフルした問題
+      mondai_all: function() {
+        return this.mondai_list;
+      },
+    },
+    methods: {
       // 問題が変更されたとき
       mondai_henkou: function() {
         this.mondai_reset_click();
@@ -45,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       // 「シャッフル」
       mondai_shuffle_click: function() {
-        this.mondai_all = this.mondai_list();
+        // this.mondai_all = this.mondai_list();
         this.shuffle_self(this.mondai_all);
         this.mondai_body = this.mondai_all.join(" ");
       },
