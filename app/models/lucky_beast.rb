@@ -1,4 +1,4 @@
-class ShowCaseInfo
+class LuckyBeast
   include ApplicationStaticRecord
   static_record [
     {:model => Type001Article, :confirm => true,  :tables => 1, :desc => proc {|h| "とてもシンプル" },                                                                                         },
@@ -105,6 +105,19 @@ class ShowCaseInfo
     },
     {:name => "Vueサンプル・計算機",       :url => proc {|h| [:frontend, :type026_article] }, :search_key => "Type026", :desc => proc {|h|}},
     {:name => "Vueサンプル・ランダム出題", :url => proc {|h| [:frontend, :type027_article] }, :search_key => "Type027", :desc => proc {|h|}},
+
+    {
+      :name => "DHH流ルーティング",
+      :url => proc {|h| [:type028_foo, :type028_bars, :type028_foo_id => 1] },
+      :search_key => "Type028",
+      :desc => proc {|h|
+        [
+          h.link_to("親", [:type028_foos]),
+          h.link_to("子", [:type028_foo, :type028_bars, :type028_foo_id => 1]),
+        ].join(" ")
+      },
+    },
+
   ], :attr_reader_auto => true
 
   def self.to_html(h)

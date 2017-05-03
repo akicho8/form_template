@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  # namespace :type028_foos do
+  #   get 'type028_bars/index'
+  # end
+
+  get 'type028_foos/index'
+
   # mount ActionCable.server => '/cable'
 
   get 'type022_chat_rooms/show'
@@ -41,6 +47,12 @@ Rails.application.routes.draw do
     resource :type021_chat_room, :only => [:show]
     resource :type022_chat_room, :only => [:show]
     resource :type023_chat_room, :only => [:show]
+  end
+
+  # link_to("上", [:type028_foos])
+  # link_to("下", [:type028_foo, :type028_bars, :type028_foo_id => 1])
+  resources :type028_foos, only: [:index] do
+    resources :type028_bars, only: [:index], :module => 'type028_foos'
   end
 
   get "tops/show"
