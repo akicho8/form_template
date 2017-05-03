@@ -23,7 +23,7 @@
 
 module NameSpace1
   class Type018PasswordResetUrlNotificationsController < ApplicationController
-    include PlaggableCrud::All
+    include PluggableCrud::All
 
     # def page_header_show_title
     #   "ログインに使っているメールアドレスを入力してください"

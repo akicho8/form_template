@@ -15,7 +15,7 @@
 
 module NameSpace1
   class Type004ArticlesController < ApplicationController
-    include PlaggableCrud::AllWithConfirm
+    include PluggableCrud::AllWithConfirm
 
     def page_header_show_title
       current_record.comment

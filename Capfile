@@ -16,7 +16,7 @@ require 'capistrano/deploy'
 #   https://github.com/capistrano/passenger
 #
 # require 'capistrano/rvm'
-# require 'capistrano/rbenv'
+require 'capistrano/rbenv'
 # require 'capistrano/chruby'
 require 'capistrano/rails' # bundler + rails/assets + rails/migrations
 require 'capistrano/passenger'

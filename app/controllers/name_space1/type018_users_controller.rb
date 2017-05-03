@@ -22,7 +22,7 @@
 
 module NameSpace1
   class Type018UsersController < ApplicationController
-    include PlaggableCrud::All
+    include PluggableCrud::All
 
     def page_header_show_title
       current_record.handle_name

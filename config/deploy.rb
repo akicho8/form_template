@@ -41,8 +41,8 @@ set :default_env, { "DISABLE_DATABASE_ENVIRONMENT_CHECK" => "1" }
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
-# # config/deploy.rb
-# set :rbenv_type, :system # or :system, depends on your rbenv setup
+# for capistrano/rbenv
+set :rbenv_type, :system # or :system, depends on your rbenv setup
 # set :rbenv_ruby, '2.2.2'
 # set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
 # set :rbenv_map_bins, %w{rake gem bundle ruby rails}

@@ -14,7 +14,7 @@
 
 module NameSpace1
   class Type005ArticlesController < ApplicationController
-    include PlaggableCrud::AllWithConfirm
+    include PluggableCrud::AllWithConfirm
 
     # 「確認画面」から「更新」のとき復帰するためセッションに保存しておく情報
     def current_session_attributes

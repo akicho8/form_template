@@ -22,7 +22,7 @@
 
 module NameSpace1
   class Type018PasswordResetersController < ApplicationController
-    include PlaggableCrud::All
+    include PluggableCrud::All
     include Type018HomesController::Type018UserSessionMethods
 
     before_action do

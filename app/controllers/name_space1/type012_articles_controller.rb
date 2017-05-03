@@ -14,7 +14,7 @@
 
 module NameSpace1
   class Type012ArticlesController < ApplicationController
-    include PlaggableCrud::All
+    include PluggableCrud::All
 
     def raw_current_record
       super.tap do |e|

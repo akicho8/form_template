@@ -1,4 +1,4 @@
-module PlaggableCrud
+module PluggableCrud
   concern :Base do
     included do
       if Rails.env.development?
