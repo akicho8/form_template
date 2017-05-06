@@ -8,7 +8,7 @@
     a.btn.btn-danger.btn-xs @click="mondai_reset_click" =<> "リセット"
     a.btn.btn-primary @click="mondai_next_click" =<> "つぎへ"
 
-  div v-if="mondai_all.length >= 1"
+  template v-if="mondai_all.length >= 1"
     p=<> "{{mondai_index}} / {{mondai_all.length}}"
 
     / bootstrap の progress は綺麗だけど幅の指定が難しい
@@ -17,7 +17,7 @@
 
     progress v-bind:value="mondai_index / mondai_all.length" style="width: 50vw"
 
-    div v-if="mondai_one"
+    template v-if="mondai_one"
       .panel.panel-primary @click="mondai_next_click"
         .panel-body
           p.text-center style="font-size: 16em" = "{{mondai_one}}"
