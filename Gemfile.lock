@@ -1,5 +1,5 @@
 GIT
-  remote: http://github.com/akicho8/aam.git
+  remote: https://github.com/akicho8/aam.git
   revision: ff2ee41cd7d6b3c56c162b426fe18082a739e5de
   specs:
     aam (0.0.4)
@@ -9,14 +9,14 @@ GIT
       rain_table
 
 GIT
-  remote: http://github.com/akicho8/airbrake-ruby.git
+  remote: https://github.com/akicho8/airbrake-ruby.git
   revision: bf15271bc2b9870e4fc614f0c8a984c63c439f1c
   ref: patch-1
   specs:
     airbrake-ruby (2.0.0)
 
 GIT
-  remote: http://github.com/akicho8/daiku.git
+  remote: https://github.com/akicho8/daiku.git
   revision: 78a0c0319ac4c4984a814016b433f0a7f5997394
   specs:
     daiku (0.0.2)
@@ -24,7 +24,7 @@ GIT
       rails
 
 GIT
-  remote: http://github.com/akicho8/normalizer.git
+  remote: https://github.com/akicho8/normalizer.git
   revision: 11549cdfda18f3032c077dc5984a2a66bd6ff75a
   specs:
     normalizer (0.0.1)
@@ -34,21 +34,21 @@ GIT
       rails-deprecated_sanitizer
 
 GIT
-  remote: http://github.com/akicho8/quick_table.git
+  remote: https://github.com/akicho8/quick_table.git
   revision: 40d039c14bffcbdf421821418299a349f376ad7a
   specs:
     quick_table (0.0.12)
       rails
 
 GIT
-  remote: http://github.com/akicho8/rain_table.git
+  remote: https://github.com/akicho8/rain_table.git
   revision: 5c1efd010f305836675abcde8d2a8fd51f5aeecb
   specs:
     rain_table (0.2.4)
       activesupport
 
 GIT
-  remote: http://github.com/akicho8/static_record.git
+  remote: https://github.com/akicho8/static_record.git
   revision: 0b32f07c135afd926fca56db3f90596e1bc0764c
   specs:
     static_record (0.0.22)
@@ -56,7 +56,7 @@ GIT
       activesupport
 
 GIT
-  remote: http://github.com/akicho8/uzoumuzou.git
+  remote: https://github.com/akicho8/uzoumuzou.git
   revision: 46f56df33c2f051e3505cf072cb0c967c4969af2
   specs:
     uzoumuzou (0.0.1)
@@ -64,7 +64,7 @@ GIT
       rails-html-sanitizer
 
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     actioncable (5.1.0)
       actionpack (= 5.1.0)
