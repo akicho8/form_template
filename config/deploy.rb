@@ -29,6 +29,8 @@ set :deploy_to, proc { "/var/www/#{fetch(:application)}_#{fetch(:stage)}" }
 # Default value for :linked_files is []
 # set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
 # set :linked_files, fetch(:linked_files, []).push('config/secrets.yml', '.env')
+# set :linked_files, fetch(:linked_files, []).push('config/database.yml')
+set :linked_files, fetch(:linked_files, []).push('config/secrets.yml.key')
 
 # Default value for linked_dirs is []
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
@@ -43,7 +45,7 @@ set :default_env, { "DISABLE_DATABASE_ENVIRONMENT_CHECK" => "1" }
 
 # for capistrano/rbenv
 set :rbenv_type, :system # or :system, depends on your rbenv setup
-# set :rbenv_ruby, '2.2.2'
+set :rbenv_ruby, '2.4.1'
 # set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
 # set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 # set :rbenv_roles, :all # default value
@@ -57,11 +59,18 @@ set :bundle_flags, '--deployment'
 # set :yarn_roles, :all                                     # default
 # set :yarn_env_variables, {}                               # default
 
-desc 'env'
-task :env do
-  on roles(:app) do
-    execute :env
+set :print_config_variables, true # デプロイ前に設定した変数値を確認
+
+namespace :deploy do
+  namespace :check do
+    desc "環境変数の確認"
+    task :env do
+      on roles(:all) do
+        execute :env
+      end
+    end
   end
+  before "deploy:check", "deploy:check:env"
 end
 
 namespace :deploy do
@@ -130,6 +139,24 @@ namespace :deploy do
 
   # set :app_version, '1.2.3'
   # after :finished, 'airbrake:deploy'
+
+end
+
+namespace :deploy do
+  # cap production deploy:upload_config_secrets_yml_key
+  desc "config/secrets.yml.key のアップロード"
+  task :upload_config_secrets_yml_key do
+    on roles :all do
+      local_file = "config/secrets.yml.key"
+      if Pathname(local_file).exist?
+        server_file = shared_path.join(local_file)
+        unless test "[ -f #{server_file} ]"
+          upload! File.open(local_file), server_file
+        end
+      end
+    end
+  end
+  before "deploy:check:linked_files", "deploy:upload_config_secrets_yml_key"
 end
 
 namespace :cable_puma do
