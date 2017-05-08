@@ -23,7 +23,7 @@ module FormTemplate
     end
 
     if Rails.env.development?
-      config.action_mailer.default_url_options = { host: "localhost", port: 5000 }
+      config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
     end
 
     config.action_view.field_error_proc = proc { |html_tag, instance|
