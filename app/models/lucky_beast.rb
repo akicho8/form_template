@@ -117,6 +117,7 @@ class LuckyBeast
         ].join(" ")
       },
     },
+    {:model => Type029Article, :url => proc {|h| [:name_space1, Type029Article.first] }, :desc => proc {|h| "_show.html.slim をまるごとAJAXで更新する例と、一部に追記する例。respond_to で format.js を指定していないのにビューファイルがあることで反応している点に注目。ajax_action_sample はメソッドも書いてない。" }, },
 
   ], :attr_reader_auto => true
 

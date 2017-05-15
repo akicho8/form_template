@@ -47,8 +47,16 @@ Rails.application.routes.draw do
     resource :type021_chat_room, :only => [:show]
     resource :type022_chat_room, :only => [:show]
     resource :type023_chat_room, :only => [:show]
+    resources :type029_articles do
+      member do
+        # get :ajax_action_sample                                       # ← GETのみの場合
+        # match 'ajax_action_sample', via: [:get, :post, :put, :delete] # ← いろんなのに対応
+        match 'ajax_action_sample', via: :all                           # ← 全部に対応
+      end
+    end
   end
 
+  # for DHH流のルーティング
   # link_to("上", [:type028_foos])
   # link_to("下", [:type028_foo, :type028_bars, :type028_foo_id => 1])
   resources :type028_foos, only: [:index] do

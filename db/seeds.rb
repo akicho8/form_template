@@ -17,3 +17,7 @@ unless Type017Article.exists?
     p Type017Article.create!(:map_address => e)
   end
 end
+
+unless Type029Article.exists?
+  p Type029Article.create!
+end
