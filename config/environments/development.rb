@@ -1,7 +1,4 @@
 Rails.application.configure do
-  # Make javascript_pack_tag load assets from webpack-dev-server.
-  config.x.webpacker[:dev_server_host] = "http://localhost:8080"
-
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
@@ -53,10 +50,5 @@ Rails.application.configure do
 
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
-  # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
-
-  # ################################################################################ ActionCable
-  config.action_cable.allowed_request_origins = [/https?:\/\/.*/]
-  # config.action_cable.mount_path = ENV["RAILS_RELATIVE_URL_ROOT"] + "/cable" # /cable の 404 になるのを防ぐため
-  # config.action_cable.url = "ws://localhost:28080"
+  config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 end
