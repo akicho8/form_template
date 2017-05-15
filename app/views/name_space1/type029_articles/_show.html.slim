@@ -1,7 +1,10 @@
+/ 1. Rails の remote: true で _show をまるごと更新
 p
   =<> current_record.show_counter
   =<> link_to("+1", [:name_space1, current_record], class: "btn btn-default")
   =<> link_to("+1 (AJAX)", [:name_space1, current_record], class: "btn btn-default", remote: true)
+
+/ 2. Rails の remote: true で params 確認
 p
   = "一部だけ更新(追加)する例。ajax_action_sample は via: :all なのですべてに反応できる"
   =<> link_to("POST",   [:ajax_action_sample, :name_space1, current_record], class: "btn btn-default", remote: true, method: :post)
@@ -9,5 +12,11 @@ p
   =<> link_to("DELETE", [:ajax_action_sample, :name_space1, current_record], class: "btn btn-default", remote: true, method: :delete)
   =<> link_to("GET",    [:ajax_action_sample, :name_space1, current_record], class: "btn btn-default", remote: true)
   #ajax_action_sample_update_div= ""
+
+/ 3. スライダーが動き終わったときに $.ajax して ajax_action_sample_update_div にパラメータを出力する
+p
+  form
+    = hidden_field_tag("hidden_value", 123)
+    = range_field_tag("slider_value", 0, :id => "type029_slider", data: {url: url_for([:ajax_action_sample, :name_space1, current_record])})
 p
   = current_record.attributes.to_quick_table
