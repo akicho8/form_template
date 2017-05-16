@@ -35,6 +35,7 @@ module.exports = {
   },
 
   plugins: [
+    new webpack.ProvidePlugin({$: "jquery", jQuery: "jquery", "window.jQuery": "jquery", "window.$": "jquery"}),
     new webpack.EnvironmentPlugin(JSON.parse(JSON.stringify(env))),
     new ExtractTextPlugin(env.NODE_ENV === 'production' ? '[name]-[hash].css' : '[name].css'),
     new ManifestPlugin({ fileName: paths.manifest, publicPath, writeToFileEmit: true })

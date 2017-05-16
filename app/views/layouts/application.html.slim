@@ -7,11 +7,12 @@ html lang="ja"
     = csrf_meta_tag
     meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     title= content_for?(:title) ? yield(:title) : "FormTemplate"
-    = stylesheet_link_tag "application", media: "all"
-    / = action_cable_meta_tag if ENV["RAILS_RELATIVE_URL_ROOT"]
     = action_cable_meta_tag
+    / = stylesheet_pack_tag "application"
     = javascript_include_tag "application"
     = javascript_pack_tag "application"
+    = stylesheet_link_tag "application", media: "all"
+    / = action_cable_meta_tag if ENV["RAILS_RELATIVE_URL_ROOT"]
   body
     - if false
       = image_tag("application_header.png", class: "center-block", alt: AppConfig[:app_name])

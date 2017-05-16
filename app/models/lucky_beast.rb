@@ -119,8 +119,8 @@ class LuckyBeast
       row["名前"]       = h.link_to(name, url2(h))
       row["確認機能"]   = confirm ? "★" : ""
       row["テーブル数"] = tables
-      row["説明"]       = desc ? h.content_tag(:span, desc.call(h).to_s.html_safe, style: "white-space: normal") : nil
-      row["リンク"]     = link_list ? h.content_tag(:span, desc.call(h).join(" ").html_safe, style: "white-space: normal") : nil
+      row["説明"]       = desc ? h.content_tag(:span, desc.to_s.html_safe, style: "white-space: normal") : nil
+      row["リンク"]     = link_list ? h.content_tag(:span, link_list.call(h).join(" ").html_safe, style: "white-space: normal") : nil
       row["スコープ"]   = search_key
       row[""]           = Array(links(h)).join(" ").html_safe
     end
