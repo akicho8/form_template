@@ -49,9 +49,9 @@ Rails.application.routes.draw do
     resource :type023_chat_room, only: [:show]
     resources :type029_articles do
       member do
-        # get :ajax_action_sample                                       # ← GETのみの場合
-        # match 'ajax_action_sample', via: [:get, :post, :put, :delete] # ← いろんなのに対応
-        match 'ajax_action_sample', via: :all                           # ← 全部に対応
+        # get :ajax_params_inspector                                       # ← GETのみの場合
+        # match 'ajax_params_inspector', via: [:get, :post, :put, :delete] # ← いろんなのに対応
+        match 'ajax_params_inspector', via: :all                           # ← 全部に対応
       end
     end
   end

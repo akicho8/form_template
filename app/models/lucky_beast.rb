@@ -117,7 +117,7 @@ class LuckyBeast
         ].join(" ")
       },
     },
-    {model: Type029Article, url: proc {|h| [:name_space1, Type029Article.first] }, desc: proc {|h| "1. _show.html.slim をまるごとAJAXで更新する例と、一部に追記する例。respond_to で format.js を指定していないのにビューファイルがあることで反応している点に注目。2. ajax_action_sample は params を確認する例。アクションは定義してないのに動いている。3. スライダーが動き終わったときに $.ajax で実行する例 ──の3つ入り" }, },
+    {model: Type029Article, url: proc {|h| [:name_space1, Type029Article.first] }, desc: proc {|h| "1. _show.html.slim をまるごとAJAXで更新する例と、一部に追記する例。respond_to で format.js を指定していないのにビューファイルがあることで反応している点に注目。2. ajax_params_inspector は params を確認する例。アクションは定義してないのに動いている。3. スライダーが動き終わったときに $.ajax で実行する例 ──の3つ入り" }, },
 
   ], attr_reader_auto: true
 

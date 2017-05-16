@@ -22,8 +22,8 @@ module NameSpace1
       current_record.update!(show_counter: current_record.show_counter.to_i + 1)
     end
 
-    # ajax_action_sample.js.coffee があるので自動的に反応
-    # def ajax_action_sample
+    # ajax_params_inspector.js.coffee があるので自動的に反応
+    # def ajax_params_inspector
     # end
   end
 end
