@@ -9,11 +9,11 @@ class Type020FooMailer < ApplicationMailer
   #
   def type020_user_created_mail(type020_user)
     @type020_user = type020_user
-    mail to: type020_user.email, :subject => "ユーザー登録完了"
+    mail to: type020_user.email, subject: "ユーザー登録完了"
   end
 
   def type020_user_password_update(type020_user)
     @type020_user = type020_user
-    mail to: type020_user.email, :subject => "ユーザーパスワード変更"
+    mail to: type020_user.email, subject: "ユーザーパスワード変更"
   end
 end

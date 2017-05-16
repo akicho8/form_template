@@ -13,6 +13,6 @@
 # +------------+----------+----------+-------------+------+-------+
 
 class Type012Article < ApplicationRecord
-  has_many :type012_s1_articles, -> { order(:created_at) }, :inverse_of => :type012_article, :dependent => :destroy
+  has_many :type012_s1_articles, -> { order(:created_at) }, inverse_of: :type012_article, dependent: :destroy
   accepts_nested_attributes_for :type012_s1_articles, reject_if: proc { |attributes| attributes[:comment1].blank? }, allow_destroy: true
 end

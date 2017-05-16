@@ -3,5 +3,5 @@
     = "#{current_type018_user.id}のホーム"
 
 ul.nav.nav-pills
-  li= link_to("ログアウト", [:name_space1, :type018_session], :method => :delete)
+  li= link_to("ログアウト", [:name_space1, :type018_session], method: :delete)
   li= link_to("PWリセット", [:new, :name_space1, :type018_password_reseter])

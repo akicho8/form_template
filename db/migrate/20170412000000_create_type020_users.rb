@@ -15,11 +15,11 @@
 
 class CreateType020Users < ActiveRecord::Migration[5.1]
   def up
-    create_table :type020_users, :force => true do |t|
-      t.string :email,    :null => false
-      t.string :password, :null => false
-      t.timestamps        :null => false
-      t.index :email, :unique => true
+    create_table :type020_users, force: true do |t|
+      t.string :email,    null: false
+      t.string :password, null: false
+      t.timestamps        null: false
+      t.index :email, unique: true
     end
   end
 end

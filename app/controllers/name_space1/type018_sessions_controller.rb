@@ -24,7 +24,7 @@ module NameSpace1
       return_to = session[:return_to]
       reset_session
       session[:type018_user_id] = user.id
-      redirect_to (return_to || [:name_space1, :type018_home]), :notice => "ログインしました"
+      redirect_to (return_to || [:name_space1, :type018_home]), notice: "ログインしました"
     end
 
     def destroy
@@ -34,7 +34,7 @@ module NameSpace1
         notice = "すでにログアウトしています"
       end
       reset_session
-      redirect_to :root, :notice => notice
+      redirect_to :root, notice: notice
     end
 
     private

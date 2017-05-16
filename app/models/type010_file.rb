@@ -22,7 +22,7 @@
 class Type010File < ApplicationRecord
   mount_uploader :media_file, AttachmentUploader
 
-  belongs_to :type010_article, :inverse_of => :type010_files
+  belongs_to :type010_article, inverse_of: :type010_files
 
   attr_accessor :kesuyo
 

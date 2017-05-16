@@ -130,7 +130,7 @@ module PluggableCrud
       else
         label = "更新"
       end
-      redirect_to params[:redirect_to_where] || redirect_to_where, :notice => "#{label}しました"
+      redirect_to params[:redirect_to_where] || redirect_to_where, notice: "#{label}しました"
     end
 
     def current_record_valid?
@@ -227,7 +227,7 @@ module PluggableCrud
   concern :DestroyMethods do
     def destroy
       current_record.destroy!
-      redirect_to [self.class.parent_name.underscore, current_plural_key], :notice => "削除しました"
+      redirect_to [self.class.parent_name.underscore, current_plural_key], notice: "削除しました"
     end
   end
 

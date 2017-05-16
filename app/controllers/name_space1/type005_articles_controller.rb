@@ -18,7 +18,7 @@ module NameSpace1
 
     # 「確認画面」から「更新」のとき復帰するためセッションに保存しておく情報
     def current_session_attributes
-      v = super.merge(:type005_files_attributes => current_record.temp_type005_files.collect {|e| {:media_file_cache => e.media_file_cache} })
+      v = super.merge(type005_files_attributes: current_record.temp_type005_files.collect {|e| {media_file_cache: e.media_file_cache} })
       v.except(:up_files)
     end
 

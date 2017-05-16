@@ -24,10 +24,10 @@ class Type010Article < ApplicationRecord
         ]
       end
 
-      with_options(class_name: "Type010File", dependent: :destroy, :inverse_of => :type010_article) do
-        has_one :type010_file_a, -> { order(:created_at => :desc).where(:position => 0) }
-        has_one :type010_file_b, -> { order(:created_at => :desc).where(:position => 1) }
-        has_one :type010_file_c, -> { order(:created_at => :desc).where(:position => 2) }
+      with_options(class_name: "Type010File", dependent: :destroy, inverse_of: :type010_article) do
+        has_one :type010_file_a, -> { order(created_at: :desc).where(position: 0) }
+        has_one :type010_file_b, -> { order(created_at: :desc).where(position: 1) }
+        has_one :type010_file_c, -> { order(created_at: :desc).where(position: 2) }
       end
 
       accepts_nested_attributes_for :type010_file_a
@@ -47,7 +47,7 @@ class Type010Article < ApplicationRecord
   # ぶらさがる画像を has_many で参照するための仕組み
   concerning :SummaryMethods do
     included do
-      has_many :type010_files, -> { order(:position) }, :inverse_of => :type010_article, :dependent => :destroy
+      has_many :type010_files, -> { order(:position) }, inverse_of: :type010_article, dependent: :destroy
       accepts_nested_attributes_for :type010_files
 
       # type010_files_attributes 経由で設定されるとどんどん溜っていくので古いのは追加のタイミングで削除する
@@ -57,7 +57,7 @@ class Type010Article < ApplicationRecord
     end
 
     def up_files=(v)
-      assign_attributes(:type010_files_attributes => v.collect.with_index { |e, i| {:media_file => e, :position => i} })
+      assign_attributes(type010_files_attributes: v.collect.with_index { |e, i| {media_file: e, position: i} })
     end
   end
 

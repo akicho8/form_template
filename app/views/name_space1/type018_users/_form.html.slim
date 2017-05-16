@@ -1,14 +1,14 @@
 = hidden_field_tag(:activate_token, params[:activate_token])
 
 .form-group
-  = form.label(:handle_name, :class => "col-sm-2 control-label")
+  = form.label(:handle_name, class: "col-sm-2 control-label")
   .col-sm-10
-    = form.text_field(:handle_name, :class => "form-control")
+    = form.text_field(:handle_name, class: "form-control")
 .form-group
-  = form.label(:email, :class => "col-sm-2 control-label")
+  = form.label(:email, class: "col-sm-2 control-label")
   .col-sm-10
-    = form.email_field(:email, :class => "form-control")
+    = form.email_field(:email, class: "form-control")
 .form-group
-  = form.label(:password, :class => "col-sm-2 control-label")
+  = form.label(:password, class: "col-sm-2 control-label")
   .col-sm-10
-    = form.text_field(:password, :class => "form-control")
+    = form.text_field(:password, class: "form-control")

@@ -1,7 +1,7 @@
 本登録が完了しました
 
 ▼ログイン
-<%= url_for([:new, :name_space1, :type018_session, :type018_user => {:email => @user.email}]) %>
+<%= url_for([:new, :name_space1, :type018_session, type018_user: {email: @user.email}]) %>
 
 ▼ホーム
 <%= url_for([:name_space1, :type018_home]) %>

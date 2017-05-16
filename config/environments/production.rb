@@ -99,13 +99,13 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_caching = true
   config.action_mailer.smtp_settings = {
-    :enable_starttls_auto => true,
-    :address              => "smtp.gmail.com",
-    :domain               => "smtp.gmail.com",
-    :port                 => 587,
-    :authentication       => "plain",
-    :user_name            => "pinpon.ikeda",
-    :password             => ENV["GMAIL_APP_PASSWORD"],
+    enable_starttls_auto: true,
+    address: "smtp.gmail.com",
+    domain: "smtp.gmail.com",
+    port: 587,
+    authentication: "plain",
+    user_name: "pinpon.ikeda",
+    password: ENV["GMAIL_APP_PASSWORD"],
   }
 
   # ################################################################################ ActionCable

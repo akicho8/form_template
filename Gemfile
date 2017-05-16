@@ -91,12 +91,12 @@ gem 'carrierwave'
 gem 'rmagick'
 gem "geokit"
 gem 'airbrake'
-gem 'airbrake-ruby', :github => "akicho8/airbrake-ruby", :ref => "patch-1"
+gem 'airbrake-ruby', github: "akicho8/airbrake-ruby", ref: "patch-1"
 
-gem 'static_record', :github => "akicho8/static_record"
-gem 'rain_table',    :github => 'akicho8/rain_table'
-gem 'quick_table',   :github => 'akicho8/quick_table'
-gem 'daiku',         :github => 'akicho8/daiku'
-gem 'aam',           :github => 'akicho8/aam'
-gem 'uzoumuzou',     :github => 'akicho8/uzoumuzou'
-gem 'normalizer',    :github => 'akicho8/normalizer'
+gem 'static_record', github: "akicho8/static_record"
+gem 'rain_table',    github: 'akicho8/rain_table'
+gem 'quick_table',   github: 'akicho8/quick_table'
+gem 'daiku',         github: 'akicho8/daiku'
+gem 'aam',           github: 'akicho8/aam'
+gem 'uzoumuzou',     github: 'akicho8/uzoumuzou'
+gem 'normalizer',    github: 'akicho8/normalizer'

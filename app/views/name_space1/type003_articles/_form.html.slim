@@ -1,85 +1,85 @@
 fieldset
   legend= "お名前"
   .form-group.form-group-lg
-    = form.label(:full_name, :class => "col-sm-2 control-label")
+    = form.label(:full_name, class: "col-sm-2 control-label")
     .col-sm-10.form-inline
-      =<> form.text_field(:first_name, :class => "form-control", :placeholder => "姓", :size => 10)
-      =<> form.text_field(:last_name, :class => "form-control", :placeholder => "名", :size => 10)
+      =<> form.text_field(:first_name, class: "form-control", placeholder: "姓", size: 10)
+      =<> form.text_field(:last_name, class: "form-control", placeholder: "名", size: 10)
 
   .form-group.form-group-lg
-    = form.label(:full_name_hiragana, :class => "col-sm-2 control-label")
+    = form.label(:full_name_hiragana, class: "col-sm-2 control-label")
     .col-sm-10.form-inline
-      =<> form.text_field(:first_name_hiragana, :class => "form-control", :placeholder => "せい", :size => 10)
-      =<> form.text_field(:last_name_hiragana, :class => "form-control", :placeholder => "めい", :size => 10)
+      =<> form.text_field(:first_name_hiragana, class: "form-control", placeholder: "せい", size: 10)
+      =<> form.text_field(:last_name_hiragana, class: "form-control", placeholder: "めい", size: 10)
 
 fieldset
   legend= "ご住所"
   .form-group.form-group-lg
-    = form.label(:postal_code, :class => "col-sm-2 control-label")
+    = form.label(:postal_code, class: "col-sm-2 control-label")
     .col-sm-10.form-inline
-      =<> form.text_field(:first_postal_code, :class => "form-control", :placeholder => nil, :size => 3)
+      =<> form.text_field(:first_postal_code, class: "form-control", placeholder: nil, size: 3)
       =<> "-"
-      =<> form.text_field(:last_postal_code, :class => "form-control", :placeholder => nil, :size => 4)
+      =<> form.text_field(:last_postal_code, class: "form-control", placeholder: nil, size: 4)
 
   .form-group.form-group-lg
-    = form.label(:prefecture_name, :class => "col-sm-2 control-label")
+    = form.label(:prefecture_name, class: "col-sm-2 control-label")
     .col-sm-2
-      = form.select(:prefecture_name, grouped_options_for_select(PrefectureArea.inject({}) {|a, e| a.merge(e.name => e.prefectures.collect(&:name)) }, form.object.prefecture_name), {:include_blank => true}, {:class => "form-control"})
+      = form.select(:prefecture_name, grouped_options_for_select(PrefectureArea.inject({}) {|a, e| a.merge(e.name => e.prefectures.collect(&:name)) }, form.object.prefecture_name), {include_blank: true}, {class: "form-control"})
 
   .form-group.form-group-lg
-    = form.label(:city_address, :class => "col-sm-2 control-label")
+    = form.label(:city_address, class: "col-sm-2 control-label")
     .col-sm-8
-      = form.text_field(:city_address, :class => "form-control", :placeholder => nil)
+      = form.text_field(:city_address, class: "form-control", placeholder: nil)
 
   .form-group.form-group-lg
-    = form.label(:number_address, :class => "col-sm-2 control-label")
+    = form.label(:number_address, class: "col-sm-2 control-label")
     .col-sm-4
-      = form.text_field(:number_address, :class => "form-control", :placeholder => nil)
+      = form.text_field(:number_address, class: "form-control", placeholder: nil)
       .help-block
         = "半角でも全角でもかまいません"
 
   .form-group.form-group-lg
-    = form.label(:house_name, :class => "col-sm-2 control-label")
+    = form.label(:house_name, class: "col-sm-2 control-label")
     .col-sm-8
-      = form.text_field(:house_name, :class => "form-control", :placeholder => nil)
+      = form.text_field(:house_name, class: "form-control", placeholder: nil)
 
 fieldset
   legend= "ご連絡先"
   .form-group.form-group-lg
-    = form.label(:tel, :class => "col-sm-2 control-label")
+    = form.label(:tel, class: "col-sm-2 control-label")
     .col-sm-10.form-inline
-      =<> form.text_field(:first_tel, :class => "form-control", :placeholder => nil, :size => 3)
+      =<> form.text_field(:first_tel, class: "form-control", placeholder: nil, size: 3)
       =<> "-"
-      =<> form.text_field(:middle_tel, :class => "form-control", :placeholder => nil, :size => 4)
+      =<> form.text_field(:middle_tel, class: "form-control", placeholder: nil, size: 4)
       =<> "-"
-      =<> form.text_field(:last_tel, :class => "form-control", :placeholder => nil, :size => 4)
+      =<> form.text_field(:last_tel, class: "form-control", placeholder: nil, size: 4)
 
   .form-group.form-group-lg
-    = form.label(:email, :class => "col-sm-2 control-label")
+    = form.label(:email, class: "col-sm-2 control-label")
     .col-sm-5
-      = form.email_field(:email, :class => "form-control")
+      = form.email_field(:email, class: "form-control")
 
   .form-group.form-group-lg
-    = form.label(:confirm_email, :class => "col-sm-2 control-label")
+    = form.label(:confirm_email, class: "col-sm-2 control-label")
     .col-sm-5
-      = form.email_field(:confirm_email, :class => "form-control", :placeholder => "同じメールアドレスを入力してください")
+      = form.email_field(:confirm_email, class: "form-control", placeholder: "同じメールアドレスを入力してください")
 
 fieldset
   legend= "ご意見"
   .form-group.form-group-lg
-    = form.label(:subject, :class => "col-sm-2 control-label")
+    = form.label(:subject, class: "col-sm-2 control-label")
     .col-sm-10
-      = form.text_field(:subject, :class => "form-control")
+      = form.text_field(:subject, class: "form-control")
   .form-group
-    = form.label(:body, :class => "col-sm-2 control-label")
+    = form.label(:body, class: "col-sm-2 control-label")
     .col-sm-10
-      = form.text_area(:body, :class => "form-control", :rows => 8)
+      = form.text_area(:body, class: "form-control", rows: 8)
 
 fieldset
   legend= "プライバシーポリシー"
   .terms.form-group.form-group-sm
     - if false
-      = form.label(:legal_accept_key, :class => "col-sm-2 control-label")
+      = form.label(:legal_accept_key, class: "col-sm-2 control-label")
     - else
       .col-sm-2
     .col-md-10
@@ -88,9 +88,9 @@ fieldset
           .panel-body
             = Rails.root.join("config/privacy_policy.txt").read.gsub(/\R/, "<br/>").html_safe
         div
-          = link_to("別ページで開く", [:privacy_policy], :target => "_blank")
+          = link_to("別ページで開く", [:privacy_policy], target: "_blank")
       - else
-        = content_tag(:iframe, "", :src => "https://www.google.co.jp/", :frameborder => "1", :scrolling => "yes")
+        = content_tag(:iframe, "", src: "https://www.google.co.jp/", frameborder: "1", scrolling: "yes")
 
       - if false
         - LegalAcceptInfo.each do |e|

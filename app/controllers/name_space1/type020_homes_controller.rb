@@ -8,26 +8,26 @@ module NameSpace1
 
       def current_type020_user_required
         if params[:logout]
-          redirect_to({:logout => nil}, status: 401) # TODO: BASIC認証画面に切り替わらないのはなぜだろう
+          redirect_to({logout: nil}, status: 401) # TODO: BASIC認証画面に切り替わらないのはなぜだろう
           return
         end
 
         session[:type020_user_id] = nil
         authenticate_or_request_with_http_basic do |email, password|
-          Rails.logger.info({:email => email, :password => password}.inspect)
+          Rails.logger.info({email: email, password: password}.inspect)
           if email.blank?
             # メールアドレスの入力がないので繰り返しダイアログ表示
             false
           else
-            type020_user = Type020User.find_by(:email => email)
+            type020_user = Type020User.find_by(email: email)
             unless type020_user
               # メールアドレスに対応するユーザーがないので、ユーザーを作成する。このときメールでパスワードを通知する。
-              Type020User.create!(:email => email)
+              Type020User.create!(email: email)
               false
             else
               if password.blank?
                 # ユーザーがいてパスワードが空なら新しいパスワードを作って送る
-                type020_user.update!(:password => nil)
+                type020_user.update!(password: nil)
                 false
               else
                 if type020_user.password == password

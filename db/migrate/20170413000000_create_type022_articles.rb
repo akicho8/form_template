@@ -15,9 +15,9 @@
 
 class CreateType022Articles < ActiveRecord::Migration[5.1]
   def up
-    create_table :type022_articles, :force => true do |t|
+    create_table :type022_articles, force: true do |t|
       t.text :body
-      t.timestamps :null => false
+      t.timestamps null: false
     end
   end
 end

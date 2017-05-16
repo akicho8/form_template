@@ -3,12 +3,12 @@
     h2= controller.page_header_show_title
 
 #show_partial_div_for_ajax
-  = render :partial => params[:show_partial] || "show"
+  = render partial: params[:show_partial] || "show"
 
 p
   .panel.panel-default
     .panel-body
-      =<> link_to("一覧", [:name_space1, current_plural_key], :class => "btn btn-default")
-      =<> link_to("編集", [:edit, :name_space1, current_record], :class => "btn btn-success")
+      =<> link_to("一覧", [:name_space1, current_plural_key], class: "btn btn-default")
+      =<> link_to("編集", [:edit, :name_space1, current_record], class: "btn btn-success")
       - if controller.respond_to_destroy?
-        =<> link_to("削除", [:name_space1, current_record], :method => :delete, :data => {:confirm => "本当に削除してもよろしいですか？"}, :class => "btn btn-danger")
+        =<> link_to("削除", [:name_space1, current_record], method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger")

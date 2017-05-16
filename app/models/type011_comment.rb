@@ -18,5 +18,5 @@
 #--------------------------------------------------------------------------------
 
 class Type011Comment < ApplicationRecord
-  belongs_to :type011_article, :inverse_of => :type011_comments
+  belongs_to :type011_article, inverse_of: :type011_comments
 end

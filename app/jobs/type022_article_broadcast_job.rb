@@ -8,6 +8,6 @@ class Type022ArticleBroadcastJob < ApplicationJob
   private
 
   def render_html(type022_article)
-    ApplicationController.renderer.render(:partial => "name_space1/type022_chat_rooms/type022_article", :locals => {:type022_article => type022_article})
+    ApplicationController.renderer.render(partial: "name_space1/type022_chat_rooms/type022_article", locals: {type022_article: type022_article})
   end
 end

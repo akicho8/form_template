@@ -24,16 +24,16 @@
 class Type018PasswordResetUrlNotification < ApplicationRecord
   belongs_to :type018_user
 
-  before_validation :on => :create do
+  before_validation on: :create do
     self.notice_token ||= SecureRandom.hex
     self.expired_at ||= 1.days.from_now
     if email
-      self.type018_user ||= Type018User.find_by(:email => email)
+      self.type018_user ||= Type018User.find_by(email: email)
     end
     true
   end
 
-  with_options(:presence => true) do
+  with_options(presence: true) do
     validates :type018_user
     validates :email
     validates :notice_token

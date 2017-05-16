@@ -1,15 +1,15 @@
 / 名前
 .form-group
-  = form.label(:name, :class => "col-sm-2 control-label")
+  = form.label(:name, class: "col-sm-2 control-label")
   .col-sm-10
-    = form.text_field(:name, :class => "form-control")
+    = form.text_field(:name, class: "form-control")
 
 .form-group
   label.col-md-2.control-label= "collection_check_boxes"
   .col-md-10
     / こっちを使うと label for=xxx しているのに input 側に id 属性がないため、テキスト部分を触っても、チェックできない。だから噛み合っていない for を消すことで有効化する。
     = form.collection_check_boxes(:v1_team_ids, Team.all, :id, :name) do |b|
-      = b.label(:class => "checkbox-inline", :for => nil) { b.check_box + b.text }
+      = b.label(class: "checkbox-inline", for: nil) { b.check_box + b.text }
 
 .form-group
   label.col-md-2.control-label= "collection_radio_buttons"
@@ -17,14 +17,14 @@
     / モデル側で super || build_v2_type016_team_ship として必須の場合は form.fields_for(:v2_type016_team_ship) do |form| と書いてもよい
     = form.fields_for(:v2_type016_team_ship, form.object.v2_type016_team_ship || form.object.build_v2_type016_team_ship) do |form|
       = form.collection_radio_buttons(:team_id, Team.all, :id, :name) do |b|
-        = b.label(:class => "radio-inline", :for => nil) { b.radio_button + b.text }
+        = b.label(class: "radio-inline", for: nil) { b.radio_button + b.text }
 
 .form-group
   label.col-md-2.control-label= "collection_select + multiple"
   .col-md-10
-    = form.collection_select(:v3_team_ids, Team.all, :id, :name, {:include_blank => false}, {:class => "form-control", :multiple => true})
+    = form.collection_select(:v3_team_ids, Team.all, :id, :name, {include_blank: false}, {class: "form-control", multiple: true})
 
 .form-group
   label.col-md-2.control-label= "collection_select"
   .col-md-10
-    = form.collection_select(:v4_team_ids, Team.all, :id, :name, {:include_blank => true}, {:class => "form-control"})
+    = form.collection_select(:v4_team_ids, Team.all, :id, :name, {include_blank: true}, {class: "form-control"})

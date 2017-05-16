@@ -2,19 +2,19 @@
   h2
     = "ログイン"
 
-= form_for(@type018_user, :url => [:name_space1, :type018_session], :html => {:class => "form-horizontal"}) do |form|
-  = render :partial => "error_messages", :locals => {:form => form}
+= form_for(@type018_user, url: [:name_space1, :type018_session], html: {class: "form-horizontal"}) do |form|
+  = render partial: "error_messages", locals: {form: form}
   .form-group
-    = form.label(:email, :class => "col-sm-2 control-label")
+    = form.label(:email, class: "col-sm-2 control-label")
     .col-sm-10
-      = form.text_field(:email, :class => "form-control")
+      = form.text_field(:email, class: "form-control")
   .form-group
-    = form.label(:password, :class => "col-sm-2 control-label")
+    = form.label(:password, class: "col-sm-2 control-label")
     .col-sm-10
-      = form.text_field(:password, :class => "form-control")
+      = form.text_field(:password, class: "form-control")
   .form-group
     .col-sm-offset-2.col-sm-10
-      =<> form.submit("ログイン", :name => nil, :class => "btn btn-primary")
+      =<> form.submit("ログイン", name: nil, class: "btn btn-primary")
   .form-group
     .col-sm-offset-2.col-sm-10
       p= link_to("新規アカウント登録する(メール認証)", [:new, :name_space1, :type018_email_activation])

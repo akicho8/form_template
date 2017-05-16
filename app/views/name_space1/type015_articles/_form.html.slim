@@ -1,15 +1,15 @@
 .form-group
-  = form.label(:subject, :class => "col-md-2 control-label")
+  = form.label(:subject, class: "col-md-2 control-label")
   .col-md-10
-    = form.text_field(:subject, :class => "form-control")
+    = form.text_field(:subject, class: "form-control")
 
 .form-group
-  = form.label(:body, :class => "col-md-2 control-label")
+  = form.label(:body, class: "col-md-2 control-label")
   .col-md-10
-    = form.text_area(:body, :class => "form-control", :rows => 8)
+    = form.text_area(:body, class: "form-control", rows: 8)
 
 - unless controller.captcha_status
   .form-group
-    = form.label(:captcha, :class => "col-md-2 control-label")
+    = form.label(:captcha, class: "col-md-2 control-label")
     .col-md-10
-      = form.simple_captcha(:input_html => {:required => false, :class => "form-control"})
+      = form.simple_captcha(input_html: {required: false, class: "form-control"})

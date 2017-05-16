@@ -20,5 +20,5 @@
 class Type005File < ApplicationRecord
   mount_uploader :media_file, AttachmentUploader
 
-  belongs_to :type005_article, :inverse_of => :type005_files
+  belongs_to :type005_article, inverse_of: :type005_files
 end

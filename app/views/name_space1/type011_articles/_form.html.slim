@@ -1,28 +1,28 @@
 / 本体
 .form-group
-  = form.label(:title, :class => "col-sm-2 control-label")
+  = form.label(:title, class: "col-sm-2 control-label")
   .col-sm-10
-    = form.text_field(:title, :class => "form-control")
+    = form.text_field(:title, class: "form-control")
 
 - if form.object.new_record? && false
   / 最初のコメント。(こうしなくても最初からすべて編集と新規書き込みできるようにしておけばよい)
   = form.fields_for(:type011_comment_first, current_record.type011_comment_first || current_record.build_type011_comment_first) do |sub_form|
     .form-group
-      = form.label(:type011_comment_first, :class => "col-sm-2 control-label")
+      = form.label(:type011_comment_first, class: "col-sm-2 control-label")
       .col-sm-10
-        = sub_form.text_field(:comment, :class => "form-control")
+        = sub_form.text_field(:comment, class: "form-control")
 - else
   / コメントたち
   - form.object.type011_comments.each do |e|
     = form.fields_for(:type011_comments, e) do |form|
       .form-group
-        = form.label("コメント#{e.id}", :class => "col-sm-2 control-label")
+        = form.label("コメント#{e.id}", class: "col-sm-2 control-label")
         .col-sm-10.form-inline
           = form.text_field(:comment, class: "form-control")
           label.checkbox-inline=<> form.check_box(:_destroy) + "削除"
   / 新規書き込み
   = form.fields_for(:type011_comments, form.object.type011_comments.build) do |form|
     .form-group
-      = form.label(:comment_new, :class => "col-sm-2 control-label")
+      = form.label(:comment_new, class: "col-sm-2 control-label")
       .col-sm-10
         = form.text_field(:comment, class: "form-control")

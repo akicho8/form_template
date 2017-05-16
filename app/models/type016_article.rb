@@ -17,15 +17,15 @@ class Type016Article < ApplicationRecord
 
   concerning :CheckboxMethods do
     included do
-      has_many :v1_type016_team_ships, -> { where(:relation_key => "v1_type016_team_ships") }, :dependent => :destroy, :class_name => "Type016TeamShip", :inverse_of => :type016_article
-      has_many :v1_teams, :through => :v1_type016_team_ships, :source => :team
+      has_many :v1_type016_team_ships, -> { where(relation_key: "v1_type016_team_ships") }, dependent: :destroy, class_name: "Type016TeamShip", inverse_of: :type016_article
+      has_many :v1_teams, through: :v1_type016_team_ships, source: :team
       accepts_nested_attributes_for :v1_type016_team_ships
     end
   end
 
   concerning :RadioMethods do
     included do
-      has_one :v2_type016_team_ship, -> { where(:relation_key => "v2_type016_team_ship") }, :dependent => :destroy, :class_name => "Type016TeamShip", :inverse_of => :type016_article
+      has_one :v2_type016_team_ship, -> { where(relation_key: "v2_type016_team_ship") }, dependent: :destroy, class_name: "Type016TeamShip", inverse_of: :type016_article
       accepts_nested_attributes_for :v2_type016_team_ship, reject_if: proc { |attributes| attributes[:team_id].blank? } # 「何も指定しない」を許可できるように reject_if が必要
     end
 
@@ -41,21 +41,21 @@ class Type016Article < ApplicationRecord
 
   concerning :MultipleSelectMethods do
     included do
-      has_many :v3_type016_team_ships, -> { where(:relation_key => "v3_type016_team_ships") }, :dependent => :destroy, :class_name => "Type016TeamShip", :inverse_of => :type016_article
-      has_many :v3_teams, :through => :v3_type016_team_ships, :source => :team
+      has_many :v3_type016_team_ships, -> { where(relation_key: "v3_type016_team_ships") }, dependent: :destroy, class_name: "Type016TeamShip", inverse_of: :type016_article
+      has_many :v3_teams, through: :v3_type016_team_ships, source: :team
       accepts_nested_attributes_for :v3_type016_team_ships
     end
   end
 
   concerning :SingleSelectMethods do
     included do
-      has_many :v4_type016_team_ships, -> { where(:relation_key => "v4_type016_team_ships") }, :dependent => :destroy, :class_name => "Type016TeamShip", :inverse_of => :type016_article
-      has_many :v4_teams, :through => :v4_type016_team_ships, :source => :team
+      has_many :v4_type016_team_ships, -> { where(relation_key: "v4_type016_team_ships") }, dependent: :destroy, class_name: "Type016TeamShip", inverse_of: :type016_article
+      has_many :v4_teams, through: :v4_type016_team_ships, source: :team
       accepts_nested_attributes_for :v4_type016_team_ships
     end
   end
 
-  with_options(:presence => true) do
+  with_options(presence: true) do
     validates :name
   end
 end

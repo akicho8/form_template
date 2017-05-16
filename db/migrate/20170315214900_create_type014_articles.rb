@@ -24,7 +24,7 @@
 
 class CreateType014Articles < ActiveRecord::Migration[5.1]
   def up
-    create_table :type014_articles, :force => true do |t|
+    create_table :type014_articles, force: true do |t|
       # date: <input type="date" /><br/>
       # datetime: <input type="datetime" /><br/>
       # datetime-local: <input type="datetime-local" /><br/>
@@ -51,7 +51,7 @@ class CreateType014Articles < ActiveRecord::Migration[5.1]
       t.string :email_v
       t.string :color_v
 
-      t.timestamps :null => false
+      t.timestamps null: false
     end
   end
 end

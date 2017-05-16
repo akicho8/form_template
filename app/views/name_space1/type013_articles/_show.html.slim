@@ -2,4 +2,4 @@
 ul
   - current_record.comments.each do |e|
     li
-      = render :partial => "show", :locals => {:current_record => e}
+      = render partial: "show", locals: {current_record: e}

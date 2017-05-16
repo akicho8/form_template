@@ -22,11 +22,11 @@
 
 class Type018PasswordReseter < ApplicationRecord
   belongs_to :type018_user
-  belongs_to :type018_password_reset_url_notification, :required => false
+  belongs_to :type018_password_reset_url_notification, required: false
 
   attr_accessor :atarasii_password
 
-  before_validation :on => :create do
+  before_validation on: :create do
     self.type018_password_reset_url_notification ||= __current_type018_password_reset_url_notification
     if type018_password_reset_url_notification
       self.type018_user ||= type018_password_reset_url_notification.type018_user
@@ -34,11 +34,11 @@ class Type018PasswordReseter < ApplicationRecord
     true
   end
 
-  with_options(:presence => true) do
+  with_options(presence: true) do
     validates :type018_user_id
   end
-  with_options(:allow_blank => true) do
-    validates :notice_token, :uniqueness => true
+  with_options(allow_blank: true) do
+    validates :notice_token, uniqueness: true
   end
 
   # after_create do
@@ -47,17 +47,17 @@ class Type018PasswordReseter < ApplicationRecord
 
   after_create do
     if atarasii_password.present?
-      type018_user.update!(:password => atarasii_password)
+      type018_user.update!(password: atarasii_password)
       Type018FooMailer.type018_password_reseter_mail(self).deliver_now
       if type018_password_reset_url_notification
-        type018_password_reset_url_notification.update!(:used_at => created_at)
+        type018_password_reset_url_notification.update!(used_at: created_at)
       end
     end
   end
 
   def __current_type018_password_reset_url_notification
     if notice_token.present?
-      type018_password_reset_url_notification = Type018PasswordResetUrlNotification.find_by!(:notice_token => notice_token)
+      type018_password_reset_url_notification = Type018PasswordResetUrlNotification.find_by!(notice_token: notice_token)
       if v.expired_at >= Time.current
         unless v.used_at
           v

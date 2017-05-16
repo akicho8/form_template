@@ -13,8 +13,8 @@
 # +------------+----------+----------+-------------+------+-------+
 
 class Team < ApplicationRecord
-  has_many :type006_team_ships, :dependent => :destroy
-  has_many :type005_articles, :through => :type006_team_ships
+  has_many :type006_team_ships, dependent: :destroy
+  has_many :type005_articles, through: :type006_team_ships
 
   default_scope { order(:id) }
 end

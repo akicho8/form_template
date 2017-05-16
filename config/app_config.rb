@@ -1,3 +1,3 @@
 AppConfig = {
-  :app_name => "フォームテンプレート",
+  app_name: "フォームテンプレート",
 }

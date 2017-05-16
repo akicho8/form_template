@@ -39,14 +39,14 @@ Rails.application.routes.draw do
     resources :type018_users
     resources :type018_password_reset_url_notifications
     resources :type018_password_reseters
-    resource :type018_session, :except => [:edit, :update]
-    resource :type018_home, :only => [:show]
-    resource :type019_home, :only => [:show]
+    resource :type018_session, except: [:edit, :update]
+    resource :type018_home, only: [:show]
+    resource :type019_home, only: [:show]
     resources :type020_users
-    resource :type020_home, :only => [:show]
-    resource :type021_chat_room, :only => [:show]
-    resource :type022_chat_room, :only => [:show]
-    resource :type023_chat_room, :only => [:show]
+    resource :type020_home, only: [:show]
+    resource :type021_chat_room, only: [:show]
+    resource :type022_chat_room, only: [:show]
+    resource :type023_chat_room, only: [:show]
     resources :type029_articles do
       member do
         # get :ajax_action_sample                                       # ← GETのみの場合
@@ -58,9 +58,9 @@ Rails.application.routes.draw do
 
   # for DHH流のルーティング
   # link_to("上", [:type028_foos])
-  # link_to("下", [:type028_foo, :type028_bars, :type028_foo_id => 1])
+  # link_to("下", [:type028_foo, :type028_bars, type028_foo_id: 1])
   resources :type028_foos, only: [:index] do
-    resources :type028_bars, only: [:index], :module => 'type028_foos'
+    resources :type028_bars, only: [:index], module: 'type028_foos'
   end
 
   get "tops/show"

@@ -59,7 +59,7 @@ module NameSpace1
     end
 
     def captcha_status=(v)
-      v.tap { Rails.cache.write(current_captcha_session_key, v, :expires_in => Rails.env.production? ? 10.minutes : 30.seconds) }
+      v.tap { Rails.cache.write(current_captcha_session_key, v, expires_in: Rails.env.production? ? 10.minutes : 30.seconds) }
     end
 
     def current_captcha_session_key

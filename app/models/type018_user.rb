@@ -28,7 +28,7 @@ class Type018User < ApplicationRecord
       # TODO: こっちに activate_token アクセサを定義するとコントローラーはもっとシンプルになるか……？
 
       # メールアドレスの指定がなければメール認証のレコードから調達する
-      before_validation :on => :create do
+      before_validation on: :create do
         if type018_email_activation
           self.email ||= type018_email_activation.email
         end
@@ -43,20 +43,20 @@ class Type018User < ApplicationRecord
         true
       end
 
-      with_options(:presence => true) do
+      with_options(presence: true) do
         validates :email
         validates :salt
         validates :salted_password
       end
 
-      with_options(:allow_blank => true) do
-        validates :email, :uniqueness => true
+      with_options(allow_blank: true) do
+        validates :email, uniqueness: true
       end
 
       after_create do
         # メール認証経由ならメール認証側のレコードに使用済みマークをつける
         if type018_email_activation
-          type018_email_activation.update!(:activated_at => created_at)
+          type018_email_activation.update!(activated_at: created_at)
         end
         Type018FooMailer.welcome_mail(self).deliver_now
       end
@@ -76,7 +76,7 @@ class Type018User < ApplicationRecord
   # 「パスワードを忘れた」関連
   concerning :ForgetPasswordMethods do
     included do
-      with_options(:dependent => :destroy) do
+      with_options(dependent: :destroy) do
         has_many :type018_password_reset_url_notifications
         has_many :type018_password_reseters
       end

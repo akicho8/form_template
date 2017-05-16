@@ -14,16 +14,16 @@
 # +------------+----------------+----------+-------------+------+-------+
 
 class Type020User < ApplicationRecord
-  before_validation :on => :create do
+  before_validation on: :create do
     self.password ||= SecureRandom.hex
     true
   end
 
-  with_options(:presence => true) do
+  with_options(presence: true) do
     validates :email
   end
-  with_options(:allow_blank => true) do
-    validates :email, :uniqueness => true
+  with_options(allow_blank: true) do
+    validates :email, uniqueness: true
   end
 
   after_create do

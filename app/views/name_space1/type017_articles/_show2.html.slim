@@ -14,11 +14,11 @@ javascript:
 
 ruby:
   goolemaps_url_args = {
-    :key         => "AIzaSyCuRVZQBIM7XAhSvKl7nfZA-N2FhT-u1o8",
-    :callback    => "gmap_load_func",  # 読み込まれたあとに呼ぶ関数
-    # :libraries => ["drawing", "geometry", "places", "visualization"].join(","),
-    :lang        => "en",            # ← 効いてないっぽい
-    # :signed_in => "true",        # 効いてない？
+    key: "AIzaSyCuRVZQBIM7XAhSvKl7nfZA-N2FhT-u1o8",
+    callback: "gmap_load_func",  # 読み込まれたあとに呼ぶ関数
+    # libraries: ["drawing", "geometry", "places", "visualization"].join(","),
+    lang: "en",            # ← 効いてないっぽい
+    # signed_in: "true",        # 効いてない？
   }
 
 / async をつけると動かなくなるので注意
@@ -28,9 +28,9 @@ script src=="//maps.googleapis.com/maps/api/js?#{goolemaps_url_args.to_query.htm
 
 ruby:
   gmap_params = {
-    :map_address => current_record.map_address,
-    :latitude    => current_record.geocode_hash[:lat],
-    :longitude   => current_record.geocode_hash[:lng],
+    map_address: current_record.map_address,
+    latitude: current_record.geocode_hash[:lat],
+    longitude: current_record.geocode_hash[:lng],
   }
 
 javascript:

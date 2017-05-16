@@ -13,15 +13,15 @@
 # +------------+----------+----------+-------------+------+-------+
 
 class Type005Article < ApplicationRecord
-  has_many :type005_files, :inverse_of => :type005_article, :dependent => :destroy
+  has_many :type005_files, inverse_of: :type005_article, dependent: :destroy
   accepts_nested_attributes_for :type005_files
 
-  with_options(:presence => true) do
+  with_options(presence: true) do
     validates :title
   end
 
   def up_files=(v)
-    assign_attributes(:type005_files_attributes => v.collect { |e| {:media_file => e} })
+    assign_attributes(type005_files_attributes: v.collect { |e| {media_file: e} })
   end
 
   concerning :AllRemoveMethods do

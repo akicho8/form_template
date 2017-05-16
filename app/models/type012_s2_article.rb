@@ -18,5 +18,5 @@
 #--------------------------------------------------------------------------------
 
 class Type012S2Article < ApplicationRecord
-  belongs_to :type012_s1_article, :inverse_of => :type012_s2_articles
+  belongs_to :type012_s1_article, inverse_of: :type012_s2_articles
 end

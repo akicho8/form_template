@@ -1,6 +1,6 @@
 unless Team.exists?
   "ABC".chars.each do |e|
-    p Team.create!(:name => e)
+    p Team.create!(name: e)
   end
 end
 
@@ -14,7 +14,7 @@ unless Type017Article.exists?
     "東京都世田谷区若林2丁目",
     "広島県尾道市土堂2丁目4土堂2ｰ4ｰ9",
   ].each do |e|
-    p Type017Article.create!(:map_address => e)
+    p Type017Article.create!(map_address: e)
   end
 end
 

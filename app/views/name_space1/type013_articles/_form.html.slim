@@ -16,7 +16,7 @@
       / 子供たち
       - form.object.comments.each do |e|
         = form.fields_for(:comments, e) do |form|
-          = render :partial => "form", :locals => {:form => form, :depth => depth.next}
+          = render partial: "form", locals: {form: form, depth: depth.next}
       / 「書き込む」
       = form.fields_for(:comments, form.object.comments.build) do |form|
         .form-group

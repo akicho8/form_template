@@ -15,10 +15,10 @@
 
 class CreateType017Articles < ActiveRecord::Migration[5.1]
   def up
-    create_table :type017_articles, :force => true do |t|
+    create_table :type017_articles, force: true do |t|
       t.string :map_address
       t.text :geocode_hash
-      t.timestamps :null => false
+      t.timestamps null: false
     end
   end
 end

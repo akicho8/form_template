@@ -47,7 +47,7 @@ module NameSpace1
 
     def current_type018_email_activation
       if params[:activate_token].present?
-        if v = Type018EmailActivation.find_by(:activate_token => params[:activate_token])
+        if v = Type018EmailActivation.find_by(activate_token: params[:activate_token])
           if v.expired_at >= Time.current
             unless v.activated_at
               v

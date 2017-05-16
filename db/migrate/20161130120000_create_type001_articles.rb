@@ -15,10 +15,10 @@
 
 class CreateType001Articles < ActiveRecord::Migration[5.1]
   def up
-    create_table :type001_articles, :force => true do |t|
+    create_table :type001_articles, force: true do |t|
       t.string :subject
       t.text :body
-      t.timestamps :null => false
+      t.timestamps null: false
     end
   end
 end

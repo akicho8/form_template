@@ -14,14 +14,14 @@
 
 class CreateType009Articles < ActiveRecord::Migration[5.1]
   def up
-    create_table :type009_articles, :force => true do |t|
+    create_table :type009_articles, force: true do |t|
       t.string :title
-      t.timestamps :null => false
+      t.timestamps null: false
     end
-    create_table :type009_attachments, :force => true do |t|
+    create_table :type009_attachments, force: true do |t|
       t.belongs_to :type009_article
       t.string :media_file
-      t.timestamps :null => false
+      t.timestamps null: false
     end
   end
 end

@@ -32,12 +32,12 @@
 # +---------------------+----------------------+----------+-------------+------+-------+
 
 class Type003Article < ApplicationRecord
-  normalize_default_options.update(:strip_tags => true, :space_zentohan => true, :hankaku => true, :squish => true, :blank_to_nil => true)
+  normalize_default_options.update(strip_tags: true, space_zentohan: true, hankaku: true, squish: true, blank_to_nil: true)
 
   normalize :first_name
   normalize :last_name
-  normalize :first_name_hiragana, :hiragana => true
-  normalize :last_name_hiragana, :hiragana => true
+  normalize :first_name_hiragana, hiragana: true
+  normalize :last_name_hiragana, hiragana: true
   normalize :first_postal_code
   normalize :last_postal_code
   normalize :prefecture_name
@@ -51,7 +51,7 @@ class Type003Article < ApplicationRecord
   normalize :email
   # normalize :body
 
-  # before_validation :on => :create do
+  # before_validation on: :create do
   #   if Rails.env.development? || Rails.env.test?
   #     self.first_name ||= "山田"
   #     self.last_name ||= "太郎"
@@ -76,7 +76,7 @@ class Type003Article < ApplicationRecord
   #   true
   # end
 
-  with_options(:presence => true) do
+  with_options(presence: true) do
     validates :first_name
     validates :last_name
     validates :first_name_hiragana
@@ -91,25 +91,25 @@ class Type003Article < ApplicationRecord
     validates :email
     validates :confirm_email
 
-    # validates :legal_accept_key, :acceptance => {:accept => "true"}
+    # validates :legal_accept_key, acceptance: {accept: "true"}
     validates :first_tel
     validates :middle_tel
     validates :last_tel
   end
 
-  with_options(:allow_blank => true) do
-    # validates :first_name_hiragana, :last_name_hiragana, :format => {:with => /\A\p{hiragana}+\z/}
-    validates :first_name_hiragana, :last_name_hiragana, :format => {:without => /[一-龠]/} # 漢字が含まれていたらだめ
-    validates :first_postal_code, :last_postal_code,     :format => {:with => /\A\d+\z/}
-    validates :email, :uniqueness => true,               :format => {:with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i}
-    validates :first_tel, :middle_tel, :last_tel,        :format => {:with => /\A\d+\z/}
+  with_options(allow_blank: true) do
+    # validates :first_name_hiragana, :last_name_hiragana, format: {with: /\A\p{hiragana}+\z/}
+    validates :first_name_hiragana, :last_name_hiragana, format: {without: /[一-龠]/} # 漢字が含まれていたらだめ
+    validates :first_postal_code, :last_postal_code,     format: {with: /\A\d+\z/}
+    validates :email, uniqueness: true,               format: {with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i}
+    validates :first_tel, :middle_tel, :last_tel,        format: {with: /\A\d+\z/}
   end
 
-  validates :legal_accept_key, :acceptance => {:accept => "true", :message => "を受諾してください"}
+  validates :legal_accept_key, acceptance: {accept: "true", message: "を受諾してください"}
 
   attr_accessor :confirm_email
 
-  validate :on => :create do
+  validate on: :create do
     if errors[:email].blank? && errors[:confirm_email].blank?
       if email && confirm_email
         if email != confirm_email
@@ -120,26 +120,26 @@ class Type003Article < ApplicationRecord
     end
   end
 
-  # with_options(:presence => true) do
+  # with_options(presence: true) do
   #   validates :first_name
   #   validates :last_name
   #   validates :first_name_hiragana
   #   validates :last_name_hiragana
-  #   validates :first_postal_code, :last_postal_code, :format => {:with => /\A\d+\Z/}
-  #   validates :first_tel, :middle_tel, :last_tel, :format => {:with => /\A\d+\Z/}
-  #   validates :email, :format => {:with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i}
+  #   validates :first_postal_code, :last_postal_code, format: {with: /\A\d+\Z/}
+  #   validates :first_tel, :middle_tel, :last_tel, format: {with: /\A\d+\Z/}
+  #   validates :email, format: {with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i}
   #   validates :prefecture_name
   #   validates :city_address
   #   validates :number_address
-  #   validates :legal_accept_key, :acceptance => {:accept => "true"}
+  #   validates :legal_accept_key, acceptance: {accept: "true"}
   # end
 
-  # with_options(:presence => true) do
+  # with_options(presence: true) do
   #   validates :email
   # end
   #
-  # with_options(:allow_blank => true) do
-  #   validates :email, :uniqueness => true
+  # with_options(allow_blank: true) do
+  #   validates :email, uniqueness: true
   # end
 
   def full_name

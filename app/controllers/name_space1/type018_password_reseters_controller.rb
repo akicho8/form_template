@@ -29,7 +29,7 @@ module NameSpace1
       # __current_type018_password_reset_url_notification はここに展開する方がいい？
       if current_record.notice_token.present?
         unless current_record.__current_type018_password_reset_url_notification
-          redirect_to :root, :alert => "とりあえずページが見つかりません。実際は期限切れでここにくる"
+          redirect_to :root, alert: "とりあえずページが見つかりません。実際は期限切れでここにくる"
         end
       end
     end

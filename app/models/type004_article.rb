@@ -16,7 +16,7 @@
 class Type004Article < ApplicationRecord
   mount_uploader :media_file, AttachmentUploader
 
-  with_options(:presence => true) do
+  with_options(presence: true) do
     validates :comment
   end
 end

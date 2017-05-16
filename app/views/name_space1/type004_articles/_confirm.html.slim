@@ -1,12 +1,12 @@
 .form-group
-  = form.label(:media_file, :class => "col-sm-2 control-label")
+  = form.label(:media_file, class: "col-sm-2 control-label")
   .col-sm-10
     - if form.object.media_file?
-      = image_tag(form.object.media_file.url, :height => 64, :class => "img-rounded")
+      = image_tag(form.object.media_file.url, height: 64, class: "img-rounded")
       - if form.object.remove_media_file?
         = "を削除します"
 
 .form-group
-  = form.label(:comment, :class => "col-sm-2 control-label")
+  = form.label(:comment, class: "col-sm-2 control-label")
   .col-sm-10
     p.form-control-static= form.object.comment

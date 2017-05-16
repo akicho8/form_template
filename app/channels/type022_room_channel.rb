@@ -10,6 +10,6 @@ class Type022RoomChannel < ApplicationCable::Channel
 
   # モデルに保存して非同期でブロードキャストする
   def type022_say(data)
-    Type022Article.create!(:body => data["type022_article_body"])
+    Type022Article.create!(body: data["type022_article_body"])
   end
 end

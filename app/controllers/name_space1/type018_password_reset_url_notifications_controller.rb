@@ -61,12 +61,12 @@ end
 #     if AppConfig[:form_fillin]
 #       @user.email ||= "alice@localhost.localdomain"
 #     end
-#     render :action => "new"
+#     render action: "new"
 #   end
 # 
 #   # PW再設定用URL発行
 #   def create
-#     user = User.active.first(:conditions => {:email => params[:user][:email]})
+#     user = User.active.first(conditions: {email: params[:user][:email]})
 #     unless user
 #       flash.now[:error] = "メールアドレスが間違っている可能性があります。"
 #       new
@@ -103,7 +103,7 @@ end
 #     @user.update_attributes!(params[:user])
 #     flash[:notice] = "パスワードを更新しました。"
 #     if AppConfig[:simply]
-#       redirect_to ssl_login_url(:user => {:login => @user.login})
+#       redirect_to ssl_login_url(user: {login: @user.login})
 #     else
 #       redirect_to message_path
 #     end

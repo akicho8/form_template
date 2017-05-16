@@ -33,28 +33,28 @@
 
 class CreateType003Articles < ActiveRecord::Migration[5.1]
   def up
-    create_table :type003_articles, :force => true do |t|
-      t.string :first_name, :null => false
-      t.string :last_name, :null => false
+    create_table :type003_articles, force: true do |t|
+      t.string :first_name, null: false
+      t.string :last_name, null: false
 
-      t.string :first_name_hiragana, :null => false
-      t.string :last_name_hiragana, :null => false
+      t.string :first_name_hiragana, null: false
+      t.string :last_name_hiragana, null: false
 
-      t.string :first_postal_code, :null => false
-      t.string :last_postal_code, :null => false
+      t.string :first_postal_code, null: false
+      t.string :last_postal_code, null: false
 
-      t.string :prefecture_name, :null => false
-      t.string :city_address, :null => false
-      t.string :number_address, :null => false
+      t.string :prefecture_name, null: false
+      t.string :city_address, null: false
+      t.string :number_address, null: false
       t.string :house_name
 
-      t.string :email, :null => false, :index => {:unique => true}
+      t.string :email, null: false, index: {unique: true}
 
-      t.string :first_tel, :null => false
-      t.string :middle_tel, :null => false
-      t.string :last_tel, :null => false
+      t.string :first_tel, null: false
+      t.string :middle_tel, null: false
+      t.string :last_tel, null: false
 
-      t.string :legal_accept_key, :null => false
+      t.string :legal_accept_key, null: false
 
       t.string :subject
       t.text :body
@@ -63,7 +63,7 @@ class CreateType003Articles < ActiveRecord::Migration[5.1]
       t.string :remote_host
       t.string :user_agent
 
-      t.timestamps :null => false
+      t.timestamps null: false
     end
   end
 end

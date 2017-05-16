@@ -4,16 +4,16 @@
   .page-header
     h2= current_record.new_record? ? "新規登録" : "編集"
 
-  = form_with(:model => [:name_space1, current_record], :html => {:class => "form-horizontal"}, :local => true) do |form|
-    = render :partial => "error_messages", :locals => {:form => form}
+  = form_with(model: [:name_space1, current_record], html: {class: "form-horizontal"}, local: true) do |form|
+    = render partial: "error_messages", locals: {form: form}
     fieldset
       legend
         = "なくてもいいアップロードだけのフォーム"
       / まとめてアップロードしたいとき用
       .form-group
-        = form.label(:up_files, :class => "col-sm-2 control-label")
+        = form.label(:up_files, class: "col-sm-2 control-label")
         .col-sm-10
-          = form.file_field("up_files", :class => "form-control", :multiple => true)
+          = form.file_field("up_files", class: "form-control", multiple: true)
 
       / 位置指定で個別にアップロードしたいとき用
       - Type010Article.file_column_keys.each do |key|
@@ -32,13 +32,13 @@
       = "自分と子の名前を一気に更新"
       small=<> "削除するとその場所にアップロードフィールドがでる"
 
-  = form_with(:model => [:name_space1, current_record], :html => {:class => "form-horizontal"}, :local => true) do |form|
-    = render :partial => "error_messages", :locals => {:form => form}
+  = form_with(model: [:name_space1, current_record], html: {class: "form-horizontal"}, local: true) do |form|
+    = render partial: "error_messages", locals: {form: form}
 
     / タイトル変更用
     .form-group
       .col-sm-12
-        = form.text_field(:name, :class => "form-control")
+        = form.text_field(:name, class: "form-control")
 
     / 一つ目のフォーム
     / 画像表示を兼ねて位置指定のアップロード
@@ -53,7 +53,7 @@
                 / fields_for には key を指定してもいいけど type010_files の方が汎用的。レコードは id で特定できる。
                 p= current_model.human_attribute_name(key) + "側に表示する画像です"
                 = form.fields_for(:type010_files, e) do |sub_form|
-                  = sub_form.text_field(:name, class: "form-control", :placeholder => "タイトル")
+                  = sub_form.text_field(:name, class: "form-control", placeholder: "タイトル")
                   .text-right
                     label.checkbox-inline= check_box_tag("type010_article[delete_ids][]", sub_form.object.id) + "削除"
             - else
@@ -66,11 +66,11 @@
 
     .form-group
       .col-sm-12
-        = form.submit(:name => :_submit, :class => "btn btn-primary")
+        = form.submit(name: :_submit, class: "btn btn-primary")
 
   hr
-  =<> link_to("一覧", [:name_space1, current_plural_key], :class => "btn btn-default")
+  =<> link_to("一覧", [:name_space1, current_plural_key], class: "btn btn-default")
   - if current_record.persisted?
-    =<> link_to("詳細", [:name_space1, current_record], :class => "btn btn-info")
+    =<> link_to("詳細", [:name_space1, current_record], class: "btn btn-info")
   - if controller.respond_to_destroy? && current_record.persisted?
-    =<> link_to("削除", [:name_space1, current_record], :method => :delete, :data => {:confirm => "本当に削除してもよろしいですか？"}, :class => "btn btn-danger")
+    =<> link_to("削除", [:name_space1, current_record], method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger")

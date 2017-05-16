@@ -16,7 +16,7 @@
 class Type017Article < ApplicationRecord
   serialize :geocode_hash
 
-  with_options(:presence => true) do
+  with_options(presence: true) do
     validates :map_address
   end
 

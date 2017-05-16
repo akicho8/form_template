@@ -2,12 +2,12 @@
 = controller.current_cancel_caches.collect { |e| hidden_field_tag("cancel_caches[]", e) }.join("\n").html_safe
 
 .form-group
-  = form.label(:title, :class => "col-sm-2 control-label")
+  = form.label(:title, class: "col-sm-2 control-label")
   .col-sm-10
     p.form-control-static= form.object.title
 
 .form-group
-  = form.label(:up_files, :class => "col-sm-2 control-label")
+  = form.label(:up_files, class: "col-sm-2 control-label")
   .col-sm-10
     p.form-control-static
       - if form.object.type005_files.present?
@@ -17,10 +17,10 @@
             - form.object.persisted_type005_files.each do |e|
               li
                 - if controller.current_delete_ids.include?(e.id)
-                  = image_tag(e.media_file.url, :height => 64, :class => "img-rounded")
+                  = image_tag(e.media_file.url, height: 64, class: "img-rounded")
                   span.label.label-warning= "削除"
                 - else
-                  = image_tag(e.media_file.url, :height => 128, :class => "img-rounded")
+                  = image_tag(e.media_file.url, height: 128, class: "img-rounded")
                   span.label.label-info= "保持"
 
         - if form.object.temp_type005_files.present?
@@ -29,10 +29,10 @@
             - form.object.temp_type005_files.each do |e|
               li
                 - if controller.current_cancel_caches.include?(e.media_file_cache)
-                  = image_tag(e.media_file.url, :height => 64, :class => "img-rounded")
+                  = image_tag(e.media_file.url, height: 64, class: "img-rounded")
                   span.label.label-warning= "削除"
                 - else
-                  = image_tag(e.media_file.url, :height => 128, :class => "img-rounded")
+                  = image_tag(e.media_file.url, height: 128, class: "img-rounded")
                   span.label.label-success= "追加"
 
         - if form.object.type005_files_all_remove?

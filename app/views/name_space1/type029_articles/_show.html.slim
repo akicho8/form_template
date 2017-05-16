@@ -17,6 +17,6 @@ p
 p
   form
     = hidden_field_tag("hidden_value", 123)
-    = range_field_tag("slider_value", 0, :id => "type029_slider", data: {url: url_for([:ajax_action_sample, :name_space1, current_record])})
+    = range_field_tag("slider_value", 0, id: "type029_slider", data: {url: url_for([:ajax_action_sample, :name_space1, current_record])})
 p
   = current_record.attributes.to_quick_table

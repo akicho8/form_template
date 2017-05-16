@@ -1,27 +1,27 @@
 .form-group
-  = form.label(:full_name, :class => "col-sm-2 control-label")
+  = form.label(:full_name, class: "col-sm-2 control-label")
   p.form-control-static= form.object.full_name
 .form-group
-  = form.label(:full_name_hiragana, :class => "col-sm-2 control-label")
+  = form.label(:full_name_hiragana, class: "col-sm-2 control-label")
   p.form-control-static= form.object.full_name_hiragana
 .form-group
-  = form.label(:postal_code, :class => "col-sm-2 control-label")
+  = form.label(:postal_code, class: "col-sm-2 control-label")
   p.form-control-static= form.object.postal_code
 .form-group
-  = form.label(:full_address, :class => "col-sm-2 control-label")
+  = form.label(:full_address, class: "col-sm-2 control-label")
   p.form-control-static= form.object.full_address
 .form-group
-  = form.label(:email, :class => "col-sm-2 control-label")
+  = form.label(:email, class: "col-sm-2 control-label")
   p.form-control-static= form.object.email
 .form-group
-  = form.label(:tel, :class => "col-sm-2 control-label")
+  = form.label(:tel, class: "col-sm-2 control-label")
   p.form-control-static= form.object.tel
 .form-group
-  = form.label(:subject, :class => "col-sm-2 control-label")
+  = form.label(:subject, class: "col-sm-2 control-label")
   p.form-control-static= form.object.subject
 .form-group
-  = form.label(:body, :class => "col-sm-2 control-label")
+  = form.label(:body, class: "col-sm-2 control-label")
   p.form-control-static= form.object.body
 .form-group
-  = form.label(:legal_accept_key, :class => "col-sm-2 control-label")
+  = form.label(:legal_accept_key, class: "col-sm-2 control-label")
   p.form-control-static= form.object.term_accept_info&.name

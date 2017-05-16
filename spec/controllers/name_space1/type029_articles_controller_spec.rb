@@ -22,7 +22,7 @@ RSpec.describe NameSpace1::Type029ArticlesController, type: :controller do
   # adjust the attributes here as well.
   let(:valid_attributes) {
     # skip("Add a hash of attributes valid for your model")
-    # {:subject => "(subject)", :body => "(body)"}
+    # {subject: "(subject)", body: "(body)"}
     {}
   }
 

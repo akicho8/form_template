@@ -1,4 +1,4 @@
 table#type022_articles.table.table-hover
-  = render :partial => "type022_article", :as => :type022_article, :collection => Type022Article.order(:created_at).last(10)
+  = render partial: "type022_article", as: :type022_article, collection: Type022Article.order(:created_at).last(10)
 
-= text_field_tag("_", "", "data-behavior" => "type022_room_speaker", :class => "form-control", :autocomplete => "off")
+= text_field_tag("_", "", "data-behavior" => "type022_room_speaker", class: "form-control", autocomplete: "off")

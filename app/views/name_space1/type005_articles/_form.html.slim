@@ -4,16 +4,16 @@
 
 / タイトル
 .form-group
-  = form.label(:title, :class => "col-sm-2 control-label")
+  = form.label(:title, class: "col-sm-2 control-label")
   .col-sm-10
-    = form.text_field(:title, :class => "form-control")
+    = form.text_field(:title, class: "form-control")
 
 / ファイル
 .form-group
-  = form.label(:up_files, :class => "col-sm-2 control-label")
+  = form.label(:up_files, class: "col-sm-2 control-label")
   .col-sm-10
     / トップレベルで定義
-    = form.file_field(:up_files, :class => "form-control", :multiple => true)
+    = form.file_field(:up_files, class: "form-control", multiple: true)
     - if form.object.type005_files.present?
       .help-block
         / 既存ファイルたち
@@ -22,7 +22,7 @@
           ul.list-unstyled
             - form.object.persisted_type005_files.each do |e|
               li
-                = image_tag(e.media_file.url, :height => 128, :class => "img-rounded")
+                = image_tag(e.media_file.url, height: 128, class: "img-rounded")
                 label.checkbox-inline= check_box_tag("delete_ids[]", e.id, controller.current_delete_ids.include?(e.id)) + "削除する"
 
         / 今UPしたファイルたち
@@ -33,14 +33,14 @@
               li
                 = form.fields_for(:type005_files, e) do |sub_form|
                   = sub_form.hidden_field(:media_file_cache)
-                = image_tag(e.media_file.url, :height => 128, :class => "img-rounded")
+                = image_tag(e.media_file.url, height: 128, class: "img-rounded")
                 / FIXME: もっと綺麗にかけないか？
                 label.checkbox-inline= check_box_tag("cancel_caches[]", e.media_file_cache, controller.current_cancel_caches.include?(e.media_file_cache)) + "削除する"
 
 / 削除
 - if form.object.type005_files.present?
   .form-group
-    = form.label(:type005_files_all_remove, :class => "col-sm-2 control-label")
+    = form.label(:type005_files_all_remove, class: "col-sm-2 control-label")
     .col-sm-10
       label.checkbox-inline
         = form.check_box(:type005_files_all_remove) + "削除する"

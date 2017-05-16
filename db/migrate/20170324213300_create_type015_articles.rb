@@ -16,11 +16,11 @@
 
 class CreateType015Articles < ActiveRecord::Migration[5.1]
   def up
-    create_table :type015_articles, :force => true do |t|
+    create_table :type015_articles, force: true do |t|
       t.string :subject
       t.text :body
       t.string :remote_ip
-      t.timestamps :null => false
+      t.timestamps null: false
     end
   end
 end
