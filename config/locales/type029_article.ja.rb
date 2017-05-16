@@ -10,7 +10,7 @@
     },
     activerecord: {
       models: {
-        type029_article: "AJAXの練習",
+        type029_article: "AJAX例(partial更新。スライダー)",
       },
       attributes: {
       },
