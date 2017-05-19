@@ -40,6 +40,7 @@
           type018_user: "ユーザー",
           type018_password_reset_url_notification: "パスワード変更URL通知",
           notice_token: "トークン",
+          second_password: "新しいパスワード",
         },
       },
     },

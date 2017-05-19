@@ -6,6 +6,12 @@
   = form.label(:datetime_v, class: "col-sm-2 control-label")
   .col-sm-10
     = form.datetime_field(:datetime_v, class: "form-control")
+
+    = datetime_field_tag(:xxx, Time.current.strftime("%Y-%m-%dT%T"),                     step: 1,            class: "form-control")
+    = datetime_field_tag(:xxx, Time.current.beginning_of_minute.strftime("%Y-%m-%dT%T"), step: 60,           class: "form-control")
+    = datetime_field_tag(:xxx, Time.current.beginning_of_hour.strftime("%Y-%m-%dT%T"),   step: 60 * 60,      class: "form-control")
+    = datetime_field_tag(:xxx, Time.current.beginning_of_day.strftime("%Y-%m-%dT%T"),    step: 60 * 60 * 24, class: "form-control")
+
 .form-group
   = form.label(:datetime_local_v, class: "col-sm-2 control-label")
   .col-sm-10

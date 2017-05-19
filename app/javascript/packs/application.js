@@ -7,14 +7,4 @@
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
 
-// const jQuery = require('jquery');
-// const $ = jQuery;
-// window.jQuery = jQuery;
-
-console.log('Hello World from Webpacker');
-
-if (typeof(jQuery) != "undefined") {
-  console.log('jQuery found (in app/javascript/packs/application.js)');
-} else {
-  console.log('jQuery not found (in app/javascript/packs/application.js)');
-}
+console.log('Hello World from Webpacker')

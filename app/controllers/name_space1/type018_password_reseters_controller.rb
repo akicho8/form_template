@@ -44,7 +44,7 @@ module NameSpace1
         if current_type018_user
           e.type018_user ||= current_type018_user
         end
-        e.atarasii_password ||= "pw2"
+        e.second_password ||= "pw2"
       end
     end
 

@@ -1,5 +1,4 @@
-fieldset
-  legend= "お名前"
+= field_set_tag("お名前") do
   .form-group.form-group-lg
     = form.label(:full_name, class: "col-sm-2 control-label")
     .col-sm-10.form-inline
@@ -12,8 +11,7 @@ fieldset
       =<> form.text_field(:first_name_hiragana, class: "form-control", placeholder: "せい", size: 10)
       =<> form.text_field(:last_name_hiragana, class: "form-control", placeholder: "めい", size: 10)
 
-fieldset
-  legend= "ご住所"
+= field_set_tag("ご住所") do
   .form-group.form-group-lg
     = form.label(:postal_code, class: "col-sm-2 control-label")
     .col-sm-10.form-inline
@@ -43,8 +41,7 @@ fieldset
     .col-sm-8
       = form.text_field(:house_name, class: "form-control", placeholder: nil)
 
-fieldset
-  legend= "ご連絡先"
+= field_set_tag("ご連絡先") do
   .form-group.form-group-lg
     = form.label(:tel, class: "col-sm-2 control-label")
     .col-sm-10.form-inline
@@ -64,8 +61,7 @@ fieldset
     .col-sm-5
       = form.email_field(:confirm_email, class: "form-control", placeholder: "同じメールアドレスを入力してください")
 
-fieldset
-  legend= "ご意見"
+= field_set_tag("ご意見") do
   .form-group.form-group-lg
     = form.label(:subject, class: "col-sm-2 control-label")
     .col-sm-10
@@ -75,8 +71,7 @@ fieldset
     .col-sm-10
       = form.text_area(:body, class: "form-control", rows: 8)
 
-fieldset
-  legend= "プライバシーポリシー"
+= field_set_tag("プライバシーポリシー") do
   .terms.form-group.form-group-sm
     - if false
       = form.label(:legal_accept_key, class: "col-sm-2 control-label")

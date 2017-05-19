@@ -107,7 +107,12 @@ class LuckyBeast
         "3. スライダー(jQuery使用・シンプル)",
         "4. スライダー(jQueryの $.ajax を激しく利用・煩雑)",
       ].join(" ")
-    }
+    },
+
+    {name: "lodash 使用例",         url: proc {|h| [:frontend, :type031_article] }, search_key: "Type031", desc: "ES6 の機能を先取りしていたライブラリ"},
+    {name: "chart.js 使用例",       url: proc {|h| [:frontend, :type032_article] }, search_key: "Type032", desc: "グラフ表示用のライブラリ"},
+    {name: "sortablejs 使用例",     url: proc {|h| [:frontend, :type033_article] }, search_key: "Type033", desc: "ドラッグ・アンド・ドロップ用のライブラリ"},
+
   ], attr_reader_auto: true
 
   def self.to_html(h)
@@ -116,13 +121,18 @@ class LuckyBeast
 
   def to_row(h)
     {}.tap do |row|
-      row["名前"]       = h.link_to(name, url2(h))
-      row["確認機能"]   = confirm ? "★" : ""
-      row["テーブル数"] = tables
-      row["説明"]       = desc ? h.content_tag(:span, desc.to_s.html_safe, style: "white-space: normal") : nil
-      row["リンク"]     = link_list ? h.content_tag(:span, link_list.call(h).join(" ").html_safe, style: "white-space: normal") : nil
-      row["スコープ"]   = search_key
-      row[""]           = Array(links(h)).join(" ").html_safe
+      begin
+        row["名前"]       = h.link_to(name, url2(h))
+        row["確認機能"]   = confirm ? "★" : ""
+        row["テーブル数"] = tables
+        row["説明"]       = desc ? h.content_tag(:span, desc.to_s.html_safe, style: "white-space: normal") : nil
+        row["リンク"]     = link_list ? h.content_tag(:span, link_list.call(h).join(" ").html_safe, style: "white-space: normal") : nil
+        row["スコープ"]   = search_key
+        row[""]           = Array(links(h)).join(" ").html_safe
+      rescue => error
+        row["名前"] = name
+        row["ERROR"] = error.inspect
+      end
     end
   end
 

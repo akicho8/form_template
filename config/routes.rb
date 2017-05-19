@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   get 'frontend/type025_article'
   get 'frontend/type026_article'
   get 'frontend/type027_article'
+  get 'frontend/type030_article'
+  get 'frontend/type031_article'
+  get 'frontend/type032_article'
+  get 'frontend/type033_article'
 
   get 'about_page/privacy_policy'
   match 'privacy_policy' => 'about_page#privacy_policy', via: [:get]
@@ -60,7 +64,7 @@ Rails.application.routes.draw do
   # link_to("上", [:type028_foos])
   # link_to("下", [:type028_foo, :type028_bars, type028_foo_id: 1])
   resources :type028_foos, only: [:index] do
-    resources :type028_bars, only: [:index], module: 'type028_foos'
+    resources :type028_bars, only: [:index], :module => 'type028_foos' # インデントが狂うため古いハッシュ形式にしている
   end
 
   get "tops/show"

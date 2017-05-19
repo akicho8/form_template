@@ -44,8 +44,10 @@ set :default_env, { "DISABLE_DATABASE_ENVIRONMENT_CHECK" => "1" }
 # set :keep_releases, 5
 
 # for capistrano/rbenv
+set :rbenv_path, "/usr/local/var/rbenv"
 set :rbenv_type, :system # or :system, depends on your rbenv setup
-set :rbenv_ruby, '2.4.1'
+set :rbenv_ruby, File.read('.ruby-version').strip
+set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} /usr/local/bin/rbenv exec"
 # set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
 # set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 # set :rbenv_roles, :all # default value
@@ -99,14 +101,14 @@ namespace :deploy do
   # end
   #
 
-  if false
-    task :app_clean do
-      on roles :all do
-        execute :rm, '-rf', deploy_to
-        # execute :rake, "db:create"
-      end
-    end
-    before 'deploy:starting', 'deploy:app_clean'
+  if true
+    # task :app_clean do
+    #   on roles :all do
+    #     execute :rm, '-rf', deploy_to
+    #     # execute :rake, "db:create"
+    #   end
+    # end
+    # before 'deploy:starting', 'deploy:app_clean'
 
     desc 'db_seed must be run only one time right after the first deploy'
     task :db_seed do
@@ -128,7 +130,7 @@ namespace :deploy do
       on primary fetch(:migration_role) do
         within release_path do
           with rails_env: fetch(:rails_env) do
-            execute :rake, "db:drop"
+            execute :rake, "db:drop", "DISABLE_DATABASE_ENVIRONMENT_CHECK=1"
             execute :rake, "db:create"
           end
         end
@@ -139,7 +141,6 @@ namespace :deploy do
 
   # set :app_version, '1.2.3'
   # after :finished, 'airbrake:deploy'
-
 end
 
 namespace :deploy do
@@ -150,13 +151,27 @@ namespace :deploy do
       local_file = "config/secrets.yml.key"
       if Pathname(local_file).exist?
         server_file = shared_path.join(local_file)
-        unless test "[ -f #{server_file} ]"
-          upload! File.open(local_file), server_file
-        end
+        # unless test "[ -f #{server_file} ]"
+        upload! File.open(local_file), server_file
+        # end
       end
     end
   end
   before "deploy:check:linked_files", "deploy:upload_config_secrets_yml_key"
+
+  # cap local deploy:upload_shared_config_database_yml
+  desc "config/secrets.yml.key のアップロード"
+  task :upload_shared_config_database_yml do
+    on roles :all do
+      local_file = "config/database.#{fetch(:stage)}.yml"
+      if Pathname(local_file).exist?
+        server_file = shared_path.join("config/database.yml")
+        # unless test "[ -f #{server_file} ]"
+        upload! File.open(local_file), server_file
+        # end
+      end
+    end
+  end
 end
 
 namespace :cable_puma do
@@ -165,11 +180,11 @@ namespace :cable_puma do
     on roles(:app) do |host|
       within current_path do
         with rails_env: fetch(:rails_env) do
-          execute :ps, "auxww | grep [p]uma || true"
+          execute :ps, "auxww | grep '[p]uma' || true"
           execute :bundle, "exec", :pumactl, "-Q -F cable/puma.rb stop || true"
-          execute :ps, "auxww | grep [p]uma || true"
+          execute :ps, "auxww | grep '[p]uma' || true"
           execute :bundle, "exec", :pumactl, "-F cable/puma.rb start"
-          execute :ps, "auxww | grep [p]uma || true"
+          execute :ps, "auxww | grep '[p]uma' || true"
           execute :bundle, "exec", :pumactl, "-F cable/puma.rb status"
         end
       end
@@ -183,7 +198,7 @@ namespace :cable_puma do
       within current_path do
         with rails_env: fetch(:rails_env) do
           execute :bundle, "exec", :pumactl, "-Q -F cable/puma.rb stop || true"
-          execute :ps, "auxww | grep [p]uma || true"
+          execute :ps, "auxww | grep '[p]uma' || true"
         end
       end
     end
