@@ -27,12 +27,23 @@ html lang="ja"
               span.icon-bar
             = link_to(AppConfig[:app_name], :root, class: "navbar-brand")
           #navbar.navbar-collapse.collapse
+            p.navbar-text= "左テ1"
+            p.navbar-text= "左テ2"
             ul.nav.navbar-nav
                 li= link_to("左1", "#")
                 li= link_to("左2", "#")
+            p.navbar-text= "左テ3"
+            p.navbar-text= "左テ4"
+            .navbar-right
+              p.navbar-text= "右テ3"
+              p.navbar-text= "右テ4"
             ul.nav.navbar-nav.navbar-right
                 li= link_to("右1", "#")
                 li= link_to("右2", "#")
+            .navbar-right
+              p.navbar-text= "右テ1"
+              p.navbar-text= "右テ2"
+
     .container-fluid
       = bootstrap_flash
       = yield
