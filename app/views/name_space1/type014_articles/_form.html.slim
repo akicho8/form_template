@@ -6,16 +6,26 @@
   = form.label(:datetime_v, class: "col-sm-2 control-label")
   .col-sm-10
     = form.datetime_field(:datetime_v, class: "form-control")
-
-    = datetime_field_tag(:xxx, Time.current.strftime("%Y-%m-%dT%T"),                     step: 1,            class: "form-control")
-    = datetime_field_tag(:xxx, Time.current.beginning_of_minute.strftime("%Y-%m-%dT%T"), step: 60,           class: "form-control")
-    = datetime_field_tag(:xxx, Time.current.beginning_of_hour.strftime("%Y-%m-%dT%T"),   step: 60 * 60,      class: "form-control")
-    = datetime_field_tag(:xxx, Time.current.beginning_of_day.strftime("%Y-%m-%dT%T"),    step: 60 * 60 * 24, class: "form-control")
-
 .form-group
-  = form.label(:datetime_local_v, class: "col-sm-2 control-label")
+  = form.label(:datetime_v_ymdhms, class: "col-sm-2 control-label")
   .col-sm-10
-    = form.datetime_local_field(:datetime_local_v, class: "form-control")
+    / 秒の部分を灰色になるのを防ぐ方法
+    = form.datetime_field(:datetime_v_ymdhms, step: 1, class: "form-control", value: Time.current.strftime("%Y-%m-%dT%T"))
+.form-group
+  = form.label(:datetime_v_ymdhm, class: "col-sm-2 control-label")
+  .col-sm-10
+    / 「秒」を 0 にして step:60 にすると「秒」の表示を消せる
+    = form.datetime_field(:datetime_v_ymdhm, step: 60, class: "form-control", value: Time.current.beginning_of_minute.strftime("%Y-%m-%dT%T"))
+.form-group
+  = form.label(:datetime_v_ymdh, class: "col-sm-2 control-label")
+  .col-sm-10
+    / 「分秒」を 0 にして step:60*60 にすると「秒」の表示を消して「分」は消せないが「00」に固定できる
+    = form.datetime_field(:datetime_v_ymdh, step: 60 * 60, class: "form-control", value: Time.current.beginning_of_hour.strftime("%Y-%m-%dT%T"))
+.form-group
+  = form.label(:datetime_v_ymd, class: "col-sm-2 control-label")
+  .col-sm-10
+    / 「時分秒」を 0 にして step:60*60*24 にすると「秒」の表示を消して「時分」は消せないが 00:00 に固定できる
+    = form.datetime_field(:datetime_v_ymd, step: 60 * 60 * 24, class: "form-control", value: Time.current.beginning_of_day.strftime("%Y-%m-%dT%T"))
 .form-group
   = form.label(:month_v, class: "col-sm-2 control-label")
   .col-sm-10
@@ -31,7 +41,10 @@
 .form-group
   = form.label(:range_v, class: "col-sm-2 control-label")
   .col-sm-10
+    / form-control クラスを適用すると左右端まで移動できなくなる
     = form.range_field(:range_v, class: "form-control")
+    / だからむしろ指定しない方がよい
+    = form.range_field(:range_v)
 .form-group
   = form.label(:tel_v, class: "col-sm-2 control-label")
   .col-sm-10

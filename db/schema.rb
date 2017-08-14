@@ -10,24 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170526204200) do
-
-  create_table "blog_articles", force: :cascade do |t|
-    t.integer "blog_user_id", null: false
-    t.string "subject", null: false
-    t.text "body", null: false
-    t.string "blog_state_key", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["blog_state_key"], name: "index_blog_articles_on_blog_state_key"
-    t.index ["blog_user_id"], name: "index_blog_articles_on_blog_user_id"
-  end
-
-  create_table "blog_users", force: :cascade do |t|
-    t.string "nickname"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 20170515000000) do
 
   create_table "sessions", force: :cascade do |t|
     t.string "session_id", null: false
@@ -238,7 +221,10 @@ ActiveRecord::Schema.define(version: 20170526204200) do
   create_table "type014_articles", force: :cascade do |t|
     t.datetime "date_v"
     t.datetime "datetime_v"
-    t.datetime "datetime_local_v"
+    t.datetime "datetime_v_ymdhms"
+    t.datetime "datetime_v_ymdhm"
+    t.datetime "datetime_v_ymdh"
+    t.datetime "datetime_v_ymd"
     t.datetime "month_v"
     t.datetime "week_v"
     t.datetime "time_v"

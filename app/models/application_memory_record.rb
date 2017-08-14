@@ -1,7 +1,7 @@
-module ApplicationStaticRecord
+module ApplicationMemoryRecord
   extend ActiveSupport::Concern
 
   included do
-    include StaticRecord
+    include MemoryRecord
   end
 end

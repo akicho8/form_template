@@ -41,7 +41,10 @@ class CreateType014Articles < ActiveRecord::Migration[5.1]
 
       t.datetime :date_v
       t.datetime :datetime_v
-      t.datetime :datetime_local_v
+      t.datetime :datetime_v_ymdhms
+      t.datetime :datetime_v_ymdhm
+      t.datetime :datetime_v_ymdh
+      t.datetime :datetime_v_ymd
       t.datetime :month_v
       t.datetime :week_v
       t.datetime :time_v

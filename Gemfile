@@ -60,23 +60,23 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring-commands-rspec'
 
-  gem 'capistrano', "3.6.1", require: false
-  gem 'capistrano-rails', require: false        # capistrano + capistrano-bundler
+  gem 'capistrano', '3.6.1',  require: false
+  gem 'capistrano-rails',     require: false        # capistrano + capistrano-bundler
   gem 'capistrano-passenger', require: false
-  gem 'capistrano-rbenv', require: false
+  gem 'capistrano-rbenv',     require: false
   gem 'capistrano-withrsync', require: false
-  gem 'capistrano-yarn', require: false
+  gem 'capistrano-yarn',      require: false
 
   gem 'rspec-rails'
   gem 'test-unit'
 end
 
 group :development do
-  gem "foreman", require: false
+  gem 'foreman', require: false
 end
 
-gem "twitter-bootstrap-rails", "< 4.0.0" # font-awesome 関連のエラーがでるためバージョン制限
-gem "font-awesome-sass"
+gem 'twitter-bootstrap-rails', '< 4.0.0' # font-awesome 関連のエラーがでるためバージョン制限
+gem 'font-awesome-sass'
 
 # gem 'activerecord-session_store'
 
@@ -87,12 +87,12 @@ gem 'kaminari'
 gem 'simple_captcha2'
 gem 'carrierwave'
 gem 'rmagick'
-gem "geokit"
+gem 'geokit'
 gem 'airbrake'
-gem 'airbrake-ruby', github: "akicho8/airbrake-ruby", ref: "patch-1"
+gem 'airbrake-ruby', github: 'akicho8/airbrake-ruby', ref: 'patch-1'
 
-gem 'static_record', github: "akicho8/static_record"
-gem 'rain_table',    github: 'akicho8/rain_table'
+gem 'memory_record'
+gem 'org_tp'
 gem 'quick_table',   github: 'akicho8/quick_table'
 gem 'daiku',         github: 'akicho8/daiku'
 gem 'aam',           github: 'akicho8/aam'

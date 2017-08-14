@@ -1,6 +1,6 @@
 class Prefecture
-  include ApplicationStaticRecord
-  static_record [
+  include ApplicationMemoryRecord
+  memory_record [
     {key: "北海道",   area_name: "北海道・東北"},
     {key: "青森県",   area_name: "北海道・東北"},
     {key: "岩手県",   area_name: "北海道・東北"},

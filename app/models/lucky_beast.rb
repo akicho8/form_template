@@ -1,6 +1,6 @@
 class LuckyBeast
-  include ApplicationStaticRecord
-  static_record [
+  include ApplicationMemoryRecord
+  memory_record [
     {model: Type001Article, confirm: true,  tables: 1, desc: "とてもシンプル",                                                                                         },
     {model: Type002Article, confirm: true,  tables: 2, desc: "画像認証対応。ボットを防げる。シンプルだが確認画面でリロードすると画像認証が作動して元に戻ってしまう。", },
     {model: Type015Article, confirm: true,  tables: 2, desc: "画像認証対応。ボットを防げる。認証は一回だけにしたバージョン。確認画面でリロードしても元に戻らない。",   },
