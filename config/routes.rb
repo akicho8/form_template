@@ -67,6 +67,28 @@ Rails.application.routes.draw do
     resources :type028_bars, only: [:index], :module => 'type028_foos' # インデントが狂うため古いハッシュ形式にしている
   end
 
+  # require "action_controller/railtie"
+  # ActionPack::VERSION::STRING     # => "5.1.3"
+  #
+  # Class.new(Rails::Application).routes.draw do
+  direct :google do |options|
+    "https://www.google.co.jp/?q=#{options[:q]}"
+  end
+  # end
+  #
+  # include Rails.application.routes.url_helpers
+  #
+  # url_for(:google)           # => "https://www.google.co.jp/?q="
+  # url_for([:google, q: "1"]) # => "https://www.google.co.jp/?q=1"
+  # google_url                 # => "https://www.google.co.jp/?q="
+  # google_url(q: "1")         # => "https://www.google.co.jp/?q=1"
+  # google_path                # => "/?q="
+  # google_path(q: "1")        # => "/?q=1"
+  #
+  # def google_search_url(q)
+  #   "https://www.google.co.jp/?q=#{q}"
+  # end
+
   get "tops/show"
   root "tops#show"
 end
