@@ -7,6 +7,8 @@ server 'tk2-221-20341.vs.sakura.ne.jp', user: 'deploy', roles: %w{app db web}, m
 server 'tk2-221-20341.vs.sakura.ne.jp', user: 'deploy', roles: %w{app web}, other_property: :other_value
 server 'tk2-221-20341.vs.sakura.ne.jp', user: 'deploy', roles: %w{db}
 
+before 'deploy:starting', 'deploy:app_clean'
+
 # role-based syntax
 # ==================
 

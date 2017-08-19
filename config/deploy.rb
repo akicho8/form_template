@@ -9,6 +9,7 @@ set :repo_url, "file://#{Pathname(__dir__).dirname}"
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 set :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+# set :branch, :master
 
 # Default deploy_to directory is /var/www/my_app_name
 # set :deploy_to, '/var/www/my_app_name'
@@ -44,13 +45,23 @@ set :default_env, { "DISABLE_DATABASE_ENVIRONMENT_CHECK" => "1" }
 # set :keep_releases, 5
 
 # for capistrano/rbenv
-set :rbenv_path, "/usr/local/var/rbenv"
-set :rbenv_type, :system # or :system, depends on your rbenv setup
-set :rbenv_ruby, File.read('.ruby-version').strip
-set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} /usr/local/bin/rbenv exec"
+
+# set :rbenv_path, "/usr/local/var/rbenv"
+# set :rbenv_type, :system # or :system, depends on your rbenv setup
+# set :rbenv_ruby, File.read('.ruby-version').strip
+# set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} /usr/local/bin/rbenv exec"
+
 # set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
 # set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 # set :rbenv_roles, :all # default value
+
+# set :rbenv_path, "/usr/local/var/rbenv"
+set :rbenv_type, :system # or :system, depends on your rbenv setup
+# set :rbenv_ruby, File.read('.ruby-version').strip
+# set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} /usr/local/bin/rbenv exec"
+
+
+
 
 set :bundle_path, nil
 set :bundle_flags, '--deployment'
@@ -102,12 +113,13 @@ namespace :deploy do
   #
 
   if true
-    # task :app_clean do
-    #   on roles :all do
-    #     execute :rm, '-rf', deploy_to
-    #     # execute :rake, "db:create"
-    #   end
-    # end
+    task :app_clean do
+      invoke "cable_puma:clean"
+      on roles :all do
+        execute :rm, '-rf', deploy_to
+        # execute :rake, "db:create"
+      end
+    end
     # before 'deploy:starting', 'deploy:app_clean'
 
     desc 'db_seed must be run only one time right after the first deploy'
@@ -175,45 +187,64 @@ namespace :deploy do
 end
 
 namespace :cable_puma do
-  desc "action_cable 用の puma を deploy:restart にひっかけて再起動"
+  desc "ActionCable用のPuma: 再起動"
   task :restart do
+    invoke "cable_puma:stop"
+    invoke "cable_puma:start"
+    invoke "cable_puma:status"
+  end
+  before "deploy:restart", "cable_puma:restart"
+
+  desc "ActionCable用のPuma: 起動"
+  task :start do
     on roles(:app) do |host|
       within current_path do
         with rails_env: fetch(:rails_env) do
-          execute :ps, "auxww | grep '[p]uma' || true"
-          execute :bundle, "exec", :pumactl, "-Q -F cable/puma.rb stop || true"
-          execute :ps, "auxww | grep '[p]uma' || true"
+          execute :pgrep, "-fl puma || true"
           execute :bundle, "exec", :pumactl, "-F cable/puma.rb start"
-          execute :ps, "auxww | grep '[p]uma' || true"
-          execute :bundle, "exec", :pumactl, "-F cable/puma.rb status"
+          execute :pgrep, "-fl puma || true"
+        end
+      end
+    end
+  end
+
+  desc "ActionCable用のPuma: 停止"
+  task :stop do
+    on roles(:app) do |host|
+      within current_path do
+        with rails_env: fetch(:rails_env) do
+          execute :pgrep, "-fl puma || true"
+          execute :bundle, "exec", :pumactl, "-Q -F cable/puma.rb stop || true"
+          execute :pgrep, "-fl puma || true"
         end
       end
     end
   end
   before "deploy:restart", "cable_puma:restart"
 
-  desc "action_cable 用の puma を定義"
-  task :stop do
-    on roles(:app) do |host|
-      within current_path do
-        with rails_env: fetch(:rails_env) do
-          execute :bundle, "exec", :pumactl, "-Q -F cable/puma.rb stop || true"
-          execute :ps, "auxww | grep '[p]uma' || true"
-        end
-      end
-    end
-  end
-  after "deploy:restart", "cable_puma:status"
-
-  desc "action_cable 用の puma の状態を確認"
+  desc "action_cable用のpuma: 状態を確認"
   task :status do
     on roles(:app) do |host|
       within current_path do
         with rails_env: fetch(:rails_env) do
-          execute :bundle, "exec", :pumactl, "-F cable/puma.rb status"
+          # pumactl status は 停止していても "Puma is started" しか表示しないため、まぎらわしいで実行しない
+          # pgrep の方がまし。
+          # execute :bundle, "exec", :pumactl, "-F cable/puma.rb status"
+          execute :pgrep, "-fl puma || true"
         end
       end
     end
   end
-  after "deploy:restart", "cable_puma:status"
+
+  desc "action_cable用のpuma: プロセス強制除去"
+  task :clean do
+    on roles(:app) do |host|
+      within current_path do
+        with rails_env: fetch(:rails_env) do
+          execute :pkill, "-f puma || true"
+          execute :pgrep, "-fl puma || true"
+        end
+      end
+    end
+  end
 end
