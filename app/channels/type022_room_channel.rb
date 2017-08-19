@@ -1,3 +1,4 @@
+# モデルに保存する版
 class Type022RoomChannel < ApplicationCable::Channel
   def subscribed
     stream_from "type022_room_channel"

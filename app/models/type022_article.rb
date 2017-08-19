@@ -14,6 +14,7 @@
 # +------------+----------+----------+-------------+------+-------+
 
 class Type022Article < ApplicationRecord
+  # 非同期にするため
   after_create_commit do
     Type022ArticleBroadcastJob.perform_later(self)
   end
