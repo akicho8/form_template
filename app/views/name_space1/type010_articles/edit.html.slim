@@ -4,7 +4,7 @@
   .page-header
     h2= current_record.new_record? ? "新規登録" : "編集"
 
-  = form_with(model: [:name_space1, current_record], html: {class: "form-horizontal"}, local: true) do |form|
+  = form_with(model: [:name_space1, current_record], class: "form-horizontal") do |form|
     = render partial: "error_messages", locals: {form: form}
     = field_set_tag("なくてもいいアップロードだけのフォーム") do
       / まとめてアップロードしたいとき用
@@ -30,7 +30,7 @@
       = "自分と子の名前を一気に更新"
       small=<> "削除するとその場所にアップロードフィールドがでる"
 
-  = form_with(model: [:name_space1, current_record], html: {class: "form-horizontal"}, local: true) do |form|
+  = form_with(model: [:name_space1, current_record], class: "form-horizontal") do |form|
     = render partial: "error_messages", locals: {form: form}
 
     / タイトル変更用

@@ -71,8 +71,8 @@ Rails.application.routes.draw do
   # ActionPack::VERSION::STRING     # => "5.1.3"
   #
   # Class.new(Rails::Application).routes.draw do
-  direct :google do |options|
-    "https://www.google.co.jp/?q=#{options[:q]}"
+  direct :google do |value|
+    "https://www.google.co.jp/?q=#{value}"
   end
   # end
   #

@@ -75,7 +75,6 @@ group :development do
   gem 'foreman', require: false
 end
 
-gem 'twitter-bootstrap-rails', '< 4.0.0' # font-awesome 関連のエラーがでるためバージョン制限
 gem 'font-awesome-sass'
 
 # gem 'activerecord-session_store'
