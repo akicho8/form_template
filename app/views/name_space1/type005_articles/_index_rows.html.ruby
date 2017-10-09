@@ -8,4 +8,4 @@ current_records.collect {|e|
       (controller.respond_to_destroy? ? link_to("削除", [:name_space1, e], method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}) : nil),
     ].compact.join(" ").html_safe,
   }
-}.to_quick_table
+}.to_html

@@ -4,18 +4,18 @@
     },
     helpers: {
       submit: {
-        type006_article: {
+        type096_article: {
         },
       },
     },
     activerecord: {
       models: {
-        type006_article: "チェックボックスで複数項目設定1",
-        type006_team_ship: "中間情報",
+        type096_article: "中間情報が単なる連携ではなく別の情報を持つ場合",
+        type096_team_ship: "中間情報",
         team: "曜日",
       },
       attributes: {
-        type006_article: {
+        type096_article: {
           name: "名前",
           teams: "曜日",
         },

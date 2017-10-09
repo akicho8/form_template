@@ -1,0 +1,18 @@
+/ 名前
+.form-group
+  = form.label(:name, class: "col-sm-2 control-label")
+  .col-sm-10
+    = form.text_field(:name, class: "form-control")
+
+/ collection_check_boxes より一段複雑な、中間情報のなかで他の内容(legal_accept_key)まで設定する必要がある場合の例
+- Team.all.each do |team|
+  - type096_team_ship = form.object.type096_team_ships.find_or_initialize_by(team: team)
+  = form.fields_for(:type096_team_ships, type096_team_ship) do |form|
+    / 新規で作った場合に必要。条件文を入れず、常に hidden で入れておいてもよい
+    - if form.object.new_record?
+      = form.hidden_field(:team_id)
+    .form-group
+      / 一応これでラベルのforとcollection_selectのidは対応しているのでラベルクリックでselectにフォーカスする
+      = form.label(:legal_accept_key, team.name, class: "col-sm-2 control-label")
+      .col-md-10
+        = form.collection_select(:legal_accept_key, LegalAcceptInfo, :key, :name, {}, {class: "form-control"})

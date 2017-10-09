@@ -92,7 +92,7 @@ gem 'airbrake-ruby', github: 'akicho8/airbrake-ruby', ref: 'patch-1'
 
 gem 'memory_record'
 gem 'org_tp'
-gem 'quick_table',   github: 'akicho8/quick_table'
+gem 'html_format'
 gem 'daiku',         github: 'akicho8/daiku'
 gem 'aam',           github: 'akicho8/aam'
 gem 'uzoumuzou',     github: 'akicho8/uzoumuzou'

@@ -1,5 +1,5 @@
 - if false
-  = current_record.attributes.to_quick_table
+  = current_record.attributes.to_html
 - else
   - (current_record.attribute_names - ["id", "created_at", "updated_at"]).each do |key|
     .form-group

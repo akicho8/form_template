@@ -48,5 +48,5 @@ class Prefecture
     {key: "宮崎県",   area_name: "九州・沖縄"},
     {key: "鹿児島県", area_name: "九州・沖縄"},
     {key: "沖縄県",   area_name: "九州・沖縄"},
-  ], attr_reader_auto: true
+  ]
 end

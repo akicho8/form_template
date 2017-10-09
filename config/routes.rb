@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     resources :type004_articles
     resources :type005_articles
     resources :type006_articles
+    resources :type096_articles
     resources :type007_articles
     resources :type008_articles
     resources :type009_articles
@@ -37,6 +38,7 @@ Rails.application.routes.draw do
     resources :type013_articles
     resources :type014_articles
     resources :type015_articles
+    resources :type016_articles
     resources :type016_articles
     resources :type017_articles
     resources :type018_email_activations

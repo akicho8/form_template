@@ -1,23 +1,118 @@
 class LuckyBeast
   include ApplicationMemoryRecord
   memory_record [
-    {model: Type001Article, confirm: true,  tables: 1, desc: "とてもシンプル",                                                                                         },
-    {model: Type002Article, confirm: true,  tables: 2, desc: "画像認証対応。ボットを防げる。シンプルだが確認画面でリロードすると画像認証が作動して元に戻ってしまう。", },
-    {model: Type015Article, confirm: true,  tables: 2, desc: "画像認証対応。ボットを防げる。認証は一回だけにしたバージョン。確認画面でリロードしても元に戻らない。",   },
-    {model: Type003Article, confirm: true,  tables: 1, desc: "氏名・住所・連絡先。確認画面はスマホにも対応",                                                           },
-    {model: Type004Article, confirm: true,  tables: 1, desc: "従来の単一ファイルアップロードフォーム。詳細はいろんなファイル形式に対応",                               },
-    {model: Type009Article, confirm: false, tables: 2, desc: "不親切。エラー時に再アップが必要。だが、とてもシンプル",                                                 },
-    {model: Type005Article, confirm: true,  tables: 2, desc: "個別の削除にも対応。いちばん高機能",                                                                     },
-    {model: Type010Article, confirm: false, tables: 2, desc: "1:N。オークション商品画像などを想定。位置重要。画像に説明を追加可。",                                    },
-    {model: Type006Article, confirm: false, tables: 3, desc: "1:N。とてもシンプル。",                                                                                  },
-    {model: Type016Article, confirm: false, tables: 3, desc: "1:N:1。collection_check_boxes / collection_radio_buttons / collection_select (+multiple) の例",          },
-    {model: Type007Article, confirm: true,  tables: 3, desc: "1対多。確認画面対応で一気にコードが煩雑になる",                                                          },
-    {model: Type008Article, confirm: true,  tables: 3, desc: "1対多。モデルはチェックボックスの場合と同じコードで良い",                                                },
-    {model: Type011Article, confirm: false, tables: 2, desc: "スレッドの作成と同時に1を自分で書き込むタイプ。",                                                        },
-    {model: Type012Article, confirm: false, tables: 3, desc: "異なる3つのモデルで構成する木構造。向こうの向こうまで一気に作る。",                                      },
-    {model: Type013Article, confirm: false, tables: 1, desc: "自分にもコメントできるツリー構造。フォームは再帰",                                                       },
-    {model: Type014Article, confirm: false, tables: 1, desc: "HTML5の特殊入力列挙。month, week の受け取りはスムーズにいかない。iPhoneでcolorは非対応",                 },
-    {model: Type017Article, confirm: false, tables: 1, desc: "GoogleMap対応のテスト。_show.html.slim が汚い",                                                          },
+    {
+      model: Type001Article,
+      confirm: true,
+      tables: 1,
+      desc: "とてもシンプル",
+    },
+    {
+      model: Type002Article,
+      confirm: true,
+      tables: 2,
+      desc: "画像認証対応。ボットを防げる。シンプルだが確認画面でリロードすると画像認証が作動して元に戻ってしまう。",
+    },
+    {
+      model: Type015Article,
+      confirm: true,
+      tables: 2,
+      desc: "画像認証対応。ボットを防げる。認証は一回だけにしたバージョン。確認画面でリロードしても元に戻らない。",
+    },
+    {
+      model: Type003Article,
+      confirm: true,
+      tables: 1,
+      desc: "氏名・住所・連絡先。確認画面はスマホにも対応",
+    },
+    {
+      model: Type004Article,
+      confirm: true,
+      tables: 1,
+      desc: "従来の単一ファイルアップロードフォーム。詳細はいろんなファイル形式に対応",
+    },
+    {
+      model: Type009Article,
+      confirm: false,
+      tables: 2,
+      desc: "不親切。エラー時に再アップが必要。だが、とてもシンプル",
+    },
+    {
+      model: Type005Article,
+      confirm: true,
+      tables: 2,
+      desc: "個別の削除にも対応。いちばん高機能",
+    },
+    {
+      model: Type010Article,
+      confirm: false,
+      tables: 2,
+      desc: "1:N。オークション商品画像などを想定。位置重要。画像に説明を追加可。",
+    },
+    {
+      model: Type006Article,
+      confirm: false,
+      tables: 3,
+      desc: "1:N。とてもシンプル。中間情報は単に 1:1 で結ぶだけに使っている。別の情報を持たない。別の情報を持つ場合は Type096Article を参考にすること。",
+    },
+    {
+      model: Type096Article,
+      confirm: false,
+      tables: 3,
+      desc: "
+Type006 の中間情報に別の情報を持つ場合バージョン。
+ロール(Type096Article)と権限(Team)があり権限の状態を選択(legal_accept_key)を中間情報(Type096TeamShip)に持つような場合のサンプルになっている
+チェックボックスで権限を選択するだけでなく、その権限の状態をどうするかまで個別に、かつ一括で設定する場合の例。
+",
+    },
+    {
+      model: Type016Article,
+      confirm: false,
+      tables: 3,
+      desc: "1:N:1。collection_check_boxes / collection_radio_buttons / collection_select (+multiple) の例",
+    },
+    {
+      model: Type007Article,
+      confirm: true,
+      tables: 3,
+      desc: "1対多。確認画面対応で一気にコードが煩雑になる",
+    },
+    {
+      model: Type008Article,
+      confirm: true,
+      tables: 3,
+      desc: "1対多。モデルはチェックボックスの場合と同じコードで良い",
+    },
+    {
+      model: Type011Article,
+      confirm: false,
+      tables: 2,
+      desc: "スレッドの作成と同時に1を自分で書き込むタイプ。",
+    },
+    {
+      model: Type012Article,
+      confirm: false,
+      tables: 3,
+      desc: "異なる3つのモデルで構成する木構造。向こうの向こうまで一気に作る。",
+    },
+    {
+      model: Type013Article,
+      confirm: false,
+      tables: 1,
+      desc: "自分にもコメントできるツリー構造。フォームは再帰",
+    },
+    {
+      model: Type014Article,
+      confirm: false,
+      tables: 1,
+      desc: "HTML5の特殊入力列挙。month, week の受け取りはスムーズにいかない。iPhoneでcolorは非対応",
+    },
+    {
+      model: Type017Article,
+      confirm: false,
+      tables: 1,
+      desc: "GoogleMap対応のテスト。_show.html.slim が汚い",
+    },
     {
       model: Type018User,
       confirm: false,
@@ -109,29 +204,43 @@ class LuckyBeast
       ].join(" ")
     },
 
-    {name: "lodash 使用例",         url: proc {|h| [:frontend, :type031_article] }, search_key: "Type031", desc: "ES6 の機能を先取りしていたライブラリ"},
-    {name: "chart.js 使用例",       url: proc {|h| [:frontend, :type032_article] }, search_key: "Type032", desc: "グラフ表示用のライブラリ"},
-    {name: "sortablejs 使用例",     url: proc {|h| [:frontend, :type033_article] }, search_key: "Type033", desc: "ドラッグ・アンド・ドロップ用のライブラリ"},
-
-  ], attr_reader_auto: true
+    {
+      name: "lodash 使用例",
+      url: proc {|h| [:frontend, :type031_article] },
+      search_key: "Type031",
+      desc: "ES6 の機能を先取りしていたライブラリ",
+    },
+    {
+      name: "chart.js 使用例",
+      url: proc {|h| [:frontend, :type032_article] },
+      search_key: "Type032",
+      desc: "グラフ表示用のライブラリ",
+    },
+    {
+      name: "sortablejs 使用例",
+      url: proc {|h| [:frontend, :type033_article] },
+      search_key: "Type033",
+      desc: "ドラッグ・アンド・ドロップ用のライブラリ",
+    },
+  ]
 
   def self.to_html(h)
-    collect { |e| e.to_row(h) }.to_quick_table
+    collect{|e|e.to_row(h)}.to_html
   end
 
   def to_row(h)
     {}.tap do |row|
       begin
-        row["名前"]       = h.link_to(name, url2(h))
+        row["名前"]       = h.link_to(name, url(h))
         row["確認機能"]   = confirm ? "★" : ""
         row["テーブル数"] = tables
-        row["説明"]       = desc ? h.content_tag(:span, desc.to_s.html_safe, style: "white-space: normal") : nil
+        row["説明"]       = formated_desc(h)
         row["リンク"]     = link_list ? h.content_tag(:span, link_list.call(h).join(" ").html_safe, style: "white-space: normal") : nil
         row["スコープ"]   = search_key
         row[""]           = Array(links(h)).join(" ").html_safe
-      rescue => error
-        row["名前"] = name
-        row["ERROR"] = error.inspect
+        # rescue => error
+        #   row["名前"] = name
+        #   row["ERROR"] = error.inspect
       end
     end
   end
@@ -145,10 +254,10 @@ class LuckyBeast
     v
   end
 
-  def url2(h)
+  def url(h)
     v = nil
-    if url
-      v ||= url.call(h)
+    if respond_to?(:super)
+      v ||= super.call(h)
     end
     if model
       v ||= [:new, :name_space1, model.name.demodulize.underscore.to_sym]
@@ -168,7 +277,18 @@ class LuckyBeast
       v ||= model.name
     end
     if v
-      v.slice(/\d+/i).underscore
+      v.slice(/\d+/)
+    end
+  end
+
+  def formated_desc(h)
+    if desc
+      if desc.kind_of?(Array)
+        s = h.tag.ul { desc.collect{|e|h.tag.li{e}}.join.html_safe }
+      else
+        s = desc
+      end
+      h.tag.span(s.to_s.html_safe, style: "white-space: normal")
     end
   end
 end

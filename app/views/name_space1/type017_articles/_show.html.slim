@@ -17,4 +17,4 @@ coffee:
   new google.maps.Map(document.getElementById("gmap_canvas"), {zoom: 13, center: new google.maps.LatLng(gmap_params.latitude, gmap_params.longitude)})
 
 - if current_record.geocode_hash
-  = current_record.geocode_hash.to_quick_table(title: "住所を元にAPIから得られた情報")
+  = current_record.geocode_hash.to_html(title: "住所を元にAPIから得られた情報")

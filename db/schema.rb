@@ -329,4 +329,20 @@ ActiveRecord::Schema.define(version: 20170515000000) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "type096_articles", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "type096_team_ships", force: :cascade do |t|
+    t.integer "type096_article_id", null: false
+    t.integer "team_id", null: false
+    t.string "legal_accept_key"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_type096_team_ships_on_team_id"
+    t.index ["type096_article_id"], name: "index_type096_team_ships_on_type096_article_id"
+  end
+
 end

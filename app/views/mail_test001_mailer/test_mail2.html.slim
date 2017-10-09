@@ -6,7 +6,7 @@ ruby:
     "attachments['0120_kemono_friends.jpg'].url" => attachments["0120_kemono_friends.jpg"].url,
     "attachments['example.csv'].url" => attachments["example.csv"].url,
   }
-= list.to_quick_table
+= list.to_html
 
 p= link_to("example.csv をダウンロードするリンク(無効？)", attachments['example.csv'].url)
 p= image_tag attachments['0110_kemono_friends.jpg'].url
