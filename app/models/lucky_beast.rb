@@ -231,7 +231,7 @@ Type006 の中間情報に別の情報を持つ場合バージョン。
   def to_row(h)
     {}.tap do |row|
       begin
-        row["名前"]       = h.link_to(name, url(h))
+        row["名前"]       = h.link_to(name, url2(h))
         row["確認機能"]   = confirm ? "★" : ""
         row["テーブル数"] = tables
         row["説明"]       = formated_desc(h)
@@ -254,10 +254,10 @@ Type006 の中間情報に別の情報を持つ場合バージョン。
     v
   end
 
-  def url(h)
+  def url2(h)
     v = nil
-    if respond_to?(:super)
-      v ||= super.call(h)
+    if url
+      v ||= url.(h)
     end
     if model
       v ||= [:new, :name_space1, model.name.demodulize.underscore.to_sym]

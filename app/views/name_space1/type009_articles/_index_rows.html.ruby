@@ -1,6 +1,7 @@
 current_records.collect {|e|
   {
     current_model.human_attribute_name(:title) => link_to(e.title, [:name_space1, e]),
+    "画像数"   => e.type009_attachments.count,
     "画像"     => e.type009_attachments.collect{|e| image_tag(e.media_file.url, height: "16") }.join(" ").html_safe,
     "操作" => [
       link_to("詳細", [:name_space1, e]),

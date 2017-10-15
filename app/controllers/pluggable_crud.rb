@@ -4,7 +4,11 @@ module PluggableCrud
       if Rails.env.development?
         before_action do
           unless request.get?
-            Rails.cache.write(:before_post_params, params.permit!.to_h.except(:utf8), expires_in: 1.minutes)
+            v = params.permit!.to_h.except(:utf8)
+            begin
+              Rails.cache.write(:before_post_params, v, expires_in: 1.minutes)
+            rescue
+            end
           end
         end
       end
