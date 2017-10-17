@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'frontend/type031_article'
   get 'frontend/type032_article'
   get 'frontend/type033_article'
+  get 'frontend/type034_article'
 
   get 'about_page/privacy_policy'
   match 'privacy_policy' => 'about_page#privacy_policy', via: [:get]

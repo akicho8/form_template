@@ -1,0 +1,7 @@
+= javascript_pack_tag "type034_article"
+= stylesheet_pack_tag "type034_article"
+
+/ = link_to("公式サイト", "https://select2.org/")
+
+= form_with do |form|
+  = form.collection_select(:xxx, ['foo', 'bar', 'baz'].inject({}) { |a, e| a.merge(e => e) }, :last, :first, {include_blank: false}, {class: ['form-control', 'js-searchable']})

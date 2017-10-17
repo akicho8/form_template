@@ -8,3 +8,7 @@
 // layout file, like app/views/layouts/application.html.erb
 
 console.log('Hello World from Webpacker')
+
+require("bootstrap/dist/css/bootstrap")
+require("bootstrap/dist/css/bootstrap-theme")
+

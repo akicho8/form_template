@@ -222,6 +222,12 @@ Type006 の中間情報に別の情報を持つ場合バージョン。
       search_key: "Type033",
       desc: "ドラッグ・アンド・ドロップ用のライブラリ",
     },
+    {
+      name: "select2 使用例",
+      url: proc {|h| [:frontend, :type034_article] },
+      search_key: "Type034",
+      desc: "プルダウンを改良するライブラリ",
+    },
   ]
 
   def self.to_html(h)
