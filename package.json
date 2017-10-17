@@ -1,6 +1,7 @@
 {
   "license": "UNLICENSED",
   "dependencies": {
+    "@rails/webpacker": "^3.0.2",
     "autoprefixer": "^7.1.2",
     "axios": "^0.15.3",
     "babel-core": "^6.25.0",
@@ -48,6 +49,6 @@
     "webpack-merge": "^4.1.0"
   },
   "devDependencies": {
-    "webpack-dev-server": "^2.7.1"
+    "webpack-dev-server": "^2.9.2"
   }
 }
