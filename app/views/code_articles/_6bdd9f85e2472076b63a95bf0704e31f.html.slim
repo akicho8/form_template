@@ -1,0 +1,32 @@
+#app
+  table.table
+    thead
+      tr
+        th
+        th 価格
+        th 数量
+    tbody
+      tr
+        td Nintendo Switch
+        td= "{{a}}"
+        td
+          input.form-control type="number" v-model="b" min="0"
+      tr
+        td スプラトゥーン 2
+        td= "{{c}}"
+        td
+          input.form-control type="number" v-model="d" min="0"
+  .text-right
+    p= "  小計￥ {{sum}}"
+    p= "消費税￥ {{tax}}"
+    p= "  合計￥ {{sum + tax}}"
+
+javascript:
+  new Vue({
+    el: "#app",
+    data: { a: 43300, b: 1, c: 5566, d: 1},
+    computed: {
+      sum: function() { return this.a * this.b + this.c * this.d },
+      tax: function() { return Math.ceil(this.sum * 0.08) },
+    },
+  })

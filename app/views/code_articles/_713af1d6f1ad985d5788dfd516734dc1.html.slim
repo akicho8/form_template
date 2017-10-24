@@ -1,0 +1,11 @@
+#app
+  templete v-if="!a"
+    .btn.btn-info @click="a = true" いいね！
+  templete v-else=""
+    | ありがとうございました！
+
+javascript:
+  new Vue({
+    el: "#app",
+    data: {a: false},
+  })

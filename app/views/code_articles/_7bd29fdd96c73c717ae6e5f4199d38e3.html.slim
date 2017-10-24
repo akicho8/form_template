@@ -1,0 +1,12 @@
+#app
+  .form-horizontal
+    .form-group
+      label.col-md-2.control-label= "本文"
+      .col-md-10
+        textarea.form-control v-model="a" :rows="a.split(/\n/).length"
+
+javascript:
+  new Vue({
+    el: "#app",
+    data: {a: ""},
+  })

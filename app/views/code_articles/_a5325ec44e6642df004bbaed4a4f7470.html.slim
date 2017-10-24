@@ -1,0 +1,17 @@
+#app
+  template v-if="f"
+    input v-model="v" @keyup.enter="f = false" @blur="f = false" ref="r1"
+  template v-else=""
+    span @click="c" {{v}}
+
+javascript:
+  new Vue({
+    el: "#app",
+    data: {v: "Vue", f: false},
+    methods: {
+      c: function() {
+        this.f = true
+        this.$nextTick(function () { this.$refs.r1.focus() })
+      },
+    },
+  })

@@ -1,0 +1,40 @@
+#app
+  .form-horizontal
+    .form-group
+      .col-md-offset-2.col-md-10
+        label.checkbox-inline
+          input type="checkbox" v-model="a" 承諾
+        .help-block
+          a @click="s = !s" 利用規約
+
+  template v-if="s"
+    .panel.panel-default
+      .panel-heading
+        | 利用規約 ({{c}}秒経過)
+      .panel-body
+        | 中央アメリカのパナマと陸上で国境を接している南アメリカの国はどこでしょう？
+
+javascript:
+  new Vue({
+    el: "#app",
+    data: {a: false, s: false, c: 0, open: 0},
+    created: function() {
+      setInterval(() => { if (this.s) { this.c += 1 } }, 1000)
+    },
+    watch: {
+      s: function() { this.open += 1 },
+      a: function(v) {
+        if (v) {
+          if (this.open == 0) {
+            this.a = false
+            alert("利用規約を読んでください")
+          } else if (this.c < 10) {
+            this.a = false
+            alert(`たった${this.c}秒で本当に読みましたか？`)
+          } else if (window.prompt("利用規約に書いてあったクイズの答えは？") != "コロンビア") {
+            this.a = false
+          }
+        }
+      },
+    },
+  })

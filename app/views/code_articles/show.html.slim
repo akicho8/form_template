@@ -1,0 +1,50 @@
+ruby:
+  code_article = CodeArticle[params[:id]]
+
+.row
+  .col-md-2
+    ul.pager
+      li=<> link_to("前", [:code_article, id: code_article.previous_info.key])
+      li=<> link_to("次に進む", [:code_article, id: code_article.next_info.key])
+    .list-group
+      - CodeArticle.reject(&:not_yet).each do |e|
+        = link_to(e.name, [:code_article, id: e.key], class: ["list-group-item", ("active" if e == code_article)])
+
+  .col-md-10
+    .page-header
+      h2= code_article.name
+    .row
+      .col-md-6
+        = render code_article.key.to_s
+      .col-md-6
+        #template_nav_tabs
+          ul.nav.nav-tabs
+            li :class="{active: m == 'slim'}"
+              a @click="m = 'slim'" slim
+            li :class="{active: m == 'html'}"
+              a @click="m = 'html'" html
+            li :class="{active: m == 'simple'}"
+              a @click="m = 'simple'" simple
+          template v-if="m == 'slim'"
+            pre v-pre="" = code_article.partial_file.read
+          template v-else-if="m == 'html'"
+            div v-pre="" == code_article.to_pretty_html rescue content_tag(:pre, $!, class: "text-danger")
+          template v-else=""
+            div v-pre="" == code_article.to_simple_html rescue content_tag(:pre, $!, class: "text-danger")
+
+        - if code_article.point.present?
+          .label.label-info= "Point"
+          .panel.panel-info
+            .panel-body
+              = code_article.point
+
+javascript:
+  new Vue({el: "#template_nav_tabs", data: {m: "slim"}})
+
+sass:
+  #template_nav_tabs
+    pre
+      margin-top: 0.5em
+      background: transparent
+      border-radius: 0px
+      border: none

@@ -12,3 +12,14 @@ console.log('Hello World from Webpacker')
 require("bootstrap/dist/css/bootstrap")
 require("bootstrap/dist/css/bootstrap-theme")
 
+window.chroma  = require("chroma-js")
+window.sprintf = require("sprintf-js").sprintf
+window._       = require("lodash")
+window.axios   = require("axios")
+
+// TODO: 「window.Vue = require("vue/dist/vue.esm")」だとダメなのはなぜだろう？
+import Vue from 'vue/dist/vue.esm'
+window.Vue = Vue
+
+console.log(`jQuery ${typeof(jQuery)}`)
+console.log(`Vue ${typeof(Vue)}`)

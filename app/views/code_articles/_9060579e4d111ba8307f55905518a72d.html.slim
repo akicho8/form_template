@@ -1,0 +1,15 @@
+#app
+  .form-horizontal
+    .form-group
+      label.col-md-2.control-label 色
+      .col-md-10
+        input.form-control v-model="a"
+    .form-group
+      .col-md-offset-2.col-md-10
+        input.form-control type="color" v-model="a"
+
+javascript:
+  new Vue({
+    el: "#app",
+    data: {a: "#6B8CFF"},
+  })

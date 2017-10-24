@@ -1,0 +1,33 @@
+#app
+  .form-horizontal
+    .form-group
+      label.col-md-2.control-label= "メインカラー"
+      .col-md-10
+        input.form-control type="color" v-model="c"
+
+  .row
+    .col-md-offset-2.col-md-12
+      .box.main :style="{background: c0.css()}" = "{{c0.name()}}"
+      .box      :style="{background: c1.css()}" = "{{c1.name()}}"
+      .box      :style="{background: c2.css()}" = "{{c2.name()}}"
+
+javascript:
+  new Vue({
+    el: "#app",
+    data: {c: "#f0e8f8"},
+    computed: {
+      c0: function() { return chroma(this.c)                                        },
+      c1: function() { return this.c0.set("hsl.h", this.c0.get("hsl.h") + 180 - 30) },
+      c2: function() { return this.c0.set("hsl.h", this.c0.get("hsl.h") + 180 + 30) },
+    },
+  })
+
+sass:
+  .box
+    width: 128px
+    height: 128px
+    text-align: center
+    display: table-cell // ← これでインラインブロックになるし vertical-align: middle も効く！
+    vertical-align: middle
+  .main
+    width: 256px

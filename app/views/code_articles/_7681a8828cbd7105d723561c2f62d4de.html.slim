@@ -1,0 +1,20 @@
+#app
+  .form-horizontal
+    .form-group
+      label.col-md-2.control-label= "電話番号"
+      .col-md-10.form-inline
+        input.form-control size="3" v-model="a" ref="r1"
+        =<> "-"
+        input.form-control size="4" v-model="b" ref="r2"
+        =<> "-"
+        input.form-control size="4" v-model="c" ref="r3"
+
+javascript:
+  new Vue({
+    el: "#app",
+    data: {a: "", b: "", c: ""},
+    watch: {
+      a: function(v) { if (v.length >= 3) { this.$refs.r2.focus() } },
+      b: function(v) { if (v.length >= 4) { this.$refs.r3.focus() } },
+    },
+  })

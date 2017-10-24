@@ -1,0 +1,20 @@
+#app
+  .form-horizontal
+    .form-group
+      label.col-md-2.control-label タイトル
+      .col-md-10
+        input.form-control v-model="a"
+    .form-group
+      .col-md-offset-2.col-md-10
+        .btn.btn-primary :disabled="b" Merge
+
+javascript:
+  new Vue({
+    el: "#app",
+    data: {a: "WIP: 親譲りの無鉄砲で小供の時から損ばかりしている"},
+    computed: {
+      b: function() {
+        return /\bWIP\b/i.test(this.a)
+      },
+    },
+  })

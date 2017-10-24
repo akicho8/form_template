@@ -81,6 +81,8 @@ gem 'font-awesome-sass'
 
 # gem 'compass-rails'
 gem 'slim-rails'
+gem 'redcarpet'       # slim の markdown 表記用。pandoc-ruby が本体
+
 gem 'rails_autolink'
 gem 'kaminari'
 gem 'simple_captcha2'
@@ -97,3 +99,5 @@ gem 'daiku',         github: 'akicho8/daiku'
 gem 'aam',           github: 'akicho8/aam'
 gem 'uzoumuzou',     github: 'akicho8/uzoumuzou'
 gem 'normalizer',    github: 'akicho8/normalizer'
+
+gem 'coderay'

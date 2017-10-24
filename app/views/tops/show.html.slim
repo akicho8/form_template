@@ -1,8 +1,9 @@
-/ .jumbotron
-/   h1= "(AppName)"
-/   p= "WEBサイトを高速に開発するための雛型集"
-/ .page-header
-/   h3= "フォームロジック"
+/ = google_url("xxx")
+
+.page-header
+  h3= "フォーム"
 = LuckyBeast.to_html(self)
 
-/ = google_url("xxx")
+.page-header
+  h3= "JavaScript"
+= CodeArticle.to_html(self)

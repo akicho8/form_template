@@ -1,0 +1,13 @@
+#app
+  | {{a}} + {{b}} = {{c}}
+
+javascript:
+  new Vue({
+    el: "#app",
+    data: {a: 1, b: 2},
+    computed: {
+      c: function() {
+        return this.a + this.b
+      },
+    },
+  })

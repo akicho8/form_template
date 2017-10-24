@@ -1,0 +1,19 @@
+#app
+  .form-horizontal
+    .form-group
+      label.col-md-2.control-label= "文字の大きさ"
+      .col-md-10
+        .btn-group
+          .btn.btn-default @click="a -= 1" 小
+          .btn.btn-default @click="a += 1" 大
+
+javascript:
+  new Vue({
+    el: "#app",
+    data: {a: 10},
+    watch: {
+      a: function(v) {
+        document.querySelector("body").style.fontSize = `${v * 2}px`
+      },
+    },
+  })

@@ -1,0 +1,35 @@
+#app
+  .form-horizontal
+    .form-group
+      label.col-md-2.control-label お支払い方法
+      .col-md-10
+        label.radio-inline
+          input type="radio" v-model="a" value="v1" クレジットカード
+        label.radio-inline
+          input type="radio" v-model="a" value="v2" 銀行振り込み
+        label.radio-inline
+          input type="radio" v-model="a" value="v3" チケット
+
+    .form-group v-if="a == 'v1'"
+      label.col-md-2.control-label 番号
+      .col-sm-10.form-inline
+        input.form-control
+        input.form-control type="month"
+
+    .form-group v-if="a == 'v2'"
+      label.col-md-2.control-label 口座
+      .col-md-10.form-inline
+        input.form-control
+
+    .form-group v-if="a == 'v3'"
+      label.col-md-2.control-label コード
+      .col-md-10.form-inline
+        input.form-control size="8"
+
+javascript:
+  new Vue({
+    el: "#app",
+    data: {
+      a: "v1",
+    },
+  })

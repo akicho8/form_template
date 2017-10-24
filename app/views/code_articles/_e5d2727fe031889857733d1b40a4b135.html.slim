@@ -1,0 +1,21 @@
+#app
+  .form-horizontal
+    .form-group
+      label.col-md-2.control-label タイトル
+      .col-md-10
+        input.form-control v-model="a"
+    .form-group
+      label.col-md-2.control-label 本文
+      .col-md-10
+        textarea.form-control v-model.trim="b"
+
+  .panel.panel-info
+    .panel-heading= "{{a}}"
+    .panel-body= "{{b}}"
+    .panel-footer= "あと {{140 - b.length}} 文字"
+
+javascript:
+  new Vue({
+    el: "#app",
+    data: {a: "", b: ""},
+  })

@@ -1,0 +1,26 @@
+#app
+  .form-horizontal
+    .form-group
+      label.col-md-2.control-label= "パスワード"
+      .col-md-10
+        input.form-control type="password" ref="r1" v-model="p" v-if="t == 'password'"
+        input.form-control type="text"     ref="r2" v-model="p" v-if="t == 'text'"
+
+javascript:
+  new Vue({
+    el: "#app",
+    data: {p: "secret-password", t: "password"},
+    watch: {
+      p: function() {
+        this.t = "text"
+        this.$nextTick(function() { this.$refs.r2.focus() })
+        this.c()
+      },
+    },
+    methods: {
+      c: _.debounce(function() {
+        this.t = "password"
+        this.$nextTick(function() { this.$refs.r1.focus() })
+      }, 1000 * 1),
+    },
+  })

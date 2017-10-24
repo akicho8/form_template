@@ -1,0 +1,13 @@
+#app
+  .btn.btn-link @click="a = !a" =<> "{{label}}"
+  p v-show="a"
+    img.img-thumbnail src="https://placehold.it/512?text=CONTENTS"
+
+javascript:
+  new Vue({
+    el: "#app",
+    data: {a: false},
+    computed: {
+      label: function() { return this.a ? "閉じる" : "もっと見る" },
+    },
+  })

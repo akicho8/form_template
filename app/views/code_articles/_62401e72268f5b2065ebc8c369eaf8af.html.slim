@@ -1,0 +1,21 @@
+#app
+  .form-horizontal
+    .form-group
+      label.col-md-2.control-label= "色"
+      .col-md-10
+        input.form-control v-model="c" :style="{backgroundColor: c}"
+        .help-block
+          input type="range" min=0 max=360 v-model.number="h"
+          input type="range" min=0 max=100 v-model.number="s"
+          input type="range" min=0 max=100 v-model.number="l"
+
+javascript:
+  new Vue({
+    el: "#app",
+    data: {h: 163, s: 84, l: 77},
+    computed: {
+      c: function() {
+        return `hsl(${this.h}, ${this.s}%, ${this.l}%)`
+      },
+    },
+  })

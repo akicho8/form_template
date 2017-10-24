@@ -1,0 +1,14 @@
+#app
+  .btn.btn-primary @click.once="a" v-if="!b" = "Yes or No"
+  img :src="b" v-if="b"
+
+javascript:
+  new Vue({
+    el: "#app",
+    data: {b: null},
+    methods: {
+      a: function() {
+        axios.get("https://yesno.wtf/api").then((r) => {this.b = r.data.image})
+      },
+    },
+  })

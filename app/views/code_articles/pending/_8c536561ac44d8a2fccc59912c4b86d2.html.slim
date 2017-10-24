@@ -1,0 +1,24 @@
+#app
+  .form-horizontal
+    .form-group
+      label.col-md-2.control-label HTML
+      .col-md-10
+        textarea.form-control v-model="a"
+    .form-group
+      label.col-md-2.control-label CSS
+      .col-md-10
+        textarea.form-control v-model="b"
+    .form-group
+      label.col-md-2.control-label JavaScript
+      .col-md-10
+        textarea.form-control v-model="c"
+
+  style v-text="b"
+  div v-html="a"
+  script= "{{c}}"
+
+javascript:
+  new Vue({
+    el: "#app",
+    data: {a: "abc", b: "body { color: blue }", c: ""},
+  })

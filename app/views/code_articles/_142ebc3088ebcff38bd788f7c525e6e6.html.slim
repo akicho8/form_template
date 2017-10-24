@@ -1,0 +1,18 @@
+#app
+  template v-if="f"
+    input v-model.number="v" @keyup="f = false" ref="r1"
+  template v-else=""
+    span @click="c" = "{{'★'.repeat(v)}}{{'☆'.repeat(5 - v)}}"
+
+javascript:
+  new Vue({
+    el: "#app",
+    data: {f: false, v: 3},
+    methods: {
+      c: function() {
+        this.v = ""
+        this.f = true
+        this.$nextTick(function () { this.$refs.r1.focus() })
+      },
+    },
+  })

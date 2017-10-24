@@ -1,0 +1,38 @@
+#app
+  template v-if="!show"
+    .btn.btn-primary @click="show = true" 応募
+  template v-else=""
+    .panel.panel-info
+      .panel-heading アンケートに協力お願いします
+      .panel-body
+        p= "{{q}}はどうでしたか？"
+        label.radio-inline
+          input type="radio" v-model.number="a" @change="next" value="-1" = "悪い"
+        label.radio-inline
+          input type="radio" v-model.number="a" @change="next" value="0"  = "普通"
+        label.radio-inline
+          input type="radio" v-model.number="a" @change="next" value="1"  = "良い"
+    | {{answers}}
+
+javascript:
+  new Vue({
+    el: "#app",
+    data: {
+      list: ["接客", "清潔感", "速さ", "雰囲気", "味", "値段", "空調"],
+      index: 0,
+      a: null,
+      show: false,
+      answers: [],
+    },
+    methods: {
+      next: function(e) {
+        this.answers.push(this.a)
+        _.delay(() => { this.index++; this.a = null }, 500)
+      },
+    },
+    computed: {
+      q: function() {
+        return this.list[this.index % this.list.length]
+      },
+    },
+  })

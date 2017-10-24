@@ -1,0 +1,9 @@
+#app
+  input v-model="a"
+  | {{a}}
+
+javascript:
+  const vm = new Vue({
+    el: "#app",
+    data: {a: 1},
+  })

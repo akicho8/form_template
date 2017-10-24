@@ -1,0 +1,18 @@
+#app
+  .btn.btn-default @click="hueru" = "add"
+
+  template v-for="(e, i) in a"
+    p
+      = "{{i}}"
+      input v-model="a" key="i"
+
+javascript:
+  new Vue({
+    el: "#app",
+    data: {a: []},
+    methods: {
+      hueru: function() {
+        this.a += 1
+      },
+    },
+  })

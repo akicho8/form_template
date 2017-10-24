@@ -1,0 +1,145 @@
+#app
+  p
+   .book_box :class="[pane_mode, dir_mode]"
+     .train
+       template v-for="e in reversed_records"
+         img :src="e"
+
+  .form-horizontal
+    .form-group
+      label.col-md-2.control-label ページめくり
+      .col-md-10
+        .btn-group.btn-group-justified
+          .btn.btn-default @click="jump_to_left"  = "<<"
+          .btn.btn-default @click="turn_left"     = "<"
+          .btn.btn-default @click="turn_right"    = ">"
+          .btn.btn-default @click="jump_to_right" = ">>"
+    .form-group
+      label.col-md-2.control-label 指定ページ
+      .col-md-10
+        input.form-control type="number" v-model="current"
+    .form-group
+      label.col-md-2.control-label
+      .col-md-10
+        input type="range" min="0" :max="steped_last_index" :style="{transform: transform}" v-model="current"
+    .form-group
+      label.col-md-2.control-label モード
+      .col-md-10
+        label.radio-inline
+          input type="radio" v-model="pane_mode" value="double" 見開き
+        label.radio-inline
+          input type="radio" v-model="pane_mode" value="single" シングル
+    .form-group
+      label.col-md-2.control-label 読む方向
+      .col-md-10
+        label.radio-inline
+          input type="radio" v-model="dir_mode" value="to_right" 左から右
+        label.radio-inline
+          input type="radio" v-model="dir_mode" value="to_left" 右から左
+
+javascript:
+  var vm = new Vue({
+    el: "#app",
+    data: {
+      current: 0,      // 現在のページ
+      pane_mode: null, // 1ページ or 2ページ毎
+      dir_mode: null,  // 読む方向
+      page_width: 320, // 1ページの横幅
+      records: #{(1..208).collect {|e| image_path("blackjack/blackjack_%04d.jpg" % e) }.to_json.html_safe},
+    },
+    created: function() {
+      this.pane_mode = "double"
+      this.dir_mode = "to_left"
+
+      // やっぱり jQuery は便利だ
+      $(document).keydown((e) => {
+        if (e.keyCode == 37) { this.turn_left()  }
+        if (e.keyCode == 39) { this.turn_right() }
+      })
+    },
+    methods: {
+      //////////////////////////////////////////////////////////////////////////////// 物理方向への移動
+      jump_to_left:  function() { this[this.vector == 1 ? "jump_to_min" : "jump_to_max"]() }, // <<
+      jump_to_right: function() { this[this.vector == 1 ? "jump_to_max" : "jump_to_min"]() }, // >>
+      turn_left:     function() { this[this.vector == 1 ? "go_pred" : "go_next"]()         }, // <
+      turn_right:    function() { this[this.vector == 1 ? "go_next" : "go_pred"]()         }, // >
+
+      //////////////////////////////////////////////////////////////////////////////// インデックスを操作することでの移動
+      jump_to_min: function() { this.current = 0                                               }, // min
+      jump_to_max: function() { this.current = this.steped_last_index                          }, // max
+      go_next:     function() { if (!this.is_last_page())  { this.current += this.index_step } }, // +
+      go_pred:     function() { if (!this.is_first_page()) { this.current -= this.index_step } }, // -
+
+      //////////////////////////////////////////////////////////////////////////////// 行き止まりチェック用
+      is_first_page:   function()  { return this.__is_first_page(this.current)           }, // 最後のページ？
+      is_last_page:    function()  { return this.__is_last_page(this.current)            }, // 最後のページ？
+      __is_first_page: function(v) { return v <= 0                                       }, // 最後のページ？(引数あり)
+      __is_last_page:  function(v) { return (v + this.index_step) >= this.records.length }, // 最後のページ？(引数あり)
+
+      // ページ捲り更新
+      turn_update: function() {
+        const v = (this.current - this.offset) * this.page_width * this.vector
+        $(".train").animate({left: -v}, {easing: "easeInOutQuart", duration: 800, queue: false})
+      },
+    },
+    computed: {
+      steped_indexes:    function() { return _.range(0, this.records.length, this.index_step) },                            // (0..4) のとき [0, 2, 4]
+      steped_last_index: function() { return _.last(this.steped_indexes) },                                                 // steped_indexes の最後の値
+      offset:            function() { return this.dir_mode == "to_left" ? (this.records.length - this.index_step) : 0 },    // current をずらしておくページ数
+      reversed_records:  function() { return this.dir_mode == "to_left" ? this.records.concat().reverse() : this.records }, // 反転したページ
+      index_step:        function() { return this.pane_mode == "double" ? 2 : 1 },                                          // 1回で進む数
+      vector:            function() { return this.dir_mode == "to_right" ? 1 : -1 },                                        // 方向
+      transform:         function() { return `ScaleX(${this.vector})` },                                                    // バーを左右反転させるためのCSS
+    },
+    watch: {
+      current:   function(v) { this.turn_update() },
+      pane_mode: function(v) { this.turn_update() },
+      dir_mode:  function(v) { this.jump_to_min() },
+    },
+  })
+
+sass:
+  /* 全体
+  .book_box
+    /* 座標基点
+    position: relative
+
+    /* これがないと舞台裏が丸見え
+    overflow: hidden
+
+    /* 適当
+    margin: auto auto
+
+    /* やや重要 (873:1200 の比率を維持)
+    height: calc(1200 * 320px / 873)
+
+    /* なくていい
+    border: 1px solid #ccc
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, .2)
+    border-radius: 4px
+
+    /* 全ページ
+    .train
+      /* 相対座標
+      position: absolute
+
+      /* 隙間をあけたくないので外と同じ高さ
+      height: inherit
+
+      /* 狭いと勘違いして画像が回り込むのを防ぐ(超重要)
+      white-space: nowrap
+
+      img
+        /* 親は幅が変動するので明示指定
+        width: 320px
+
+        /* 隙間をあけたくないので外と同じ高さ
+        height: inherit
+
+  /* シングルモード
+  .single
+    width: 320px
+
+  /* 見開きモード
+  .double
+    width: calc(320px * 2)

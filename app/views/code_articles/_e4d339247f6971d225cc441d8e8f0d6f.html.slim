@@ -1,0 +1,10 @@
+#app
+  .btn.btn-primary @click.once="a += 1"
+    | ★
+    .badge=<> "{{a}}"
+
+javascript:
+  new Vue({
+    el: "#app",
+    data: {a: 0},
+  })

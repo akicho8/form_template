@@ -1,0 +1,22 @@
+markdown:
+  ↓これを、そのまま `a.html` とかにコピペして `open a.html`
+
+ruby:
+  code = %(
+ <script src="https://unpkg.com/vue"></script>
+
+ <div id="app">
+   {{a}}
+ </div>
+
+ <script>
+   new Vue({
+     el: "#app",
+     data: {
+       a: "Hello, World",
+     },
+   })
+ </script>
+ )
+
+pre= code

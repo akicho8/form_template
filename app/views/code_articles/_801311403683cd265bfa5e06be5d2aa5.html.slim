@@ -1,0 +1,12 @@
+#app
+  .form-horizontal
+    .form-group
+      .col-md-offset-2.col-md-10
+        label.checkbox-inline
+          input type="checkbox" v-model="a" @change="a = true" 承認
+
+javascript:
+  new Vue({
+    el: "#app",
+    data: {a: false},
+  })

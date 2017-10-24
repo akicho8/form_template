@@ -1,0 +1,54 @@
+#app
+  .avatar :style="{background: c, borderRadius: `${b}px`}"
+    = image_tag "animal_hamster.png", ":style" => "{transform: transform}"
+
+  .form-horizontal
+    .form-group
+      label.col-md-2.control-label ズーム
+      .col-md-10
+        input type="range" v-model="s" min="0.5" max="3.0" step="0.001"
+    .form-group
+      label.col-md-2.control-label スライド
+      .col-md-10
+        input type="range" v-model="x"  min="-128" max="128"
+    .form-group
+      label.col-md-2.control-label 上下
+      .col-md-10
+        input type="range" v-model="y"  min="-128" max="128"
+    .form-group
+      label.col-md-2.control-label 回転
+      .col-md-10
+        input type="range" v-model="a" min="-180" max="180"
+    .form-group
+      label.col-md-2.control-label 背景色
+      .col-md-10
+        input.form-control type="color" v-model="c"
+    .form-group
+      label.col-md-2.control-label 枠の丸み
+      .col-md-10
+        input type="range" v-model="b" min="0" max="160"
+
+javascript:
+  new Vue({
+    el: "#app",
+    data: {s: 1.0, x: 0, y: 0, a: 0, c: "#ADFF2F", b: 64},
+    computed: {
+      transform: function() { return `scale(${this.s}) translate(${this.x}px, ${this.y}px) rotate(${this.a}deg)` },
+    },
+  })
+
+sass:
+  .avatar
+    margin: auto auto 2em auto
+    width: 320px
+    height: 320px
+    overflow: hidden
+
+    /* 中央配置のため
+    display: flex
+    align-items: center
+
+    img
+      margin: 0 auto
+      /* 比率維持のため縦横の「片方だけ」
+      width: inherit

@@ -1,0 +1,18 @@
+#app
+  templete v-if="!answer"
+    | このレビューは参考になりましたか？
+    .btn.btn-default.btn-xs @click="a" data-v="yes" はい
+    .btn.btn-default.btn-xs @click="a" data-v="no"  いいえ
+  templete v-else=""
+    | ありがとうございました！
+
+javascript:
+  new Vue({
+    el: "#app",
+    data: {answer: null},
+    methods: {
+      a: function(e) {
+        this.answer = e.target.dataset.v
+      },
+    },
+  })
