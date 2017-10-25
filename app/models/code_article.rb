@@ -47,11 +47,11 @@ class CodeArticle
     {key: "27c364be8d8a7f32d2198bf3c3dd1174", name: "アバター画像の配置調整をするには？",         point: "input に割り当てた変数から transform の書式を作っているだけ"},
     {key: "40eed7f9e2e838965480cf8087716981", name: "おすすめ配色を表示するには？",               point: "chroma ライブラリが超便利"},
     {key: "9813659f3df3fe67ba4144b81c8e3e7c", name: "利用規約を読んだことにされないためには？",   point: ""},
-    {key: "4fb0575f409c2a7c6b210845b164729e", name: "【途中】",                                   point: "", not_yet: true},
+    {key: "4fb0575f409c2a7c6b210845b164729e", name: "WIP: 将棋盤",                                     point: ""},
   ]
 
   def self.to_html(h)
-    reject(&:not_yet).collect { |e| e.to_row(h) }.to_html
+    collect { |e| e.to_row(h) }.to_html
   end
 
   def to_row(h)
@@ -67,10 +67,6 @@ class CodeArticle
 
   def previous_info
     next_info(-1)
-  end
-
-  def not_yet
-    super && Rails.env.production?
   end
 
   def to_pretty_html

@@ -7,7 +7,7 @@ ruby:
       li=<> link_to("前", [:code_article, id: code_article.previous_info.key])
       li=<> link_to("次に進む", [:code_article, id: code_article.next_info.key])
     .list-group
-      - CodeArticle.reject(&:not_yet).each do |e|
+      - CodeArticle.each do |e|
         = link_to(e.name, [:code_article, id: e.key], class: ["list-group-item", ("active" if e == code_article)])
 
   .col-md-10

@@ -1,18 +1,19 @@
 #app
-  .btn.btn-default @click="hueru" = "add"
-
-  template v-for="(e, i) in a"
-    p
-      = "{{i}}"
-      input v-model="a" key="i"
+  table.table.table-striped.table-bordered.table-hover.table-condensed
+    template v-for="(row, y) in field"
+      tr
+        template v-for="(value, x) in row"
+          td
+            = "{{value}}"
 
 javascript:
   new Vue({
     el: "#app",
-    data: {a: []},
-    methods: {
-      hueru: function() {
-        this.a += 1
-      },
+    data: {
+      field: [
+        ["a", "b", "c"],
+        ["d", "e", "f"],
+        ["g", "h", "i"],
+      ],
     },
   })
