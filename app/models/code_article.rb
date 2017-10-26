@@ -48,6 +48,8 @@ class CodeArticle
     {key: "40eed7f9e2e838965480cf8087716981", name: "おすすめ配色を表示するには？",               point: "chroma ライブラリが超便利"},
     {key: "9813659f3df3fe67ba4144b81c8e3e7c", name: "利用規約を読んだことにされないためには？",   point: ""},
     {key: "4fb0575f409c2a7c6b210845b164729e", name: "WIP: 将棋盤",                                     point: ""},
+    {key: "72b487a3b893680fbf92db87bdb22299", name: "HTML5の機能だけで作るドラッグアンドドロップ", point: ""},
+
   ]
 
   def self.to_html(h)
