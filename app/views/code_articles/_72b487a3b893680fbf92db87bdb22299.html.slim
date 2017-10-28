@@ -15,7 +15,7 @@ javascript:
    // ドラッグ開始時の処理
    function f_dragstart(event){
      // ドラッグするデータのid名(なんでもいい)をDataTransferオブジェクトにセット
-     event.dataTransfer.setData("foo", event.target.id);
+     event.dataTransfer.setData("target_id", event.target.id);
    }
 
    // ドラッグ要素がドロップ要素に重なっている間の処理
@@ -25,8 +25,8 @@ javascript:
 
    /***** ドロップ時の処理 *****/
    function f_drop(event){
-     var id_name = event.dataTransfer.getData("foo");   // ドラッグされたデータのid名をDataTransferオブジェクトから取得
-     var drag_elem = document.getElementById(id_name);  // id名からドラッグされた要素を取得
+     var target_id = event.dataTransfer.getData("target_id");   // ドラッグされたデータのid名をDataTransferオブジェクトから取得
+     var drag_elem = document.getElementById(target_id);  // id名からドラッグされた要素を取得
      event.currentTarget.appendChild(drag_elem);        // ドロップ先にドラッグされた要素を追加(ここらへんは自力でやるっぽい)
      event.preventDefault();                            // エラー回避のため、ドロップ処理の最後にdropイベントをキャンセルしておく
    }
