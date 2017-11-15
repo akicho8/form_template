@@ -6,6 +6,8 @@
 //= require bootstrap/dist/js/bootstrap
 //= require_tree .
 
+// ↑ 全部 app/javascript に移動できる
+
 if (typeof(jQuery) != "undefined") {
   console.log('jQuery found (in app/assets/javascript/application.js)')
 } else {
