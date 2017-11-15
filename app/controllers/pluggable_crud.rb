@@ -129,12 +129,16 @@ module PluggableCrud
     end
 
     def redirect_to_after_create_or_update
+      redirect_to params[:redirect_to_where] || redirect_to_where, notice: notice_message
+    end
+
+    def notice_message
       if current_record.previous_changes[:id]
         label = "作成"
       else
         label = "更新"
       end
-      redirect_to params[:redirect_to_where] || redirect_to_where, notice: "#{label}しました"
+      "#{label}しました"
     end
 
     def current_record_valid?
