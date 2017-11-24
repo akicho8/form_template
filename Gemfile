@@ -89,8 +89,9 @@ gem 'simple_captcha2'
 gem 'carrierwave'
 gem 'rmagick'
 gem 'geokit'
-gem 'airbrake'
-gem 'airbrake-ruby', github: 'akicho8/airbrake-ruby', ref: 'patch-1'
+
+gem 'airbrake', "~> 5.0"        # バージョン重要
+gem 'airbrake-ruby'
 
 gem 'memory_record'
 gem 'org_tp'
