@@ -164,7 +164,7 @@ namespace :deploy do
       if Pathname(local_file).exist?
         server_file = shared_path.join(local_file)
         # unless test "[ -f #{server_file} ]"
-        upload! File.open(local_file), server_file
+        upload! File.open(local_file), server_file.to_s
         # end
       end
     end
@@ -179,7 +179,7 @@ namespace :deploy do
       if Pathname(local_file).exist?
         server_file = shared_path.join("config/database.yml")
         # unless test "[ -f #{server_file} ]"
-        upload! File.open(local_file), server_file
+        upload! File.open(local_file), server_file.to_s
         # end
       end
     end
