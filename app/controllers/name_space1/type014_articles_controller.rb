@@ -24,7 +24,7 @@
 
 module NameSpace1
   class Type014ArticlesController < ApplicationController
-    include PluggableCrud::AllWithConfirm
+    include ModulableCrud::AllWithConfirm
 
     def raw_current_record
       super.tap do |e|

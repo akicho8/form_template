@@ -17,7 +17,7 @@
 
 module NameSpace1
   class Type018EmailActivationsController < ApplicationController
-    include PluggableCrud::All
+    include ModulableCrud::All
 
     def page_header_show_title
       current_record.email

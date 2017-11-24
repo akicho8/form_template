@@ -14,6 +14,6 @@
 
 module NameSpace1
   class Type006ArticlesController < ApplicationController
-    include PluggableCrud::All
+    include ModulableCrud::All
   end
 end

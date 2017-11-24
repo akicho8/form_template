@@ -16,7 +16,7 @@
 
 module NameSpace1
   class Type013ArticlesController < ApplicationController
-    include PluggableCrud::All
+    include ModulableCrud::All
 
     # 更新後の移動先
     def redirect_to_where

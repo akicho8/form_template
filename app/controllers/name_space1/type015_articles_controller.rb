@@ -16,7 +16,7 @@
 
 module NameSpace1
   class Type015ArticlesController < ApplicationController
-    include PluggableCrud::AllWithConfirm
+    include ModulableCrud::AllWithConfirm
     include SimpleCaptcha::ControllerHelpers
 
     def captcha_status

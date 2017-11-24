@@ -15,6 +15,6 @@
 
 module NameSpace1
   class Type020UsersController < ApplicationController
-    include PluggableCrud::All
+    include ModulableCrud::All
   end
 end

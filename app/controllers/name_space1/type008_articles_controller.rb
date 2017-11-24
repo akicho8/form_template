@@ -14,6 +14,6 @@
 
 module NameSpace1
   class Type008ArticlesController < ApplicationController
-    include PluggableCrud::AllWithConfirm
+    include ModulableCrud::AllWithConfirm
   end
 end

@@ -15,7 +15,7 @@
 
 module NameSpace1
   class Type029ArticlesController < ApplicationController
-    include PluggableCrud::All
+    include ModulableCrud::All
 
     # remote: true で来たときビューに show.js.coffee があれば自動的に実行される
     def show

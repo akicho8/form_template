@@ -14,7 +14,7 @@
 
 module NameSpace1
   class Type009ArticlesController < ApplicationController
-    include PluggableCrud::All
+    include ModulableCrud::All
 
     def page_header_show_title
       current_record.title

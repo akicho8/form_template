@@ -15,7 +15,7 @@
 
 module NameSpace1
   class Type017ArticlesController < ApplicationController
-    include PluggableCrud::AllWithConfirm
+    include ModulableCrud::AllWithConfirm
 
     def page_header_show_title
       current_record.map_address

@@ -33,7 +33,7 @@
 
 module NameSpace1
   class Type003ArticlesController < ApplicationController
-    include PluggableCrud::AllWithConfirm
+    include ModulableCrud::AllWithConfirm
 
     def index
       respond_to do |format|
