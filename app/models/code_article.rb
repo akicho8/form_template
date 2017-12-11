@@ -49,7 +49,8 @@ class CodeArticle
     {key: "9813659f3df3fe67ba4144b81c8e3e7c", name: "利用規約を読んだことにされないためには？",   point: ""},
     {key: "4fb0575f409c2a7c6b210845b164729e", name: "WIP: 将棋盤",                                     point: ""},
     {key: "72b487a3b893680fbf92db87bdb22299", name: "HTML5の機能だけで作るドラッグアンドドロップ", point: ""},
-    {key: "2b9ffda833a15e7b440044916b03c2f7", name: "Vue.js で簡単にしたドラッグアンドドロップ", point: ""},
+    {key: "2b9ffda833a15e7b440044916b03c2f7", name: "Vue.js で簡単にしたドラッグアンドドロップ",  point: ""},
+    {key: "7615105733f8526ce2330f4b485145dc", name: "将棋盤の升目の名称を覚える",                 point: ""},
   ]
 
   def self.to_html(h)

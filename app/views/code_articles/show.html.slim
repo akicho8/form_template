@@ -2,7 +2,7 @@ ruby:
   code_article = CodeArticle[params[:id]]
 
 .row
-  .col-md-2
+  .col-md-2.visible-md.visible-lg
     ul.pager
       li=<> link_to("前", [:code_article, id: code_article.previous_info.key])
       li=<> link_to("次に進む", [:code_article, id: code_article.next_info.key])
@@ -16,7 +16,7 @@ ruby:
     .row
       .col-md-6
         = render code_article.key.to_s
-      .col-md-6
+      .col-md-6.visible-md.visible-lg
         #template_nav_tabs
           ul.nav.nav-tabs
             li :class="{active: m == 'slim'}"
