@@ -160,7 +160,7 @@ Type006 の中間情報に別の情報を持つ場合バージョン。
       name: "チャット雛形(保存あり)",
       url: proc {|h| [:name_space1, :type022_chat_room] },
       search_key: "Type022",
-      desc: "「発言」を type021_room.coffee#perform から ruby の Type021RoomChannel#type021_say に渡し、Type022Article に保存して、after_create_commit でジョブに投げて、そこで加工して ActionCable.server.broadcast でブロードキャストすると、再び type021_room.coffee#received で受け取って jQuery で append する",
+      desc: "「発言」を type022_room.coffee#perform から ruby の Type022RoomChannel#type022_say に渡し、Type022Article に保存して、after_create_commit でジョブに投げて、そこで加工して ActionCable.server.broadcast でブロードキャストすると、再び type022_room.coffee#received で受け取って jQuery で append する",
     },
     {
       name: "スプラトゥーン的なキャンバス共有",

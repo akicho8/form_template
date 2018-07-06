@@ -199,7 +199,7 @@ namespace :cable_puma do
   task :start do
     on roles(:app) do |host|
       within current_path do
-        with rails_env: fetch(:rails_env) do
+        with rails_env: fetch(:rails_env), "RAILS_RELATIVE_URL_ROOT" => "/form-template" do
           execute :pgrep, "-fl puma || true"
           execute :bundle, "exec", :pumactl, "-F cable/puma.rb start"
           execute :pgrep, "-fl puma || true"

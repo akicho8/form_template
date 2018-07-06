@@ -1,14 +1,4 @@
 GIT
-  remote: https://github.com/akicho8/aam.git
-  revision: bbc451cbc6cfcaabb5dd090ec8086ae50149b435
-  specs:
-    aam (0.0.4)
-      activerecord
-      activesupport
-      org_tp
-      rails
-
-GIT
   remote: https://github.com/akicho8/daiku.git
   revision: 78a0c0319ac4c4984a814016b433f0a7f5997394
   specs:
@@ -37,6 +27,11 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
+    aam (0.0.11)
+      activerecord
+      activesupport
+      rails
+      table_format
     actioncable (5.1.6)
       actionpack (= 5.1.6)
       nio4r (~> 2.0)
@@ -194,8 +189,6 @@ GEM
     nio4r (2.3.0)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
-    org_tp (0.0.17)
-      activesupport
     power_assert (1.1.1)
     public_suffix (3.0.2)
     puma (3.11.4)
@@ -298,6 +291,8 @@ GEM
     sshkit (1.16.0)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
+    table_format (0.0.2)
+      activesupport
     temple (0.8.0)
     test-unit (3.2.7)
       power_assert
@@ -327,7 +322,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  aam!
+  aam
   airbrake (~> 5.0)
   airbrake-ruby
   byebug
@@ -351,7 +346,6 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   memory_record
   normalizer!
-  org_tp
   puma (~> 3.7)
   rails (~> 5.1.3)
   rails_autolink
@@ -367,6 +361,7 @@ DEPENDENCIES
   spring-commands-rspec
   spring-watcher-listen (~> 2.0.0)
   sqlite3
+  table_format
   test-unit
   tzinfo-data
   uglifier (>= 1.3.0)
