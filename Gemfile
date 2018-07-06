@@ -90,9 +90,6 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'geokit'
 
-gem 'airbrake', "~> 5.0"        # バージョン重要
-gem 'airbrake-ruby'
-
 gem 'memory_record'
 gem 'table_format'
 gem 'html_format'
