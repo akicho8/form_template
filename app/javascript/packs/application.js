@@ -14,12 +14,15 @@ require("bootstrap/dist/css/bootstrap-theme")
 
 window.chroma  = require("chroma-js")
 window.sprintf = require("sprintf-js").sprintf
-window._       = require("lodash")
 window.axios   = require("axios")
 
 // TODO: 「window.Vue = require("vue/dist/vue.esm")」だとダメなのはなぜだろう？
 import Vue from 'vue/dist/vue.esm'
 window.Vue = Vue
+
+import _ from "lodash"
+window._ = _
+Object.defineProperty(Vue.prototype, '_', {value: _})
 
 console.log(`jQuery ${typeof(jQuery)}`)
 console.log(`Vue ${typeof(Vue)}`)

@@ -58,7 +58,7 @@ class CodeArticle
 
   def to_row(h)
     {}.tap do |row|
-      row["項目"]     = h.link_to(name, [:code_article, id: key])
+      row["項目"]     = h.link_to(name, [self.class.name.underscore, id: key])
       row["ポイント"] = point.to_s.html_safe
     end
   end
