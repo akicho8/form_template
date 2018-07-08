@@ -114,7 +114,6 @@ namespace :deploy do
 
   if true
     task :app_clean do
-      invoke "cable_puma:clean"
       on roles :all do
         execute :rm, '-rf', deploy_to
         # execute :rake, "db:create"
@@ -138,7 +137,7 @@ namespace :deploy do
     after 'deploy:migrate', 'deploy:db_seed'
 
     # desc 'Runs rake db:migrate if migrations are set'
-    task db_create: [:set_rails_env] do
+    task db_reset: [:set_rails_env] do
       on primary fetch(:migration_role) do
         within release_path do
           with rails_env: fetch(:rails_env) do
@@ -148,7 +147,7 @@ namespace :deploy do
         end
       end
     end
-    before 'deploy:migrate', 'deploy:db_create'
+    # before 'deploy:migrate', 'deploy:db_reset'
   end
 
   # set :app_version, '1.2.3'

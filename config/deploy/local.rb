@@ -18,4 +18,3 @@ set :rails_env, 'production'
 # config/database.local.yml を使う設定
 set :linked_files, fetch(:linked_files, []).push('config/database.yml')
 before 'deploy:check:linked_files', 'deploy:upload_shared_config_database_yml'
-
