@@ -1,5 +1,5 @@
 # 開発環境自体にデプロイする
-# /var/www/form_template_local (RAILS_ENV: production)
+# /var/www/rails_playground_local (RAILS_ENV: production)
 
 server 'localhost', user: 'deploy', roles: %w{app db web}
 server 'localhost', user: 'deploy', roles: %w{app web}

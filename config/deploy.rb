@@ -1,10 +1,10 @@
 # config valid only for current version of Capistrano
 lock '3.6.1'
 
-set :application, 'form_template'
+set :application, 'rails_playground'
 
 set :repo_url, "file://#{Pathname(__dir__).dirname}"
-# set :repo_url, "git@github.com:akicho8/form_template.git"
+# set :repo_url, "git@github.com:akicho8/rails_playground.git"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp

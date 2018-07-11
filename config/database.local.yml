@@ -8,15 +8,15 @@
 #
 # development:
 #   <<: *defaults
-#   database: form_template_development
+#   database: rails_playground_development
 #
 # production:
 #   <<: *defaults
-#   database: form_template_production
+#   database: rails_playground_production
 #
 # test:
 #   <<: *defaults
-#   database: form_template_test
+#   database: rails_playground_test
 
 defaults: &defaults
   adapter: sqlite3
@@ -33,4 +33,4 @@ test:
 
 production:
   <<: *defaults
-  database: /var/www/form_template_local/shared/db/production.sqlite3
+  database: /var/www/rails_playground_local/shared/db/production.sqlite3
