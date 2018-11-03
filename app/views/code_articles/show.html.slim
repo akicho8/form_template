@@ -27,12 +27,12 @@ ruby:
               a @click="m = 'html'" html
             li :class="{active: m == 'simple'}"
               a @click="m = 'simple'" simple
-          template v-if="m == 'slim'"
-            pre v-pre="" = record.partial_file.read
-          template v-else-if="m == 'html'"
-            div v-pre="" == record.to_pretty_html rescue content_tag(:pre, $!, class: "text-danger")
+          template(v-if="m == 'slim'")
+            pre(v-pre="") = record.partial_file.read
+          template(v-else-if="m == 'html'")
+            div(v-pre="") == record.to_pretty_html rescue content_tag(:pre, $!, class: "text-danger")
           template v-else=""
-            div v-pre="" == record.to_simple_html rescue content_tag(:pre, $!, class: "text-danger")
+            div(v-pre="") == record.to_simple_html rescue content_tag(:pre, $!, class: "text-danger")
 
         - if record.point.present?
           .label.label-info= "Point"

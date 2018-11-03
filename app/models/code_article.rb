@@ -50,6 +50,7 @@ class CodeArticle
     {key: "4fb0575f409c2a7c6b210845b164729e", name: "WIP: 将棋盤",                                     point: ""},
     {key: "72b487a3b893680fbf92db87bdb22299", name: "HTML5の機能だけで作るドラッグアンドドロップ", point: ""},
     {key: "2b9ffda833a15e7b440044916b03c2f7", name: "Vue.js で簡単にしたドラッグアンドドロップ",  point: ""},
+    {key: "0c47662e6cce929f5fa83f73190462fd", name: "位置情報",                                   point: ""},
   ]
 
   def self.to_html(h)
