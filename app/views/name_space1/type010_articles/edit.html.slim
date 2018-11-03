@@ -6,7 +6,7 @@
 
   = form_with(model: [:name_space1, current_record], class: "form-horizontal") do |form|
     = render partial: "error_messages", locals: {form: form}
-    = field_set_tag("なくてもいいアップロードだけのフォーム") do
+    = field_set_tag("このブロックはなくても良いが、あると複数まとめてアップロードできたりする") do
       / まとめてアップロードしたいとき用
       .form-group
         = form.label(:up_files, class: "col-sm-2 control-label")
