@@ -14,7 +14,7 @@ javascript:
 
 ruby:
   goolemaps_url_args = {
-    key: AppConfig[:google_maps_api_key],
+    key: Rails.application.credentials.google_maps_api_key,
     callback: "gmap_load_func",  # 読み込まれたあとに呼ぶ関数
     # libraries: ["drawing", "geometry", "places", "visualization"].join(","),
     lang: "en",            # ← 効いてないっぽい
