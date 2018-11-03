@@ -1,5 +1,5 @@
 - if Rails.env.development?
-  = params.to_h.to_html(title: "params の内容")
+  = params.to_unsafe_h.to_html(title: "params の内容")
   - if respond_to?(:current_record)
     = current_record.attributes.to_html(title: "オブジェクトの内容")
     = session[current_single_key].to_h.to_html(title: "セッションに保存したフォーム内容")
