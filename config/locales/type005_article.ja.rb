@@ -10,7 +10,7 @@
     },
     activerecord: {
       models: {
-        type005_article: "確認付き複数ファイルアップロード",
+        type005_article: "複数ファイルアップロード(確認付き)",
         type005_file: "ファイル1つの情報",
       },
       attributes: {
