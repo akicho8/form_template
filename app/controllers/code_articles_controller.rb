@@ -1,2 +1,0 @@
-class CodeArticlesController < ApplicationController
-end

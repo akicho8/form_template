@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :code_articles
+  resources :js_code_articles
 
   # namespace :type028_foos do
   #   get 'type028_bars/index'

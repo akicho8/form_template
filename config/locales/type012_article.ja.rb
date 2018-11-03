@@ -10,7 +10,7 @@
     },
     activerecord: {
       models: {
-        type012_article: "孫まで一気に更新できるよ",
+        type012_article: "孫まで一気に更新",
         type012_s1_article: "子",
         type012_s2_article: "孫",
       },

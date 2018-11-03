@@ -15,5 +15,11 @@
 module NameSpace1
   class Type007ArticlesController < ApplicationController
     include ModulableCrud::AllWithConfirm
+
+    def raw_current_record
+      super.tap do |e|
+        e.name ||= "#{current_model.model_name.human}#{current_model.maximum(:id).to_i.next}"
+      end
+    end
   end
 end

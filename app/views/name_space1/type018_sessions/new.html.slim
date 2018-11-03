@@ -2,7 +2,7 @@
   h2
     = "ログイン"
 
-= form_for(@type018_user, url: [:name_space1, :type018_session], class: "form-horizontal") do |form|
+= form_for(@type018_user, url: [*ns_prefix, :type018_session], class: "form-horizontal") do |form|
   = render partial: "error_messages", locals: {form: form}
   .form-group
     = form.label(:email, class: "col-sm-2 control-label")

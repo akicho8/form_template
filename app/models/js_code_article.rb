@@ -1,6 +1,6 @@
 require "slim/erb_converter"
 
-class CodeArticle
+class JsCodeArticle
   include ApplicationMemoryRecord
   memory_record [
     {key: "eda44ea34434a913a22402b20232cb64", name: "いちばん簡単な例は？",                       point: "el に適用範囲。data に変数。{{変数名}}で埋め込み"},

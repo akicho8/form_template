@@ -1,0 +1,2 @@
+class JsCodeArticlesController < ApplicationController
+end

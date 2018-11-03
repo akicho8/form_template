@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # == Schema Information ==
 #
-# 孫まで一気に更新できるよテーブル (type012_articles as Type012Article)
+# 孫まで一気に更新テーブル (type012_articles as Type012Article)
 #
 # |------------+----------+----------+-------------+------+-------|
 # | カラム名   | 意味     | タイプ   | 属性        | 参照 | INDEX |

@@ -2,7 +2,7 @@ ul
   - current_record.type011_comments.each do |e|
     li= e.comment
 
-= form_with(model: [:name_space1, current_record], html: {class: "form-inline"}) do |form|
+= form_with(model: [*ns_prefix, current_record], html: {class: "form-inline"}) do |form|
   = render partial: "error_messages", locals: {form: form}
   = hidden_field_tag :redirect_to_where, request.url
   = form.fields_for(:type011_comments, form.object.type011_comments.build) do |form|

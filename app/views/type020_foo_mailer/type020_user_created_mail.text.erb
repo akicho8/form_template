@@ -5,4 +5,4 @@ ID: <%= @type020_user.email %>
 PW: <%= @type020_user.password %>
 
 ▼マイページ
-<%= url_for([:name_space1, :type020_home]) %>
+<%= url_for([*ns_prefix, :type020_home]) %>

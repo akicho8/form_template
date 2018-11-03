@@ -22,7 +22,7 @@ module NameSpace1
 
     def raw_current_record
       super.tap do |e|
-        e.title ||= "スレッド#{current_model.maximum(:id).to_i.next}"
+        e.title ||= "#{current_model.model_name.human}#{current_model.maximum(:id).to_i.next}"
       end
     end
 

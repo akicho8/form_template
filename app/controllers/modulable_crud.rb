@@ -15,9 +15,22 @@ module ModulableCrud
 
       before_action :record_load
 
+      helper_method :ns_prefix
       helper_method :current_model
       helper_method :current_record
       helper_method :current_single_key
+    end
+
+    # override according to the situation
+    #
+    # Examples
+    #   :foo
+    #   [:foo, :bar]
+    #   self.class.parent_name.underscore
+    #   [:admin, current_user]
+    #
+    def ns_prefix
+      [:name_space1]
     end
 
     def current_model
@@ -124,11 +137,16 @@ module ModulableCrud
       session[current_single_key] = nil
     end
 
+    # override according to the situation
+    # [*ns_prefix, current_plural_key]
     def redirect_to_where
-      if false
-        [self.class.parent_name.underscore, current_record]
+      case
+      when params[:_submit_and_redirect_to_show]
+        [*ns_prefix, current_record]
+      when params[:_submit_and_redirect_to_edit]
+        [:edit, *ns_prefix, current_record]
       else
-        [self.class.parent_name.underscore, current_plural_key]
+        [*ns_prefix, current_plural_key]
       end
     end
 
@@ -239,7 +257,11 @@ module ModulableCrud
   concern :DestroyMethods do
     def destroy
       current_record.destroy!
-      redirect_to [self.class.parent_name.underscore, current_plural_key], notice: "削除しました"
+      redirect_to redirect_to_after_destroy, notice: "削除しました"
+    end
+
+    def redirect_to_after_destroy
+      [ns_prefix, current_plural_key]
     end
   end
 

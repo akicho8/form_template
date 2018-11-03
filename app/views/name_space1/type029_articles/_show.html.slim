@@ -11,8 +11,8 @@
   h4= "2. remote: true と show.js.coffee を置くことで  _show.html.slim をまるごと更新"
 
 =<> current_record.show_counter
-=<> link_to("+1", [:name_space1, current_record], class: "btn btn-default")
-=<> link_to("+1 (AJAX)", [:name_space1, current_record], class: "btn btn-default", remote: true)
+=<> link_to("+1", [*ns_prefix, current_record], class: "btn btn-default")
+=<> link_to("+1 (AJAX)", [*ns_prefix, current_record], class: "btn btn-default", remote: true)
 
 .page-header
   h4= "3. ほぼRails標準機能だけでスライダーを通知する例。jQuery が change に反応して隠し submit をクリックする"

@@ -3,4 +3,4 @@
     = "#{current_type019_user}のホーム"
 
 ul.nav.nav-pills
-  li= link_to("ログアウト", [:name_space1, :type019_home, logout: "true"])
+  li= link_to("ログアウト", [*ns_prefix, :type019_home, logout: "true"])

@@ -1,4 +1,4 @@
-class LuckyBeast
+class RbCodeArticle
   include ApplicationMemoryRecord
   memory_record [
     {
@@ -56,6 +56,12 @@ class LuckyBeast
       desc: "1:N。とてもシンプル。中間情報は単に 1:1 で結ぶだけに使っている。別の情報を持たない。別の情報を持つ場合は Type096Article を参考にすること。",
     },
     {
+      model: Type007Article,
+      confirm: true,
+      tables: 3,
+      desc: "1対多。確認画面対応で一気にコードが煩雑になる",
+    },
+    {
       model: Type096Article,
       confirm: false,
       tables: 3,
@@ -72,12 +78,6 @@ Type006 の中間情報に別の情報を持つ場合バージョン。
       desc: "1:N:1。collection_check_boxes / collection_radio_buttons / collection_select (+multiple) の例",
     },
     {
-      model: Type007Article,
-      confirm: true,
-      tables: 3,
-      desc: "1対多。確認画面対応で一気にコードが煩雑になる",
-    },
-    {
       model: Type008Article,
       confirm: true,
       tables: 3,
@@ -87,13 +87,13 @@ Type006 の中間情報に別の情報を持つ場合バージョン。
       model: Type011Article,
       confirm: false,
       tables: 2,
-      desc: "スレッドの作成と同時に1を自分で書き込むタイプ。",
+      desc: "スレッドの作成と同時に1を自分で書き込むタイプ。親の更新で子もまとめて更新できる。has_one か has_many か曖昧な仕様でもうまく対応できる。応用範囲が広い",
     },
     {
       model: Type012Article,
       confirm: false,
       tables: 3,
-      desc: "異なる3つのモデルで構成する木構造。向こうの向こうまで一気に作る。",
+      desc: "異なる3つのモデルで構成する木構造。向こうの向こうまで一気に作る。2ch形式スレッドに似ているがもっと深い",
     },
     {
       model: Type013Article,

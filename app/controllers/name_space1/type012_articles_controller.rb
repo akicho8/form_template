@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # == Schema Information ==
 #
-# 孫まで一気に更新できるよテーブル (type012_articles as Type012Article)
+# 孫まで一気に更新テーブル (type012_articles as Type012Article)
 #
 # |------------+----------+----------+-------------+------+-------|
 # | カラム名   | 意味     | タイプ   | 属性        | 参照 | INDEX |
@@ -18,7 +18,7 @@ module NameSpace1
 
     def raw_current_record
       super.tap do |e|
-        e.comment0 ||= "スレッド#{current_model.maximum(:id).to_i.next}"
+        e.comment0 ||= "#{current_model.model_name.human}#{current_model.maximum(:id).to_i.next}"
       end
     end
 
