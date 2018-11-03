@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock '3.6.1'
+lock "~> 3.10.1"
 
 set :application, 'rails_playground'
 
@@ -8,7 +8,7 @@ set :repo_url, "file://#{Pathname(__dir__).dirname}"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
-set :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+set :branch, `git rev-parse --abbrev-ref HEAD`.strip
 # set :branch, :master
 
 # Default deploy_to directory is /var/www/my_app_name
@@ -31,18 +31,18 @@ set :deploy_to, proc { "/var/www/#{fetch(:application)}_#{fetch(:stage)}" }
 # set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
 # set :linked_files, fetch(:linked_files, []).push('config/secrets.yml', '.env')
 # set :linked_files, fetch(:linked_files, []).push('config/database.yml')
-set :linked_files, fetch(:linked_files, []).push('config/secrets.yml.key')
+append :linked_files, "config/master.key"
 
 # Default value for linked_dirs is []
-set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
+append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "storage"
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 # set :default_env, { path: "/usr/local/rbenv/shims:/usr/local/rbenv/bin:$PATH" }
-set :default_env, { "DISABLE_DATABASE_ENVIRONMENT_CHECK" => "1" }
+set :default_env, -> { {"DISABLE_DATABASE_ENVIRONMENT_CHECK" => "1", "RAILS_ENV" => fetch(:rails_env)} }
 
 # Default value for keep_releases is 5
-# set :keep_releases, 5
+set :keep_releases, 1
 
 # for capistrano/rbenv
 
@@ -56,15 +56,22 @@ set :default_env, { "DISABLE_DATABASE_ENVIRONMENT_CHECK" => "1" }
 # set :rbenv_roles, :all # default value
 
 # set :rbenv_path, "/usr/local/var/rbenv"
-set :rbenv_type, :system # or :system, depends on your rbenv setup
+# set :rbenv_type, :system # or :system, depends on your rbenv setup
 # set :rbenv_ruby, File.read('.ruby-version').strip
 # set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} /usr/local/bin/rbenv exec"
 
+set :rbenv_type, :system # or :system, depends on your rbenv setup
+set :rbenv_ruby, File.read('.ruby-version').strip
 
+################################################################################ bundler
 
+# set :bundle_path, nil
+# set :bundle_flags, '--deployment'
+# ▼capistrano3.3.xでbin以下に配備されなくなる - Qiita
+# https://qiita.com/yuuna/items/27a561a14399c5343d2f
+set :bundle_binstubs, -> { shared_path.join('bin') }
 
-set :bundle_path, nil
-set :bundle_flags, '--deployment'
+################################################################################ yarn
 
 # capistrano/yarn
 # set :yarn_target_path, -> { release_path.join('subdir') } # default not set
@@ -155,20 +162,16 @@ namespace :deploy do
 end
 
 namespace :deploy do
-  # cap production deploy:upload_config_secrets_yml_key
-  desc "config/secrets.yml.key のアップロード"
-  task :upload_config_secrets_yml_key do
+  # cap production deploy:upload_config_master_key
+  desc "config/master.key のアップロード"
+  task :upload_config_master_key do
     on roles :all do
-      local_file = "config/secrets.yml.key"
-      if Pathname(local_file).exist?
-        server_file = shared_path.join(local_file)
-        # unless test "[ -f #{server_file} ]"
-        upload! File.open(local_file), server_file.to_s
-        # end
-      end
+      local_file = Pathname("config/master.key")
+      server_file = shared_path.join(local_file)
+      upload! local_file.open, server_file.to_s
     end
   end
-  before "deploy:check:linked_files", "deploy:upload_config_secrets_yml_key"
+  before "deploy:check:linked_files", "deploy:upload_config_master_key"
 
   # cap local deploy:upload_shared_config_database_yml
   desc "config/secrets.yml.key のアップロード"
@@ -198,7 +201,7 @@ namespace :cable_puma do
   task :start do
     on roles(:app) do |host|
       within current_path do
-        with rails_env: fetch(:rails_env), "RAILS_RELATIVE_URL_ROOT" => "/form-template" do
+        with rails_env: fetch(:rails_env), "RAILS_RELATIVE_URL_ROOT" => "/rails-playground" do
           execute :pgrep, "-fl puma || true"
           execute :bundle, "exec", :pumactl, "-F cable/puma.rb start"
           execute :pgrep, "-fl puma || true"
