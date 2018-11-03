@@ -1,2 +1,0 @@
-class StyleArticlesController < CodeArticlesController
-end
