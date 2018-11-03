@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :type017_article do
     foo "MyString"
   end
