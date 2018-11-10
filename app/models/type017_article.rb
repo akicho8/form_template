@@ -22,7 +22,11 @@ class Type017Article < ApplicationRecord
 
   before_validation do
     if changes[:map_address] && map_address.present?
-      geocode = Geokit::Geocoders::GoogleGeocoder.geocode(map_address) # オフラインでは例外がでず警告を表示する
+      geocode = nil
+      begin
+        geocode = Geokit::Geocoders::GoogleGeocoder.geocode(map_address) # オフラインでは例外がでず警告を表示する
+      rescue Geokit::Geocoders::TooManyQueriesError
+      end
       if geocode
         if geocode.success
           self.geocode_hash = geocode.to_hash

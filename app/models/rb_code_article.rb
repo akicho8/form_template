@@ -8,6 +8,12 @@ class RbCodeArticle
       desc: "とてもシンプル",
     },
     {
+      model: Type035Article,
+      confirm: true,
+      tables: 1,
+      desc: "acts_as_list",
+    },
+    {
       model: Type002Article,
       confirm: true,
       tables: 2,
@@ -87,7 +93,7 @@ Type006 の中間情報に別の情報を持つ場合バージョン。
       model: Type011Article,
       confirm: false,
       tables: 2,
-      desc: "スレッドの作成と同時に1を自分で書き込むタイプ。親の更新で子もまとめて更新できる。has_one か has_many か曖昧な仕様でもうまく対応できる。応用範囲が広い",
+      desc: "スレッドの作成と同時に1を自分で書き込む。親の更新で子もまとめて更新できる。has_one か has_many か曖昧な仕様でもうまく対応できる。掲示板のイメージが強いがいろんな用途に応用できる",
     },
     {
       model: Type012Article,

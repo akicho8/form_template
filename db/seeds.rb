@@ -21,3 +21,10 @@ end
 unless Type029Article.exists?
   p Type029Article.create!
 end
+
+unless Type035Article.exists?
+  5.times do
+    Type035Article.create!
+  end
+  tp Type035Article
+end

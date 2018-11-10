@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   match 'privacy_policy' => 'about_page#privacy_policy', via: [:get]
 
   namespace :name_space1 do
+    resources :type035_articles
     resources :type001_articles
     resources :type002_articles
     resources :type003_articles

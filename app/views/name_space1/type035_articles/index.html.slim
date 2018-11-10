@@ -1,0 +1,6 @@
+.page-header
+  h2= params[:page_title] || "#{current_model.model_name.human}一覧"
+
+p= link_to("新規", [:new, *ns_prefix, current_single_key], class: "btn btn-primary")
+
+= render partial: "row", collection: current_records, as: :record, spacer_template: "divider"

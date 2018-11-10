@@ -14,7 +14,7 @@ module NameSpace1
 
       def current_type018_user_required
         unless current_type018_user
-          redirect_to [:new, :name_space1, :type018_session], alert: "ログインしてください"
+          redirect_to [:new, *ns_prefix, :type018_session], alert: "ログインしてください"
         end
       end
     end

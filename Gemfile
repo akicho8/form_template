@@ -101,3 +101,5 @@ gem 'uzoumuzou',     github: 'akicho8/uzoumuzou'
 gem 'normalizer',    github: 'akicho8/normalizer'
 
 gem 'coderay'
+
+gem 'acts_as_list'

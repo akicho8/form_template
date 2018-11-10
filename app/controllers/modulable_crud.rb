@@ -138,7 +138,7 @@ module ModulableCrud
     end
 
     # override according to the situation
-    # [*ns_prefix, current_plural_key]
+    # [*ns_prefix, current_model]
     def redirect_to_where
       case
       when params[:_submit_and_redirect_to_show]
@@ -146,7 +146,7 @@ module ModulableCrud
       when params[:_submit_and_redirect_to_edit]
         [:edit, *ns_prefix, current_record]
       else
-        [*ns_prefix, current_plural_key]
+        [*ns_prefix, current_model]
       end
     end
 

@@ -42,6 +42,17 @@
 
 # == Schema Information ==
 #
+# 件名と本文のみテーブル (type035_articles as Type035Article)
+#
+# |----------+------+---------+-------------+------+-------|
+# | カラム名 | 意味 | タイプ  | 属性        | 参照 | INDEX |
+# |----------+------+---------+-------------+------+-------|
+# | id       | ID   | integer | NOT NULL PK |      |       |
+# | position | 順序 | integer |             |      |       |
+# |----------+------+---------+-------------+------+-------|
+
+# == Schema Information ==
+#
 # 件名と本文の画像認証対応版テーブル (type002_articles as Type002Article)
 #
 # |------------+--------------+----------+-------------+------+-------|
@@ -90,41 +101,182 @@
 
 # == Schema Information ==
 #
-# ファイル1つの情報テーブル (type010_files as Type010File)
+# 件名と本文のみテーブル (type001_articles as Type001Article)
 #
-# |--------------------+----------------+----------+-------------+----------------------+-------|
-# | カラム名           | 意味           | タイプ   | 属性        | 参照                 | INDEX |
-# |--------------------+----------------+----------+-------------+----------------------+-------|
-# | id                 | ID             | integer  | NOT NULL PK |                      |       |
-# | type010_article_id | 画像セット情報 | integer  | NOT NULL    | => Type010Article#id | B     |
-# | name               | Name           | string   |             |                      |       |
-# | media_file         | ファイル       | string   | NOT NULL    |                      |       |
-# | position           | 順序           | integer  | NOT NULL    |                      | A     |
-# | created_at         | 作成日時       | datetime | NOT NULL    |                      |       |
-# | updated_at         | 更新日時       | datetime | NOT NULL    |                      |       |
-# |--------------------+----------------+----------+-------------+----------------------+-------|
-#
-#- 備考 -------------------------------------------------------------------------
-# ・Type010File モデルは Type010Article モデルから has_one :type010_file_a されています。
-#--------------------------------------------------------------------------------
+# |------------+----------+----------+-------------+------+-------|
+# | カラム名   | 意味     | タイプ   | 属性        | 参照 | INDEX |
+# |------------+----------+----------+-------------+------+-------|
+# | id         | ID       | integer  | NOT NULL PK |      |       |
+# | subject    | 件名     | string   |             |      |       |
+# | body       | 内容     | text     |             |      |       |
+# | created_at | 作成日時 | datetime | NOT NULL    |      |       |
+# | updated_at | 更新日時 | datetime | NOT NULL    |      |       |
+# |------------+----------+----------+-------------+------+-------|
 
 # == Schema Information ==
 #
-# 子テーブル (type012_s1_articles as Type012S1Article)
+# 件名と本文の画像認証対応の親切版テーブル (type015_articles as Type015Article)
 #
-# |--------------------+----------+----------+-------------+----------------------+-------|
-# | カラム名           | 意味     | タイプ   | 属性        | 参照                 | INDEX |
-# |--------------------+----------+----------+-------------+----------------------+-------|
-# | id                 | ID       | integer  | NOT NULL PK |                      |       |
-# | type012_article_id | 親       | integer  | NOT NULL    | => Type012Article#id | A     |
-# | comment1           | コメント | string   |             |                      |       |
-# | created_at         | 作成日時 | datetime | NOT NULL    |                      |       |
-# | updated_at         | 更新日時 | datetime | NOT NULL    |                      |       |
-# |--------------------+----------+----------+-------------+----------------------+-------|
+# |------------+--------------+----------+-------------+------+-------|
+# | カラム名   | 意味         | タイプ   | 属性        | 参照 | INDEX |
+# |------------+--------------+----------+-------------+------+-------|
+# | id         | ID           | integer  | NOT NULL PK |      |       |
+# | subject    | 件名         | string   |             |      |       |
+# | body       | 内容         | text     |             |      |       |
+# | remote_ip  | アクセス元IP | string   |             |      |       |
+# | created_at | 作成日時     | datetime | NOT NULL    |      |       |
+# | updated_at | 更新日時     | datetime | NOT NULL    |      |       |
+# |------------+--------------+----------+-------------+------+-------|
+
+# == Schema Information ==
 #
-#- 備考 -------------------------------------------------------------------------
-# ・Type012S1Article モデルは Type012Article モデルから has_many :type012_s1_articles されています。
-#--------------------------------------------------------------------------------
+# もりだくさん個人情報登録テーブル (type003_articles as Type003Article)
+#
+# |---------------------+----------------------+----------+-------------+------+-------|
+# | カラム名            | 意味                 | タイプ   | 属性        | 参照 | INDEX |
+# |---------------------+----------------------+----------+-------------+------+-------|
+# | id                  | ID                   | integer  | NOT NULL PK |      |       |
+# | first_name          | 姓                   | string   | NOT NULL    |      |       |
+# | last_name           | 名                   | string   | NOT NULL    |      |       |
+# | first_name_hiragana | 姓(ふりがな)         | string   | NOT NULL    |      |       |
+# | last_name_hiragana  | 名(ふりがな)         | string   | NOT NULL    |      |       |
+# | first_postal_code   | 郵便番号(左)         | string   | NOT NULL    |      |       |
+# | last_postal_code    | 郵便番号(右)         | string   | NOT NULL    |      |       |
+# | prefecture_name     | 都道府県             | string   | NOT NULL    |      |       |
+# | city_address        | 市区町村             | string   | NOT NULL    |      |       |
+# | number_address      | 番地                 | string   | NOT NULL    |      |       |
+# | house_name          | ビル名・部屋番号     | string   |             |      |       |
+# | email               | 連絡先メールアドレス | string   | NOT NULL    |      | A!    |
+# | first_tel           | 市外局番             | string   | NOT NULL    |      |       |
+# | middle_tel          | 市内局番             | string   | NOT NULL    |      |       |
+# | last_tel            | 加入者番号           | string   | NOT NULL    |      |       |
+# | legal_accept_key    | プライバシーポリシー | string   | NOT NULL    |      |       |
+# | subject             | 件名                 | string   |             |      |       |
+# | body                | 内容                 | text     |             |      |       |
+# | remote_ip           | Remote ip            | string   |             |      |       |
+# | remote_host         | Remote host          | string   |             |      |       |
+# | user_agent          | User agent           | string   |             |      |       |
+# | created_at          | 登録日時             | datetime | NOT NULL    |      |       |
+# | updated_at          | 更新日時             | datetime | NOT NULL    |      |       |
+# |---------------------+----------------------+----------+-------------+------+-------|
+
+# == Schema Information ==
+#
+# ファイルアップロードテーブル (type004_articles as Type004Article)
+#
+# |------------+----------+----------+-------------+------+-------|
+# | カラム名   | 意味     | タイプ   | 属性        | 参照 | INDEX |
+# |------------+----------+----------+-------------+------+-------|
+# | id         | ID       | integer  | NOT NULL PK |      |       |
+# | media_file | ファイル | string   |             |      |       |
+# | comment    | コメント | string   |             |      |       |
+# | created_at | 作成日時 | datetime | NOT NULL    |      |       |
+# | updated_at | 更新日時 | datetime | NOT NULL    |      |       |
+# |------------+----------+----------+-------------+------+-------|
+
+# == Schema Information ==
+#
+# 複数ファイルアップロード1テーブル (type009_articles as Type009Article)
+#
+# |------------+----------+----------+-------------+------+-------|
+# | カラム名   | 意味     | タイプ   | 属性        | 参照 | INDEX |
+# |------------+----------+----------+-------------+------+-------|
+# | id         | ID       | integer  | NOT NULL PK |      |       |
+# | title      | タイトル | string   |             |      |       |
+# | created_at | 作成日時 | datetime | NOT NULL    |      |       |
+# | updated_at | 更新日時 | datetime | NOT NULL    |      |       |
+# |------------+----------+----------+-------------+------+-------|
+
+# == Schema Information ==
+#
+# 複数ファイルアップロード(確認付き)テーブル (type005_articles as Type005Article)
+#
+# |------------+----------+----------+-------------+------+-------|
+# | カラム名   | 意味     | タイプ   | 属性        | 参照 | INDEX |
+# |------------+----------+----------+-------------+------+-------|
+# | id         | ID       | integer  | NOT NULL PK |      |       |
+# | title      | タイトル | string   |             |      |       |
+# | created_at | 作成日時 | datetime | NOT NULL    |      |       |
+# | updated_at | 更新日時 | datetime | NOT NULL    |      |       |
+# |------------+----------+----------+-------------+------+-------|
+
+# == Schema Information ==
+#
+# 位置が重要なアルバム情報テーブル (type010_articles as Type010Article)
+#
+# |------------+----------+----------+-------------+------+-------|
+# | カラム名   | 意味     | タイプ   | 属性        | 参照 | INDEX |
+# |------------+----------+----------+-------------+------+-------|
+# | id         | ID       | integer  | NOT NULL PK |      |       |
+# | name       | 名前     | string   |             |      |       |
+# | created_at | 作成日時 | datetime | NOT NULL    |      |       |
+# | updated_at | 更新日時 | datetime | NOT NULL    |      |       |
+# |------------+----------+----------+-------------+------+-------|
+
+# == Schema Information ==
+#
+# チェックボックスで複数項目設定1テーブル (type006_articles as Type006Article)
+#
+# |------------+----------+----------+-------------+------+-------|
+# | カラム名   | 意味     | タイプ   | 属性        | 参照 | INDEX |
+# |------------+----------+----------+-------------+------+-------|
+# | id         | ID       | integer  | NOT NULL PK |      |       |
+# | name       | 名前     | string   |             |      |       |
+# | created_at | 作成日時 | datetime | NOT NULL    |      |       |
+# | updated_at | 更新日時 | datetime | NOT NULL    |      |       |
+# |------------+----------+----------+-------------+------+-------|
+
+# == Schema Information ==
+#
+# 中間情報が単なる連携ではなく別の情報を持つ場合テーブル (type096_articles as Type096Article)
+#
+# |------------+----------+----------+-------------+------+-------|
+# | カラム名   | 意味     | タイプ   | 属性        | 参照 | INDEX |
+# |------------+----------+----------+-------------+------+-------|
+# | id         | ID       | integer  | NOT NULL PK |      |       |
+# | name       | 名前     | string   |             |      |       |
+# | created_at | 作成日時 | datetime | NOT NULL    |      |       |
+# | updated_at | 更新日時 | datetime | NOT NULL    |      |       |
+# |------------+----------+----------+-------------+------+-------|
+
+# == Schema Information ==
+#
+# プルダウンのマルチセレクトで複数項目設定テーブル (type008_articles as Type008Article)
+#
+# |------------+----------+----------+-------------+------+-------|
+# | カラム名   | 意味     | タイプ   | 属性        | 参照 | INDEX |
+# |------------+----------+----------+-------------+------+-------|
+# | id         | ID       | integer  | NOT NULL PK |      |       |
+# | name       | 名前     | string   |             |      |       |
+# | created_at | 作成日時 | datetime | NOT NULL    |      |       |
+# | updated_at | 更新日時 | datetime | NOT NULL    |      |       |
+# |------------+----------+----------+-------------+------+-------|
+
+# == Schema Information ==
+#
+# 2ch形式スレッドテーブル (type011_articles as Type011Article)
+#
+# |------------+----------+----------+-------------+------+-------|
+# | カラム名   | 意味     | タイプ   | 属性        | 参照 | INDEX |
+# |------------+----------+----------+-------------+------+-------|
+# | id         | ID       | integer  | NOT NULL PK |      |       |
+# | title      | タイトル | string   |             |      |       |
+# | created_at | 作成日時 | datetime | NOT NULL    |      |       |
+# | updated_at | 更新日時 | datetime | NOT NULL    |      |       |
+# |------------+----------+----------+-------------+------+-------|
+
+# == Schema Information ==
+#
+# 孫まで一気に更新テーブル (type012_articles as Type012Article)
+#
+# |------------+----------+----------+-------------+------+-------|
+# | カラム名   | 意味     | タイプ   | 属性        | 参照 | INDEX |
+# |------------+----------+----------+-------------+------+-------|
+# | id         | ID       | integer  | NOT NULL PK |      |       |
+# | comment0   | タイトル | string   |             |      |       |
+# | created_at | 作成日時 | datetime | NOT NULL    |      |       |
+# | updated_at | 更新日時 | datetime | NOT NULL    |      |       |
+# |------------+----------+----------+-------------+------+-------|
 
 # == Schema Information ==
 #
@@ -169,16 +321,76 @@
 
 # == Schema Information ==
 #
-# プルダウンのマルチセレクトで複数項目設定テーブル (type008_articles as Type008Article)
+# 住所からGoogleマップ表示テーブル (type017_articles as Type017Article)
 #
-# |------------+----------+----------+-------------+------+-------|
-# | カラム名   | 意味     | タイプ   | 属性        | 参照 | INDEX |
-# |------------+----------+----------+-------------+------+-------|
-# | id         | ID       | integer  | NOT NULL PK |      |       |
-# | name       | 名前     | string   |             |      |       |
-# | created_at | 作成日時 | datetime | NOT NULL    |      |       |
-# | updated_at | 更新日時 | datetime | NOT NULL    |      |       |
-# |------------+----------+----------+-------------+------+-------|
+# |--------------+----------+----------+-------------+------+-------|
+# | カラム名     | 意味     | タイプ   | 属性        | 参照 | INDEX |
+# |--------------+----------+----------+-------------+------+-------|
+# | id           | ID       | integer  | NOT NULL PK |      |       |
+# | map_address  | 住所     | string   |             |      |       |
+# | geocode_hash | 住所情報 | text     |             |      |       |
+# | created_at   | 作成日時 | datetime | NOT NULL    |      |       |
+# | updated_at   | 更新日時 | datetime | NOT NULL    |      |       |
+# |--------------+----------+----------+-------------+------+-------|
+
+# == Schema Information ==
+#
+# メール認証可能ユーザーテーブル (type018_users as Type018User)
+#
+# |-----------------------------+--------------------------+----------+-------------+------------------------------+-------|
+# | カラム名                    | 意味                     | タイプ   | 属性        | 参照                         | INDEX |
+# |-----------------------------+--------------------------+----------+-------------+------------------------------+-------|
+# | id                          | ID                       | integer  | NOT NULL PK |                              |       |
+# | type018_email_activation_id | Type018 email activation | integer  |             | => Type018EmailActivation#id | B     |
+# | handle_name                 | 名前                     | string   | NOT NULL    |                              |       |
+# | email                       | メールアドレス           | string   | NOT NULL    |                              | A!    |
+# | salt                        | 塩                       | string   | NOT NULL    |                              |       |
+# | salted_password             | ハッシュ化パスワード     | string   | NOT NULL    |                              |       |
+# | created_at                  | 作成日時                 | datetime | NOT NULL    |                              |       |
+# | updated_at                  | 更新日時                 | datetime | NOT NULL    |                              |       |
+# |-----------------------------+--------------------------+----------+-------------+------------------------------+-------|
+#
+#- 備考 -------------------------------------------------------------------------
+# ・Type018User モデルは Type018EmailActivation モデルから has_many :type018_users されています。
+#--------------------------------------------------------------------------------
+
+# == Schema Information ==
+#
+# ファイル1つの情報テーブル (type010_files as Type010File)
+#
+# |--------------------+----------------+----------+-------------+----------------------+-------|
+# | カラム名           | 意味           | タイプ   | 属性        | 参照                 | INDEX |
+# |--------------------+----------------+----------+-------------+----------------------+-------|
+# | id                 | ID             | integer  | NOT NULL PK |                      |       |
+# | type010_article_id | 画像セット情報 | integer  | NOT NULL    | => Type010Article#id | B     |
+# | name               | Name           | string   |             |                      |       |
+# | media_file         | ファイル       | string   | NOT NULL    |                      |       |
+# | position           | 順序           | integer  | NOT NULL    |                      | A     |
+# | created_at         | 作成日時       | datetime | NOT NULL    |                      |       |
+# | updated_at         | 更新日時       | datetime | NOT NULL    |                      |       |
+# |--------------------+----------------+----------+-------------+----------------------+-------|
+#
+#- 備考 -------------------------------------------------------------------------
+# ・Type010File モデルは Type010Article モデルから has_one :type010_file_a されています。
+#--------------------------------------------------------------------------------
+
+# == Schema Information ==
+#
+# 子テーブル (type012_s1_articles as Type012S1Article)
+#
+# |--------------------+----------+----------+-------------+----------------------+-------|
+# | カラム名           | 意味     | タイプ   | 属性        | 参照                 | INDEX |
+# |--------------------+----------+----------+-------------+----------------------+-------|
+# | id                 | ID       | integer  | NOT NULL PK |                      |       |
+# | type012_article_id | 親       | integer  | NOT NULL    | => Type012Article#id | A     |
+# | comment1           | コメント | string   |             |                      |       |
+# | created_at         | 作成日時 | datetime | NOT NULL    |                      |       |
+# | updated_at         | 更新日時 | datetime | NOT NULL    |                      |       |
+# |--------------------+----------+----------+-------------+----------------------+-------|
+#
+#- 備考 -------------------------------------------------------------------------
+# ・Type012S1Article モデルは Type012Article モデルから has_many :type012_s1_articles されています。
+#--------------------------------------------------------------------------------
 
 # == Schema Information ==
 #
@@ -203,19 +415,6 @@
 
 # == Schema Information ==
 #
-# 複数ファイルアップロード(確認付き)テーブル (type005_articles as Type005Article)
-#
-# |------------+----------+----------+-------------+------+-------|
-# | カラム名   | 意味     | タイプ   | 属性        | 参照 | INDEX |
-# |------------+----------+----------+-------------+------+-------|
-# | id         | ID       | integer  | NOT NULL PK |      |       |
-# | title      | タイトル | string   |             |      |       |
-# | created_at | 作成日時 | datetime | NOT NULL    |      |       |
-# | updated_at | 更新日時 | datetime | NOT NULL    |      |       |
-# |------------+----------+----------+-------------+------+-------|
-
-# == Schema Information ==
-#
 # パスワード変更URL通知テーブル (type018_password_reset_url_notifications as Type018PasswordResetUrlNotification)
 #
 # |-----------------+--------------------+----------+-------------+-------------------+-------|
@@ -235,19 +434,6 @@
 # ・【警告:インデックス欠如】create_type018_password_reset_url_notifications マイグレーションに add_index :type018_password_reset_url_notifications, :type018_user_id を追加してください
 # ・Type018PasswordResetUrlNotification モデルは Type018User モデルから has_many :type018_password_reset_url_notifications されています。
 #--------------------------------------------------------------------------------
-
-# == Schema Information ==
-#
-# 2ch形式スレッドテーブル (type011_articles as Type011Article)
-#
-# |------------+----------+----------+-------------+------+-------|
-# | カラム名   | 意味     | タイプ   | 属性        | 参照 | INDEX |
-# |------------+----------+----------+-------------+------+-------|
-# | id         | ID       | integer  | NOT NULL PK |      |       |
-# | title      | タイトル | string   |             |      |       |
-# | created_at | 作成日時 | datetime | NOT NULL    |      |       |
-# | updated_at | 更新日時 | datetime | NOT NULL    |      |       |
-# |------------+----------+----------+-------------+------+-------|
 
 # == Schema Information ==
 #
@@ -290,38 +476,6 @@
 
 # == Schema Information ==
 #
-# もりだくさん個人情報登録テーブル (type003_articles as Type003Article)
-#
-# |---------------------+----------------------+----------+-------------+------+-------|
-# | カラム名            | 意味                 | タイプ   | 属性        | 参照 | INDEX |
-# |---------------------+----------------------+----------+-------------+------+-------|
-# | id                  | ID                   | integer  | NOT NULL PK |      |       |
-# | first_name          | 姓                   | string   | NOT NULL    |      |       |
-# | last_name           | 名                   | string   | NOT NULL    |      |       |
-# | first_name_hiragana | 姓(ふりがな)         | string   | NOT NULL    |      |       |
-# | last_name_hiragana  | 名(ふりがな)         | string   | NOT NULL    |      |       |
-# | first_postal_code   | 郵便番号(左)         | string   | NOT NULL    |      |       |
-# | last_postal_code    | 郵便番号(右)         | string   | NOT NULL    |      |       |
-# | prefecture_name     | 都道府県             | string   | NOT NULL    |      |       |
-# | city_address        | 市区町村             | string   | NOT NULL    |      |       |
-# | number_address      | 番地                 | string   | NOT NULL    |      |       |
-# | house_name          | ビル名・部屋番号     | string   |             |      |       |
-# | email               | 連絡先メールアドレス | string   | NOT NULL    |      | A!    |
-# | first_tel           | 市外局番             | string   | NOT NULL    |      |       |
-# | middle_tel          | 市内局番             | string   | NOT NULL    |      |       |
-# | last_tel            | 加入者番号           | string   | NOT NULL    |      |       |
-# | legal_accept_key    | プライバシーポリシー | string   | NOT NULL    |      |       |
-# | subject             | 件名                 | string   |             |      |       |
-# | body                | 内容                 | text     |             |      |       |
-# | remote_ip           | Remote ip            | string   |             |      |       |
-# | remote_host         | Remote host          | string   |             |      |       |
-# | user_agent          | User agent           | string   |             |      |       |
-# | created_at          | 登録日時             | datetime | NOT NULL    |      |       |
-# | updated_at          | 更新日時             | datetime | NOT NULL    |      |       |
-# |---------------------+----------------------+----------+-------------+------+-------|
-
-# == Schema Information ==
-#
 # メール認証テーブル (type018_email_activations as Type018EmailActivation)
 #
 # |----------------+----------------+----------+-------------+------+-------|
@@ -351,40 +505,6 @@
 
 # == Schema Information ==
 #
-# メール認証可能ユーザーテーブル (type018_users as Type018User)
-#
-# |-----------------------------+--------------------------+----------+-------------+------------------------------+-------|
-# | カラム名                    | 意味                     | タイプ   | 属性        | 参照                         | INDEX |
-# |-----------------------------+--------------------------+----------+-------------+------------------------------+-------|
-# | id                          | ID                       | integer  | NOT NULL PK |                              |       |
-# | type018_email_activation_id | Type018 email activation | integer  |             | => Type018EmailActivation#id | B     |
-# | handle_name                 | 名前                     | string   | NOT NULL    |                              |       |
-# | email                       | メールアドレス           | string   | NOT NULL    |                              | A!    |
-# | salt                        | 塩                       | string   | NOT NULL    |                              |       |
-# | salted_password             | ハッシュ化パスワード     | string   | NOT NULL    |                              |       |
-# | created_at                  | 作成日時                 | datetime | NOT NULL    |                              |       |
-# | updated_at                  | 更新日時                 | datetime | NOT NULL    |                              |       |
-# |-----------------------------+--------------------------+----------+-------------+------------------------------+-------|
-#
-#- 備考 -------------------------------------------------------------------------
-# ・Type018User モデルは Type018EmailActivation モデルから has_many :type018_users されています。
-#--------------------------------------------------------------------------------
-
-# == Schema Information ==
-#
-# 孫まで一気に更新テーブル (type012_articles as Type012Article)
-#
-# |------------+----------+----------+-------------+------+-------|
-# | カラム名   | 意味     | タイプ   | 属性        | 参照 | INDEX |
-# |------------+----------+----------+-------------+------+-------|
-# | id         | ID       | integer  | NOT NULL PK |      |       |
-# | comment0   | タイトル | string   |             |      |       |
-# | created_at | 作成日時 | datetime | NOT NULL    |      |       |
-# | updated_at | 更新日時 | datetime | NOT NULL    |      |       |
-# |------------+----------+----------+-------------+------+-------|
-
-# == Schema Information ==
-#
 # ファイル1つの情報テーブル (type009_attachments as Type009Attachment)
 #
 # |--------------------+-----------------+----------+-------------+----------------------+-------|
@@ -403,19 +523,6 @@
 
 # == Schema Information ==
 #
-# 中間情報が単なる連携ではなく別の情報を持つ場合テーブル (type096_articles as Type096Article)
-#
-# |------------+----------+----------+-------------+------+-------|
-# | カラム名   | 意味     | タイプ   | 属性        | 参照 | INDEX |
-# |------------+----------+----------+-------------+------+-------|
-# | id         | ID       | integer  | NOT NULL PK |      |       |
-# | name       | 名前     | string   |             |      |       |
-# | created_at | 作成日時 | datetime | NOT NULL    |      |       |
-# | updated_at | 更新日時 | datetime | NOT NULL    |      |       |
-# |------------+----------+----------+-------------+------+-------|
-
-# == Schema Information ==
-#
 # コメントテーブル (type011_comments as Type011Comment)
 #
 # |--------------------+--------------+----------+-------------+----------------------+-------|
@@ -431,102 +538,6 @@
 #- 備考 -------------------------------------------------------------------------
 # ・Type011Comment モデルは Type011Article モデルから has_one :type011_comment_first されています。
 #--------------------------------------------------------------------------------
-
-# == Schema Information ==
-#
-# 住所からGoogleマップ表示テーブル (type017_articles as Type017Article)
-#
-# |--------------+----------+----------+-------------+------+-------|
-# | カラム名     | 意味     | タイプ   | 属性        | 参照 | INDEX |
-# |--------------+----------+----------+-------------+------+-------|
-# | id           | ID       | integer  | NOT NULL PK |      |       |
-# | map_address  | 住所     | string   |             |      |       |
-# | geocode_hash | 住所情報 | text     |             |      |       |
-# | created_at   | 作成日時 | datetime | NOT NULL    |      |       |
-# | updated_at   | 更新日時 | datetime | NOT NULL    |      |       |
-# |--------------+----------+----------+-------------+------+-------|
-
-# == Schema Information ==
-#
-# チェックボックスで複数項目設定1テーブル (type006_articles as Type006Article)
-#
-# |------------+----------+----------+-------------+------+-------|
-# | カラム名   | 意味     | タイプ   | 属性        | 参照 | INDEX |
-# |------------+----------+----------+-------------+------+-------|
-# | id         | ID       | integer  | NOT NULL PK |      |       |
-# | name       | 名前     | string   |             |      |       |
-# | created_at | 作成日時 | datetime | NOT NULL    |      |       |
-# | updated_at | 更新日時 | datetime | NOT NULL    |      |       |
-# |------------+----------+----------+-------------+------+-------|
-
-# == Schema Information ==
-#
-# 件名と本文のみテーブル (type001_articles as Type001Article)
-#
-# |------------+----------+----------+-------------+------+-------|
-# | カラム名   | 意味     | タイプ   | 属性        | 参照 | INDEX |
-# |------------+----------+----------+-------------+------+-------|
-# | id         | ID       | integer  | NOT NULL PK |      |       |
-# | subject    | 件名     | string   |             |      |       |
-# | body       | 内容     | text     |             |      |       |
-# | created_at | 作成日時 | datetime | NOT NULL    |      |       |
-# | updated_at | 更新日時 | datetime | NOT NULL    |      |       |
-# |------------+----------+----------+-------------+------+-------|
-
-# == Schema Information ==
-#
-# 件名と本文の画像認証対応の親切版テーブル (type015_articles as Type015Article)
-#
-# |------------+--------------+----------+-------------+------+-------|
-# | カラム名   | 意味         | タイプ   | 属性        | 参照 | INDEX |
-# |------------+--------------+----------+-------------+------+-------|
-# | id         | ID           | integer  | NOT NULL PK |      |       |
-# | subject    | 件名         | string   |             |      |       |
-# | body       | 内容         | text     |             |      |       |
-# | remote_ip  | アクセス元IP | string   |             |      |       |
-# | created_at | 作成日時     | datetime | NOT NULL    |      |       |
-# | updated_at | 更新日時     | datetime | NOT NULL    |      |       |
-# |------------+--------------+----------+-------------+------+-------|
-
-# == Schema Information ==
-#
-# ファイルアップロードテーブル (type004_articles as Type004Article)
-#
-# |------------+----------+----------+-------------+------+-------|
-# | カラム名   | 意味     | タイプ   | 属性        | 参照 | INDEX |
-# |------------+----------+----------+-------------+------+-------|
-# | id         | ID       | integer  | NOT NULL PK |      |       |
-# | media_file | ファイル | string   |             |      |       |
-# | comment    | コメント | string   |             |      |       |
-# | created_at | 作成日時 | datetime | NOT NULL    |      |       |
-# | updated_at | 更新日時 | datetime | NOT NULL    |      |       |
-# |------------+----------+----------+-------------+------+-------|
-
-# == Schema Information ==
-#
-# 複数ファイルアップロード1テーブル (type009_articles as Type009Article)
-#
-# |------------+----------+----------+-------------+------+-------|
-# | カラム名   | 意味     | タイプ   | 属性        | 参照 | INDEX |
-# |------------+----------+----------+-------------+------+-------|
-# | id         | ID       | integer  | NOT NULL PK |      |       |
-# | title      | タイトル | string   |             |      |       |
-# | created_at | 作成日時 | datetime | NOT NULL    |      |       |
-# | updated_at | 更新日時 | datetime | NOT NULL    |      |       |
-# |------------+----------+----------+-------------+------+-------|
-
-# == Schema Information ==
-#
-# 位置が重要なアルバム情報テーブル (type010_articles as Type010Article)
-#
-# |------------+----------+----------+-------------+------+-------|
-# | カラム名   | 意味     | タイプ   | 属性        | 参照 | INDEX |
-# |------------+----------+----------+-------------+------+-------|
-# | id         | ID       | integer  | NOT NULL PK |      |       |
-# | name       | 名前     | string   |             |      |       |
-# | created_at | 作成日時 | datetime | NOT NULL    |      |       |
-# | updated_at | 更新日時 | datetime | NOT NULL    |      |       |
-# |------------+----------+----------+-------------+------+-------|
 
 # == Schema Information ==
 #

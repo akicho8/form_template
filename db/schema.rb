@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170515000000) do
+ActiveRecord::Schema.define(version: 2017_11_09_000000) do
 
   create_table "sessions", force: :cascade do |t|
     t.string "session_id", null: false
@@ -327,6 +327,10 @@ ActiveRecord::Schema.define(version: 20170515000000) do
     t.integer "show_counter"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "type035_articles", force: :cascade do |t|
+    t.integer "position"
   end
 
   create_table "type096_articles", force: :cascade do |t|
