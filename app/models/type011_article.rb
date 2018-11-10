@@ -29,6 +29,16 @@ class Type011Article < ApplicationRecord
     included do
       has_many :type011_comments, -> { order(:created_at) }, inverse_of: :type011_article, dependent: :destroy
       accepts_nested_attributes_for :type011_comments, reject_if: proc { |attributes| attributes[:comment].blank? }, allow_destroy: true
+
+      # 次のようにすると comment が空のときにレコードを削除できる
+      # accepts_nested_attributes_for :type011_comments, allow_destroy: true
+      # before_validation do
+      #   type011_comments.each do |type011_comment|
+      #     if type011_comment.comment.blank?
+      #       type011_comment.mark_for_destruction
+      #     end
+      #   end
+      # end
     end
   end
 end
