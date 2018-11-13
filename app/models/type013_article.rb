@@ -15,7 +15,10 @@
 # |------------------+------------------+----------+-------------+--------------------------+-------|
 
 class Type013Article < ApplicationRecord
-  has_many :comments, -> { order(:created_at) }, as: :commentable, class_name: name, dependent: :destroy, inverse_of: :commentable # 自分に対してもコメントできるようにするため
   belongs_to :commentable, polymorphic: true
+
+  # 相手のモデルに対して設定する内容
+  # ここでは自分に対してもコメントできるようにしている
+  has_many :comments, -> { order(:created_at) }, as: :commentable, class_name: name, dependent: :destroy, inverse_of: :commentable
   accepts_nested_attributes_for :comments, reject_if: proc { |attributes| attributes[:comment].blank? }, allow_destroy: true
 end
