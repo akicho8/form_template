@@ -60,16 +60,6 @@ Rails.application.routes.draw do
     resource :type022_chat_room, only: [:show]
     resource :type023_chat_room, only: [:show]
 
-    # resources :guides do
-      # with_options :module => 'guides' do
-        # resources :menu_infos, path: "links"
-    resources :my_albums do
-      resources :my_album_elements, :module => 'my_albums'
-    end
-    #     # resource :guide_attachments, path: "images"
-    #   end
-    # end
-
     resources :type029_articles do
       member do
         # get :ajax_params_inspector                                       # ← GETのみの場合
