@@ -21,8 +21,8 @@ module NameSpace1
     def current_record_save
       super.tap do
         # コントローラー側で行う場合
-        if params[:move_arrow]
-          current_record.send(params[:move_arrow])
+        if params[:move_to]
+          current_record.send(params[:move_to])
         end
       end
     end

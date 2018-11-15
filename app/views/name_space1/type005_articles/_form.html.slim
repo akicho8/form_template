@@ -41,8 +41,9 @@
   = form.label("既存のファイル", class: "col-sm-2 control-label")
   .col-sm-10
     / この条件を入れないとフォームでエラーがあったときに増えていってしまう
-    - if form.object.type005_files.all?(&:persisted?)
-      - form.object.type005_files.build
+    - scope = form.object.type005_files.where({})
+    - if scope.all?(&:persisted?)
+      - scope.build
     / 要素(複数)
     - form.object.type005_files.each do |e|
       = form.fields_for(:type005_files, e) do |form|

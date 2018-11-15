@@ -2,9 +2,11 @@ div
   = record.attributes
   =<> link_to("詳細", [*ns_prefix, record], class: "btn btn-default")
   =<> link_to("削除", [*ns_prefix, record], method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-default")
-  / コントローラー側で行う場合
-  =<> link_to("↑", [*ns_prefix, record, move_arrow: :move_higher], method: :put, class: "btn btn-default")
-  =<> link_to("↓", [*ns_prefix, record, move_arrow: :move_lower], method: :put, class: "btn btn-default")
-  / モデル側で行う場合(accepts_nested_attributes_forを使う場合に有用)
-  =<> link_to("↑", [*ns_prefix, record, {type035_article: {move_arrow: :move_higher}}], method: :put, class: "btn btn-default")
-  =<> link_to("↓", [*ns_prefix, record, {type035_article: {move_arrow: :move_lower}}], method: :put, class: "btn btn-default")
+
+  | コントローラー側で行う
+  =<> link_to("↑", [*ns_prefix, record, move_to: :move_higher], method: :put, class: "btn btn-default")
+  =<> link_to("↓", [*ns_prefix, record, move_to: :move_lower], method: :put, class: "btn btn-default")
+
+  | モデル側で行う
+  =<> link_to("↑", [*ns_prefix, record, {type035_article: {move_to: :move_higher}}], method: :put, class: "btn btn-default")
+  =<> link_to("↓", [*ns_prefix, record, {type035_article: {move_to: :move_lower}}], method: :put, class: "btn btn-default")

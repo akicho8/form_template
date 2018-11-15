@@ -22,4 +22,18 @@ class Type005File < ApplicationRecord
 
   belongs_to :type005_article, inverse_of: :type005_files
   acts_as_list scope: :type005_article, top_of_list: 0
+
+  # モデル側で動かす場合
+  concerning :MovableMethods do
+    included do
+      # attr_accessor を使ってはいけない。親モデルだといいけど accepts_nested_attributes_for 経由だと値を渡せないのではまる。
+      attribute :move_to
+
+      after_save do
+        if v = move_to
+          reload.send("move_#{v}")        # リロード重要
+        end
+      end
+    end
+  end
 end

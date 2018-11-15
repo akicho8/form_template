@@ -2,6 +2,12 @@ class RbCodeArticle
   include ApplicationMemoryRecord
   memory_record [
     {
+      model: Type005Article,
+      confirm: true,
+      tables: 2,
+      desc: "画像一つ一つに説明を入れられるアルバム機能のようなもの。複数アップロード対応。説明と合わせて1つだけアップロード対応。順序入れ替え対応。個別削除対応。高機能。コンテンツ管理の仕組みになる。応用範囲が広い。確認処理は綺麗に外せる",
+    },
+    {
       model: Type001Article,
       confirm: true,
       tables: 1,
@@ -9,9 +15,8 @@ class RbCodeArticle
     },
     {
       model: Type035Article,
-      confirm: true,
       tables: 1,
-      desc: "acts_as_list",
+      desc: "acts_as_list で has_many の子を入れ替える。深いコントローラーの場合は Type005Article の方を参考にすること",
     },
     {
       model: Type002Article,
@@ -42,12 +47,6 @@ class RbCodeArticle
       confirm: false,
       tables: 2,
       desc: "不親切。エラー時に再アップが必要。だが、とてもシンプル",
-    },
-    {
-      model: Type005Article,
-      confirm: true,
-      tables: 2,
-      desc: "複数アップロード対応。説明と合わせて1つだけアップロード対応。順序入れ替え対応。個別削除対応。高機能。コンテンツ管理の仕組みになる。応用範囲が広い。確認処理は綺麗に外せる",
     },
     {
       model: Type010Article,

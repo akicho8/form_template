@@ -2,7 +2,7 @@
   = form.label(:media_file, class: "control-label2")
   - if form.object.media_file.url
     div
-      = image_tag(form.object.media_file.url, height: 256, class: "img-responsive")
+      = image_tag(form.object.media_file.url, height: 256, class: "img-rounded")
   = form.file_field(:media_file)
 
 .form-group
@@ -17,7 +17,28 @@
       label.checkbox-inline=<> form.check_box(:_destroy) + "削除"
 
   .form-group
+    / 専用コントローラーで処理。若干面倒か？
+    / 最終的に Type005Files#show なんかを作るとしたらこちらでもいいかもしれない
     =<> link_to("△", [*ns_prefix, current_record, form.object, move_to: :to_top], method: :put, class: "btn btn-default btn-sm")
     =<> link_to("▲", [*ns_prefix, current_record, form.object, move_to: :higher], method: :put, class: "btn btn-default btn-sm")
     =<> link_to("▼", [*ns_prefix, current_record, form.object, move_to: :lower], method: :put, class: "btn btn-default btn-sm")
     =<> link_to("▽", [*ns_prefix, current_record, form.object, move_to: :to_bottom], method: :put, class: "btn btn-default btn-sm")
+
+    / accepts_nested_attributes_for 経由
+    / PUTリンクバージョン
+    / コントローラーが不要。モデル側で処理を管理できる
+    =<> link_to("△", [*ns_prefix, current_record, {type005_article: {type005_files_attributes: {id: form.object.id, move_to: :to_top}}}], method: :put, class: "btn btn-default btn-sm")
+    =<> link_to("▲", [*ns_prefix, current_record, {type005_article: {type005_files_attributes: {id: form.object.id, move_to: :higher}}}], method: :put, class: "btn btn-default btn-sm")
+    =<> link_to("▼", [*ns_prefix, current_record, {type005_article: {type005_files_attributes: {id: form.object.id, move_to: :lower}}}], method: :put, class: "btn btn-default btn-sm")
+    =<> link_to("▽", [*ns_prefix, current_record, {type005_article: {type005_files_attributes: {id: form.object.id, move_to: :to_bottom}}}], method: :put, class: "btn btn-default btn-sm")
+
+    / accepts_nested_attributes_for 経由
+    / ラジオボタンバージョン
+    =<> form.radio_button(:move_to, "to_top") + "△"
+    =<> form.radio_button(:move_to, "higher") + "▲"
+    =<> form.radio_button(:move_to, "lower") + "▼"
+    =<> form.radio_button(:move_to, "to_bottom") + "▽"
+
+    / accepts_nested_attributes_for 経由
+    / 直接番号を入れる
+    =<> form.number_field(:position)
