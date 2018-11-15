@@ -21,6 +21,7 @@
         },
         type005_file: {
           media_file: "ファイル",
+          media_desc: "説明",
         },
       },
     },

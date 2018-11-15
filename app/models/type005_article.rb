@@ -13,17 +13,24 @@
 # |------------+----------+----------+-------------+------+-------|
 
 class Type005Article < ApplicationRecord
-  has_many :type005_files, inverse_of: :type005_article, dependent: :destroy
-  accepts_nested_attributes_for :type005_files
+  has_many :type005_files, -> { order(:position) }, inverse_of: :type005_article, dependent: :destroy
+  accepts_nested_attributes_for :type005_files, allow_destroy: true, reject_if: proc { |attributes|
+    v = false
+    v ||= attributes[:media_file].present?
+    v ||= attributes[:id].present?
+    v.!
+  }
 
-  with_options(presence: true) do
+  with_options presence: true do
     validates :title
   end
 
+  # 一括アップロード用
   def up_files=(v)
     assign_attributes(type005_files_attributes: v.collect { |e| {media_file: e} })
   end
 
+  # 全削除用
   concerning :AllRemoveMethods do
     attr_accessor :type005_files_all_remove
 
@@ -40,6 +47,7 @@ class Type005Article < ApplicationRecord
     end
   end
 
+  # 確認用
   concerning :ConfirmMethods do
     # 中間ファイルの情報を持っているもののみ
     def temp_type005_files

@@ -54,7 +54,7 @@ class RbCodeArticle
       model: Type005Article,
       confirm: true,
       tables: 2,
-      desc: "個別の削除にも対応。いちばん高機能",
+      desc: "複数アップロード対応。説明と合わせて1つだけアップロード対応。順序入れ替え対応。個別削除対応。高機能。コンテンツ管理の仕組みになる。応用範囲が広い。確認処理は綺麗に外せる",
     },
     {
       model: Type010Article,

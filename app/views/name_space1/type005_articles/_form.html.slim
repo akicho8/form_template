@@ -13,18 +13,10 @@
   = form.label(:up_files, class: "col-sm-2 control-label")
   .col-sm-10
     / トップレベルで定義
-    = form.file_field(:up_files, class: "form-control", multiple: true)
+    = form.file_field(:up_files, multiple: true)
+
     - if form.object.type005_files.present?
       .help-block
-        / 既存ファイルたち
-        - if form.object.persisted_type005_files.present?
-          = "既存のアップロードファイル"
-          ul.list-unstyled
-            - form.object.persisted_type005_files.each do |e|
-              li
-                = image_tag(e.media_file.url, height: 128, class: "img-rounded")
-                label.checkbox-inline= check_box_tag("delete_ids[]", e.id, controller.current_delete_ids.include?(e.id)) + "削除する"
-
         / 今UPしたファイルたち
         - if form.object.temp_type005_files.present?
           = "今アップロードしたファイル"
@@ -44,3 +36,21 @@
     .col-sm-10
       label.checkbox-inline
         = form.check_box(:type005_files_all_remove) + "削除する"
+
+.form-group
+  = form.label("既存のファイル", class: "col-sm-2 control-label")
+  .col-sm-10
+    / この条件を入れないとフォームでエラーがあったときに増えていってしまう
+    - if form.object.type005_files.all?(&:persisted?)
+      - form.object.type005_files.build
+    / 要素(複数)
+    - form.object.type005_files.each do |e|
+      = form.fields_for(:type005_files, e) do |form|
+        .type005_file
+          = render partial: "type005_file_form", locals: { form: form }
+
+sass:
+  .type005_file
+    margin: 1em 0
+    padding: 1em 3em
+    border: 1px dashed #ddd

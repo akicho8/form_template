@@ -111,8 +111,11 @@ ActiveRecord::Schema.define(version: 2018_11_09_173100) do
   create_table "type005_files", force: :cascade do |t|
     t.integer "type005_article_id"
     t.string "media_file"
+    t.string "media_desc"
+    t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["position"], name: "index_type005_files_on_position"
     t.index ["type005_article_id"], name: "index_type005_files_on_type005_article_id"
   end
 

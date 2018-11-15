@@ -15,6 +15,7 @@
 module NameSpace1
   class Type005ArticlesController < ApplicationController
     include ModulableCrud::AllWithConfirm
+    # include ModulableCrud::All
 
     # 「確認画面」から「更新」のとき復帰するためセッションに保存しておく情報
     def current_session_attributes
@@ -32,6 +33,11 @@ module NameSpace1
       super.tap do |e|
         e.title ||= "アルバム#{current_model.maximum(:id).to_i.next}"
       end
+    end
+
+    # 更新後の移動先
+    def redirect_to_where
+      [:edit, *ns_prefix, current_record]
     end
 
     # 削除関連

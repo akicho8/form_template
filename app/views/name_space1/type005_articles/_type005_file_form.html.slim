@@ -1,0 +1,23 @@
+.form-group
+  = form.label(:media_file, class: "control-label2")
+  - if form.object.media_file.url
+    div
+      = image_tag(form.object.media_file.url, height: 256, class: "img-responsive")
+  = form.file_field(:media_file)
+
+.form-group
+  = form.label(:media_desc, class: "control-label")
+  = form.text_field(:media_desc, class: "form-control")
+
+- if form.object.persisted?
+  .form-group
+    - if controller.respond_to_confirm?
+      label.checkbox-inline= check_box_tag("delete_ids[]", form.object.id, controller.current_delete_ids.include?(form.object.id)) + "削除する"
+    - else
+      label.checkbox-inline=<> form.check_box(:_destroy) + "削除"
+
+  .form-group
+    =<> link_to("△", [*ns_prefix, current_record, form.object, move_to: :to_top], method: :put, class: "btn btn-default btn-sm")
+    =<> link_to("▲", [*ns_prefix, current_record, form.object, move_to: :higher], method: :put, class: "btn btn-default btn-sm")
+    =<> link_to("▼", [*ns_prefix, current_record, form.object, move_to: :lower], method: :put, class: "btn btn-default btn-sm")
+    =<> link_to("▽", [*ns_prefix, current_record, form.object, move_to: :to_bottom], method: :put, class: "btn btn-default btn-sm")

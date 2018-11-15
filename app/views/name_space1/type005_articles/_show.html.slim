@@ -1,4 +1,5 @@
 .row
+  = current_record.to_html
   - current_record.type005_files.each do |type005_file|
     .col-md-3
       = link_to(image_tag(type005_file.media_file.url), asset_path(type005_file.media_file.url), class: "thumbnail")

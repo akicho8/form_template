@@ -30,7 +30,9 @@ Rails.application.routes.draw do
     resources :type002_articles
     resources :type003_articles
     resources :type004_articles
-    resources :type005_articles
+    resources :type005_articles do
+      resources :type005_files, :module => 'type005_articles'
+    end
     resources :type006_articles
     resources :type096_articles
     resources :type007_articles

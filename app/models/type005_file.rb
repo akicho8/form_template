@@ -21,4 +21,5 @@ class Type005File < ApplicationRecord
   mount_uploader :media_file, AttachmentUploader
 
   belongs_to :type005_article, inverse_of: :type005_files
+  acts_as_list scope: :type005_article, top_of_list: 0
 end

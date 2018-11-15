@@ -21,6 +21,8 @@ class CreateType005Articles < ActiveRecord::Migration[5.1]
     create_table :type005_files, force: true do |t|
       t.belongs_to :type005_article
       t.string :media_file
+      t.string :media_desc
+      t.integer :position, index: true
       t.timestamps null: false
     end
   end
