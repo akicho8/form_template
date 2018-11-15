@@ -1,0 +1,21 @@
+.word_info(id=form.object.unique_form_id)
+  = form.hidden_field(:key)
+
+  .form-group
+    = form.label(:locale_key)
+    = form.collection_select(:locale_key, form.object.non_used_locale_infos(:wi_main), :key, :name, {include_blank: true}, class: "form-control", "v-model": "record.locale_key")
+
+  .form-group
+    = form.label(:paper_text, form.object.new_record? ? "テキスト" : "#{form.object.locale_info.name}テキスト")
+    = form.text_area(:paper_text, class: "form-control", rows: [1, form.object.paper_text.to_s.strip.lines.count].max, "v-model": "record.paper_text")
+
+  .form-group
+    = form.label(:speech_text)
+    = form.text_area(:speech_text, class: "form-control", rows: [1, form.object.speech_text.to_s.strip.lines.count], "v-model": "record.speech_text")
+
+  - if form.object.persisted?
+    .form-group
+      label.checkbox-inline=<> form.check_box(:_destroy) + "削除"
+
+javascript:
+  new WordInfoFormSpeech({record_attributes: #{form.object.to_json.html_safe}}).$mount("##{form.object.unique_form_id}")

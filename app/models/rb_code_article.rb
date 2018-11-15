@@ -1,6 +1,13 @@
 class RbCodeArticle
   include ApplicationMemoryRecord
   memory_record [
+
+    {
+      model: MyAlbum,
+      tables: 3,
+      desc: "とてもシンプル",
+    },
+
     {
       model: Type001Article,
       confirm: true,

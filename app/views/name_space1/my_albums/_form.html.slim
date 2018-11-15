@@ -1,0 +1,29 @@
+/ 本体
+.form-group
+  = form.label(:r_ap_string1)
+  = form.text_field(:r_ap_string1, class: "form-control")
+
+/ この条件を入れないとフォームでエラーがあったときに増えていってしまう
+- if form.object.my_album_elements.all?(&:persisted?)
+  - form.object.my_album_elements.build
+
+/ 要素(複数)
+- form.object.my_album_elements.each do |e|
+  = form.fields_for(:my_album_elements, e) do |form|
+    = render partial: "my_album_element_form", locals: { form: form }
+
+// 新規だけ別のビューにしたいときはこっち
+// = form.fields_for(:my_album_elements, form.object.my_album_elements.build) do |form|
+//   = render partial: "my_album_element_form", locals: { form: form }
+
+sass:
+  .my_album_element
+    margin: 1em 0
+    padding: 1em
+    border: 1px dashed #eee
+    .media_file
+      max-height: 320px
+    .word_info
+      margin: 1em 0
+      padding: 1em
+      border: 1px dashed #eee

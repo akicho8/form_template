@@ -1,0 +1,37 @@
+.my_album_element
+  // = form.object.to_html
+  .form-group
+    = form.label(:media_file)
+    - if form.object.media_file.url
+      p
+        = image_tag(form.object.media_file.url, class: "img-responsive media_file")
+    = form.file_field(:media_file)
+
+  .form-group
+    = form.label(:r_ape_string1)
+    = form.text_field(:r_ape_string1, class: "form-control")
+
+  - if form.object.persisted?
+    .form-group
+      label.checkbox-inline=<> form.check_box(:_destroy) + "削除"
+
+    .form-group
+      =<> link_to("△", [*ns_prefix, current_record, form.object, move_to: :to_top], method: :put, class: "btn btn-default btn-sm")
+      =<> link_to("▲", [*ns_prefix, current_record, form.object, move_to: :higher], method: :put, class: "btn btn-default btn-sm")
+      =<> link_to("▼", [*ns_prefix, current_record, form.object, move_to: :lower], method: :put, class: "btn btn-default btn-sm")
+      =<> link_to("▽", [*ns_prefix, current_record, form.object, move_to: :to_bottom], method: :put, class: "btn btn-default btn-sm")
+
+  / 新しい言語追加のために新しいレコードがない場合は作っておく
+  / この条件を入れないとフォームでエラーがあったときに増えていってしまう
+  - if form.object.word_infos.all?(&:persisted?)
+    - form.object.word_infos.build(key: "wi_main")
+  / 言語一覧
+  - form.object.word_infos.each do |e|
+    = form.fields_for(:word_infos, e) do |form|
+      = render partial: "word_info_form", locals: {form: form}
+
+  / 新規だけ別のビューにしたいときはこっち
+  / if form.object.word_infos.all?(&:persisted?)
+  / = form.fields_for(:word_infos, form.object.word_infos.build(key: "wi_main")) do |form|
+  /   .form-group
+  /     = render partial: "word_info_form", locals: {form: form}

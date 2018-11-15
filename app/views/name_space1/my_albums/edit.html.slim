@@ -1,0 +1,15 @@
+.row
+  .col-md-12
+    .box
+      = form_with(model: [*ns_prefix, current_record]) do |form|
+        .box-body
+          .row
+            .col-sm-12
+              = render partial: "error_messages", locals: {form: form}
+              = render partial: "form", locals: {form: form}
+        .box-footer
+          =<> form.submit((current_record.new_record? ? "作成" : "更新"), name: :_submit, class: ['btn', 'btn-primary'])
+          / =<> form.submit((current_record.new_record? ? "作成" : "更新") + "して一覧に戻る", name: :_submit, class: ['btn', 'btn-primary'])
+          / =<> form.submit(current_record.new_record? ? "作成のみ" : "更新のみ", name: :_submit_and_redirect_to_edit, class: ['btn', 'btn-default'])
+          / .pull-right
+          /   = link_to("削除", [*ns_prefix, current_record], method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger")
