@@ -17,6 +17,7 @@ class Type005Article < ApplicationRecord
   accepts_nested_attributes_for :type005_files, allow_destroy: true, reject_if: proc { |attributes|
     v = false
     v ||= attributes[:media_file].present?
+    v ||= attributes[:media_file_cache].present? # 「確認」→「更新」とした場合は media_file_cache の方が入るので存在チェック重要
     v ||= attributes[:id].present?
     v.!
   }
