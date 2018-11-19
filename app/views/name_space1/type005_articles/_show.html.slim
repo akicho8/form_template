@@ -3,3 +3,8 @@
   - current_record.type005_files.each do |type005_file|
     .col-md-3
       = link_to(image_tag(type005_file.media_file.url), asset_path(type005_file.media_file.url), class: "thumbnail")
+
+p
+  .panel.panel-default
+    .panel-body
+      = link_to("並び替え", [:edit, *ns_prefix, current_record, edit_view: "sort"], class: "btn btn-default")

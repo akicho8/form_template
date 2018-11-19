@@ -1,5 +1,8 @@
 .form-group
-  = form.label(:media_file, class: "control-label2")
+  - if form.object.new_record?
+    p.small.text-muted= "新規"
+
+  = form.label(:media_file, class: "control-label")
   - if form.object.media_file.url
     div
       = image_tag(form.object.media_file.url, height: 256, class: "img-rounded")

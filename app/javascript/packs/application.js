@@ -12,6 +12,8 @@ console.log('Hello World from Webpacker')
 require("bootstrap/dist/css/bootstrap")
 require("bootstrap/dist/css/bootstrap-theme")
 
+import "./general_sort.js"
+
 window.chroma  = require("chroma-js")
 window.sprintf = require("sprintf-js").sprintf
 window.axios   = require("axios")

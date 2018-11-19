@@ -127,7 +127,7 @@ module ModulableCrud
     def save_and_redirect
       current_record_session_clear
       unless current_record_save
-        render :edit
+        render edit_view_key
         return
       end
       redirect_to_after_create_or_update
@@ -174,7 +174,8 @@ module ModulableCrud
     def current_record_params
       v = nil
       if params.has_key?(current_single_key)
-        v = params.require(current_single_key)
+        # v = params.require(current_single_key)
+        v = params[current_single_key]
         case
         when permit_all?
           v = v.permit!
@@ -194,6 +195,10 @@ module ModulableCrud
     def current_permit_columns
       current_model.column_names.collect(&:to_sym) - [:id, :created_at, :updated_at]
     end
+
+    def edit_view_key
+      params[:edit_view] || :edit
+    end
   end
 
   concern :ConfirmMethods do
@@ -203,7 +208,7 @@ module ModulableCrud
         # 確認画面行き
         current_record.assign_attributes(current_record_params)
         unless current_record_valid?
-          render :edit
+          render edit_view_key
           return
         end
         # 確認画面から戻ったとき用の属性を作っておく
@@ -217,7 +222,7 @@ module ModulableCrud
       when _back_to_edit?
         # 確認画面から編集に戻る
         current_record.assign_attributes(session[current_single_key]) # 復元
-        render :edit
+        render edit_view_key
       else
         # 通常処理
         super
@@ -234,7 +239,7 @@ module ModulableCrud
     def new
       session[current_single_key] = nil
       current_record.assign_attributes(current_record_params)
-      render :edit
+      render edit_view_key
     end
 
     def create
@@ -246,7 +251,7 @@ module ModulableCrud
     def edit
       session[current_single_key] = nil
       current_record.assign_attributes(current_record_params)
-      render :edit
+      render edit_view_key
     end
 
     def update

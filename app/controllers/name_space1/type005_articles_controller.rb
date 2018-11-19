@@ -17,12 +17,6 @@ module NameSpace1
     include ModulableCrud::AllWithConfirm
     # include ModulableCrud::All
 
-    # 「確認画面」から「更新」のとき復帰するためセッションに保存しておく情報
-    def current_session_attributes
-      v = super.merge(type005_files_attributes: current_record.temp_type005_files.collect {|e| {media_file_cache: e.media_file_cache} })
-      v.except(:up_files)
-    end
-
     def page_header_show_title
       current_record.title
     end
@@ -38,6 +32,29 @@ module NameSpace1
     # 更新後の移動先
     def redirect_to_where
       [:edit, *ns_prefix, current_record]
+    end
+
+    concerning :SortableMethods do
+      def save_and_redirect
+        if request.format.json? && ids = params[:record_ids]
+          ids.each do |id|
+            current_record.type005_files.find(id).move_to_bottom
+          end
+          render json: {message: "並び換えました"}
+          return
+        end
+
+        super
+      end
+    end
+
+    concerning :ConfirmMethods do
+      # 「確認画面」から「更新」のとき復帰するためセッションに保存しておく情報
+      def current_session_attributes
+        v = super.merge(type005_files_attributes: current_record.temp_type005_files.collect {|e| {media_file_cache: e.media_file_cache} })
+        v = v.except(:up_files)
+        v
+      end
     end
 
     # 削除関連

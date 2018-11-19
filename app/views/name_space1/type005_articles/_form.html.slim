@@ -13,7 +13,8 @@
   = form.label(:up_files, class: "col-sm-2 control-label")
   .col-sm-10
     / トップレベルで定義
-    = form.file_field(:up_files, multiple: true)
+    p.form-control-static
+      = form.file_field(:up_files, multiple: true)
 
     - if form.object.type005_files.present?
       .help-block
@@ -40,6 +41,9 @@
 .form-group
   = form.label("既存のファイル", class: "col-sm-2 control-label")
   .col-sm-10
+    - unless form.object.type005_files.exists?
+      p.form-control-static= "なし"
+
     / この条件を入れないとフォームでエラーがあったときに増えていってしまう
     - scope = form.object.type005_files.where({})
     - if scope.all?(&:persisted?)
