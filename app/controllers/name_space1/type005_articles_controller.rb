@@ -36,12 +36,14 @@ module NameSpace1
 
     concerning :SortableMethods do
       def save_and_redirect
-        if request.format.json? && ids = params[:record_ids]
+        if ids = params[:reordered_ids]
           ids.each do |id|
             current_record.type005_files.find(id).move_to_bottom
           end
-          render json: {message: "並び換えました"}
-          return
+          if request.format.json?
+            render json: {message: "並び換えました"}
+            return
+          end
         end
 
         super

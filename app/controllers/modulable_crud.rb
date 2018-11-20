@@ -1,3 +1,6 @@
+# This module is not a solid black boxed library.
+# Basically all methods are designed to override.
+
 module ModulableCrud
   concern :Base do
     included do
@@ -12,8 +15,6 @@ module ModulableCrud
           end
         end
       end
-
-      before_action :record_load
 
       helper_method :ns_prefix
       helper_method :current_model
@@ -61,24 +62,17 @@ module ModulableCrud
       current_model.name.demodulize.underscore.pluralize.to_sym
     end
 
-    def current_record
-      instance_variable_get("@#{current_single_key}")
-    end
-
-    def current_record=(v)
-      instance_variable_set("@#{current_single_key}", v)
-    end
-
-    def record_load
-      self.current_record = raw_current_record
-    end
-
     def raw_current_record
       if v = params[:id].presence
-        current_scope.find(v)
+        record = current_scope.find(v)
       else
-        current_scope.new
+        record = current_scope.new
       end
+      record
+    end
+
+    def current_record
+      @current_record ||= raw_current_record
     end
 
     def respond_to_destroy?
@@ -97,15 +91,14 @@ module ModulableCrud
     end
 
     def index
-      self.current_records = current_scope.order(:id).reverse_order.page(params[:page])
+    end
+
+    def raw_current_records
+      current_scope.order(:id).reverse_order.page(params[:page])
     end
 
     def current_records
-      instance_variable_get("@#{current_plural_key}")
-    end
-
-    def current_records=(v)
-      instance_variable_set("@#{current_plural_key}", v)
+      @current_records ||= raw_current_records
     end
   end
 
@@ -266,7 +259,7 @@ module ModulableCrud
     end
 
     def redirect_to_after_destroy
-      [ns_prefix, current_plural_key]
+      [*ns_prefix, current_plural_key]
     end
   end
 

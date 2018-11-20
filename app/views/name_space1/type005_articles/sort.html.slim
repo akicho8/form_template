@@ -1,41 +1,45 @@
 .page-header
   h2= "並び替え"
 
-#sortable_app
-  draggable(v-model="target_records" @sort="draggable_callback")
-    transition-group
-      span(v-for="target_record in target_records" :key="target_record.id")
-        img(:src="target_record.media_file.url" class="img-rounded")
+//////////////////////////////////////////////////////////////////////////////// 動的
+- if true
+  #dynamic_reorder
+    .page-header
+      h4 並び換えたタイミングで fetch PUT
 
-  template(v-if="message")
-    p
-      .panel.panel-default
-        .panel-body
-          | {{message}}
+    draggable.drag_div(v-model="target_records" @sort="draggable_callback" :options="draggable_options" element="span")
+      transition-group
+        div(v-for="target_record in target_records" :key="target_record.id")
+          img(:src="target_record.media_file.url" class="img-rounded")
 
-sass:
-  #sortable_app
-    img
-      margin: 1px
-      max-height: 64px
+    template(v-if="message")
+      p
+        .panel.panel-default
+          .panel-body
+            | {{message}}
 
-javascript:
-  new GeneralSort({authenticity_token: "#{form_authenticity_token}", target_records: #{current_record.type005_files.to_json.html_safe}, put_path: "#{polymorphic_path([*ns_prefix, current_record])}"}).$mount("#sortable_app")
+  javascript:
+    new GeneralSort({authenticity_token: "#{form_authenticity_token}", target_records: #{current_record.type005_files.to_json.html_safe}, put_path: "#{polymorphic_path([*ns_prefix, current_record])}"}).$mount("#dynamic_reorder")
 
-/ = form_with(model: [*ns_prefix, current_record], class: "form-horizontal") do |form|
-/   = render partial: "error_messages", locals: {form: form}
-/   - if false
-/     / かならず確認画面に行くにはここを有効にする
-/     = hidden_field_tag(:_goto_confirm, "true")
-/   = render partial: "form", locals: {form: form}
-/
-/   .form-group
-/     .col-sm-offset-2.col-sm-10
-/       =<> form.submit(name: :_submit, class: "btn btn-primary")
-/       - if controller.respond_to_confirm?
-/         =<> form.submit("確認", name: :_goto_confirm, class: "btn btn-default")
-/
+//////////////////////////////////////////////////////////////////////////////// 静的
+- if true
+  #static_reorder
+    .page-header
+      h4 フォームのsubmitで更新するタイプ
 
+    = form_with(model: [*ns_prefix, current_record], class: "form-horizontal") do |form|
+      draggable.drag_div(v-model="target_records" :options="draggable_options" )
+        transition-group
+          div(v-for="target_record in target_records" :key="target_record.id")
+            input(type="hidden" name="reordered_ids[]" :value="target_record.id")
+            img(:src="target_record.media_file.url" class="img-rounded")
+      = hidden_field_tag(:redirect_to_where, polymorphic_path([:edit, *ns_prefix, current_record], edit_view: "sort"))
+      = form.submit("更新", name: :_submit, class: "btn btn-default")
+
+  javascript:
+    new GeneralSort({target_records: #{current_record.type005_files.to_json.html_safe}}).$mount("#static_reorder")
+
+////////////////////////////////////////////////////////////////////////////////
 hr
 =<> link_to("一覧", [*ns_prefix, current_plural_key], class: "btn btn-default")
 - if current_record.persisted?
@@ -44,3 +48,11 @@ hr
   =<> link_to("削除", [*ns_prefix, current_record], method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn btn-danger")
 
 = render partial: "crud_debug"
+
+sass:
+  .drag_div
+    img
+      margin: 1px
+      max-height: 32px
+    margin: 1em 0em
+

@@ -16,10 +16,18 @@ window.GeneralSort = Vue.extend({
     }
   },
 
+  computed: {
+    draggable_options() {
+      return {
+        animation: 200,
+      }
+    },
+  },
+
   methods: {
     draggable_callback(e) {
       const params = {
-        record_ids: this.target_records.map(e => e.id),
+        reordered_ids: this.target_records.map(e => e.id),
         authenticity_token: this.$options.authenticity_token,
       }
 
