@@ -16,9 +16,13 @@ class Type005Article < ApplicationRecord
   has_many :type005_files, -> { order(:position) }, inverse_of: :type005_article, dependent: :destroy
   accepts_nested_attributes_for :type005_files, allow_destroy: true, reject_if: proc { |attributes|
     v = false
+    v ||= attributes[:id].present?
     v ||= attributes[:media_file].present?
     v ||= attributes[:media_file_cache].present? # 「確認」→「更新」とした場合は media_file_cache の方が入るので存在チェック重要
-    v ||= attributes[:id].present?
+
+    # もし type005_file の下にさらに articles_attributes がある場合の例。type005_file.rb の accepts_nested_attributes_for の reject_if と合わせる
+    # v ||= attributes[:articles_attributes].values.any? { |e| e[:id].present? || e[:body].present? }
+
     v.!
   }
 

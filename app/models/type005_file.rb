@@ -23,6 +23,10 @@ class Type005File < ApplicationRecord
   belongs_to :type005_article, inverse_of: :type005_files
   acts_as_list scope: :type005_article, top_of_list: 0
 
+  # もし articles があるとすれば次のようにする。上のモデルの accepts_nested_attributes_for の reject_if と対応を合わせる
+  # has_many :articles, as: :wordable, class_name: "Article", dependent: :destroy, inverse_of: :article
+  # accepts_nested_attributes_for :articles, reject_if: proc {|attributes| attributes[:id].blank? && attributes[:body].blank? }, allow_destroy: true
+
   # モデル側で動かす場合
   concerning :MovableMethods do
     included do
