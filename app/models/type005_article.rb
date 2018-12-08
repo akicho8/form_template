@@ -37,18 +37,18 @@ class Type005Article < ApplicationRecord
 
   # 全削除用
   concerning :AllRemoveMethods do
-    attr_accessor :type005_files_all_remove
-
-    def type005_files_all_remove?
-      type005_files_all_remove.to_s == "1"
-    end
-
     included do
+      attribute :type005_files_all_remove
+
       after_save do
         if type005_files_all_remove?
           type005_files.destroy_all
         end
       end
+    end
+
+    def type005_files_all_remove?
+      type005_files_all_remove.to_s == "1"
     end
   end
 
@@ -62,6 +62,21 @@ class Type005Article < ApplicationRecord
     # 保存済みのファイルのみ
     def persisted_type005_files
       type005_files - temp_type005_files
+    end
+  end
+
+  # 子の数を制限したいときのバリデーション例
+  concerning :ValidateMethods do
+    included do
+      cattr_accessor(:type005_files_count_max) { 5 }
+
+      validate do
+        if type005_files_count_max
+          if type005_files.count > type005_files_count_max
+            errors.add(:base, "#{type005_files_count_max}つ以内にしてください")
+          end
+        end
+      end
     end
   end
 end
