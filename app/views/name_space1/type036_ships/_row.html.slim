@@ -1,0 +1,5 @@
+tr
+  td= type036_ship.reorderable.name
+  td= render partial: "triangles_link_to", locals: { url_params: -> key { [*ns_prefix, type036_ship, {type036_ship: {move_to: key}, redirect_to_where: polymorphic_path([*ns_prefix, current_model])}] } }
+
+

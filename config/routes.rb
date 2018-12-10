@@ -59,6 +59,7 @@ Rails.application.routes.draw do
     resource :type021_chat_room, only: [:show]
     resource :type022_chat_room, only: [:show]
     resource :type023_chat_room, only: [:show]
+    resources :type036_ships
 
     resources :type029_articles do
       member do

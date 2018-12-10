@@ -28,3 +28,10 @@ unless Type035Article.exists?
   end
   tp Type035Article
 end
+
+unless Type036Ship.exists?
+  Type0361Article.create!(name: "A")
+  Type0361Article.create!(name: "C")
+  Type0362Article.create!(name: "B")
+  Type0362Article.create!(name: "D")
+end

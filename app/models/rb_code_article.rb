@@ -19,6 +19,11 @@ class RbCodeArticle
       desc: "acts_as_list で has_many の子を入れ替える。深いコントローラーの場合は Type005Article の方を参考にすること",
     },
     {
+      model: Type036Ship,
+      tables: 1,
+      desc: "異なるモデルを並び換える。対象モデルを参照する中間モデルを入れ替え対象にする",
+    },
+    {
       model: Type002Article,
       confirm: true,
       tables: 2,

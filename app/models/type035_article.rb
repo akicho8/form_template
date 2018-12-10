@@ -12,7 +12,7 @@
 
 class Type035Article < ApplicationRecord
   default_scope { order(:position) }
-  acts_as_list
+  acts_as_list top_of_list: 0
 
   # モデル側で動かす場合
   concerning :MovableMethods do

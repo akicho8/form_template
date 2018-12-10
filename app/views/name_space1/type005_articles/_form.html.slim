@@ -44,12 +44,14 @@
     - unless form.object.type005_files.exists?
       p.form-control-static= "なし"
 
-    / スコープ重要。フォームに複数あるときに混ざらないようにするため
-    - scope = {}
-    - type005_files = form.object.type005_files.where(scope).to_a
+    / 条件重要。フォームに複数あるときに混ざらないようにすること。
+    - scope = form.object.type005_files.where({})
+    - type005_files = scope.to_a
     / この条件を入れないとフォームでエラーがあったときに増えていってしまう
+    / scope.build しても scope のなかに保存されないのはなぜ？
     - if type005_files.all?(&:persisted?)
-      - type005_files << scope.build(scope)
+      / 新規の場合のみどうにかしたいときはパラメータを追加する
+      - type005_files << scope.build({})
     / 要素(複数)
     - type005_files.each do |e|
       = form.fields_for(:type005_files, e) do |form|

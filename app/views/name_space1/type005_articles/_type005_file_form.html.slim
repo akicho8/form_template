@@ -30,9 +30,9 @@
     / accepts_nested_attributes_for 経由
     / PUTリンクバージョン
     / コントローラーが不要。モデル側で処理を管理できる
-    =<> link_to("△", [*ns_prefix, current_record, {type005_article: {type005_files_attributes: {id: form.object.id, move_to: :to_top}}}], method: :put, class: "btn btn-default btn-sm")
-    =<> link_to("▲", [*ns_prefix, current_record, {type005_article: {type005_files_attributes: {id: form.object.id, move_to: :higher}}}], method: :put, class: "btn btn-default btn-sm")
-    =<> link_to("▼", [*ns_prefix, current_record, {type005_article: {type005_files_attributes: {id: form.object.id, move_to: :lower}}}], method: :put, class: "btn btn-default btn-sm")
+    =<> link_to("△", [*ns_prefix, current_record, {type005_article: {type005_files_attributes: {id: form.object.id, move_to: :to_top}}}],    method: :put, class: "btn btn-default btn-sm")
+    =<> link_to("▲", [*ns_prefix, current_record, {type005_article: {type005_files_attributes: {id: form.object.id, move_to: :higher}}}],    method: :put, class: "btn btn-default btn-sm")
+    =<> link_to("▼", [*ns_prefix, current_record, {type005_article: {type005_files_attributes: {id: form.object.id, move_to: :lower}}}],     method: :put, class: "btn btn-default btn-sm")
     =<> link_to("▽", [*ns_prefix, current_record, {type005_article: {type005_files_attributes: {id: form.object.id, move_to: :to_bottom}}}], method: :put, class: "btn btn-default btn-sm")
 
     / accepts_nested_attributes_for 経由

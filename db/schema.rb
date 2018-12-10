@@ -10,26 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_09_173100) do
-
-  create_table "my_album_elements", force: :cascade do |t|
-    t.integer "my_album_id", null: false
-    t.string "media_file"
-    t.string "r_ape_string1"
-    t.integer "position"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["my_album_id"], name: "index_my_album_elements_on_my_album_id"
-    t.index ["position"], name: "index_my_album_elements_on_position"
-  end
-
-  create_table "my_albums", force: :cascade do |t|
-    t.string "r_ap_string1"
-    t.integer "position"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["position"], name: "index_my_albums_on_position"
-  end
+ActiveRecord::Schema.define(version: 2018_11_10_234500) do
 
   create_table "sessions", force: :cascade do |t|
     t.string "session_id", null: false
@@ -371,21 +352,21 @@ ActiveRecord::Schema.define(version: 2018_11_09_173100) do
     t.index ["type096_article_id"], name: "index_type096_team_ships_on_type096_article_id"
   end
 
-  create_table "word_infos", force: :cascade do |t|
-    t.string "wordable_type", null: false
-    t.integer "wordable_id", null: false
-    t.string "key", null: false
-    t.string "locale_key", null: false
-    t.text "paper_text", null: false
-    t.text "speech_text"
+  create_table "type036_ships", force: :cascade do |t|
+    t.string "reorderable_type", null: false
+    t.integer "reorderable_id", null: false
     t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["key", "wordable_type", "wordable_id", "locale_key"], name: "word_infos_kwwl", unique: true
-    t.index ["key"], name: "index_word_infos_on_key"
-    t.index ["locale_key"], name: "index_word_infos_on_locale_key"
-    t.index ["position"], name: "index_word_infos_on_position"
-    t.index ["wordable_type", "wordable_id"], name: "index_word_infos_on_wordable_type_and_wordable_id"
+    t.index ["reorderable_type", "reorderable_id"], name: "index_type036_ships_on_reorderable_type_and_reorderable_id"
+  end
+
+  create_table "type0361_articles", force: :cascade do |t|
+    t.string "name"
+  end
+
+  create_table "type0362_articles", force: :cascade do |t|
+    t.string "name"
   end
 
 end

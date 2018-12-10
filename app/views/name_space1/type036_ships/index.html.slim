@@ -1,0 +1,5 @@
+table.table
+  = render partial: "row", as: :type036_ship, collection: current_records
+
+/ - if Rails.env.development?
+/   = current_records.to_html

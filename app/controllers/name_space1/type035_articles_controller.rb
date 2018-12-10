@@ -14,8 +14,8 @@ module NameSpace1
   class Type035ArticlesController < ApplicationController
     include ModulableCrud::All
 
-    def index
-      self.current_records = current_scope
+    def raw_current_records
+      current_scope
     end
 
     def current_record_save
