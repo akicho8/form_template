@@ -54,6 +54,12 @@ class RbCodeArticle
       desc: "不親切。エラー時に再アップが必要。だが、とてもシンプル",
     },
     {
+      model: Type037Article,
+      confirm: false,
+      tables: 2,
+      desc: "リモートアップロード",
+    },
+    {
       model: Type010Article,
       confirm: false,
       tables: 2,

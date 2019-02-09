@@ -336,6 +336,20 @@ ActiveRecord::Schema.define(version: 2018_11_10_234500) do
     t.integer "position"
   end
 
+  create_table "type037_articles", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "type037_attachments", force: :cascade do |t|
+    t.integer "type037_article_id"
+    t.string "media_file"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["type037_article_id"], name: "index_type037_attachments_on_type037_article_id"
+  end
+
   create_table "type096_articles", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -352,20 +366,20 @@ ActiveRecord::Schema.define(version: 2018_11_10_234500) do
     t.index ["type096_article_id"], name: "index_type096_team_ships_on_type096_article_id"
   end
 
-  create_table "type036_ships", force: :cascade do |t|
+  create_table "type0990_ships", force: :cascade do |t|
     t.string "reorderable_type", null: false
     t.integer "reorderable_id", null: false
     t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["reorderable_type", "reorderable_id"], name: "index_type036_ships_on_reorderable_type_and_reorderable_id"
+    t.index ["reorderable_type", "reorderable_id"], name: "index_type0990_ships_on_reorderable_type_and_reorderable_id"
   end
 
-  create_table "type0361_articles", force: :cascade do |t|
+  create_table "type0991_articles", force: :cascade do |t|
     t.string "name"
   end
 
-  create_table "type0362_articles", force: :cascade do |t|
+  create_table "type0992_articles", force: :cascade do |t|
     t.string "name"
   end
 

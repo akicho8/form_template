@@ -38,6 +38,11 @@ Rails.application.routes.draw do
     resources :type007_articles
     resources :type008_articles
     resources :type009_articles
+    resources :type037_articles do
+      collection do
+        post :foo_bar_baz
+      end
+    end
     resources :type010_articles
     resources :type011_articles
     resources :type012_articles

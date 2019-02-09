@@ -1,0 +1,4 @@
+.row
+  - current_record.type037_attachments.each do |type037_attachment|
+    .col-md-3
+      = link_to(image_tag(type037_attachment.media_file.url), asset_path(type037_attachment.media_file.url), class: "thumbnail")

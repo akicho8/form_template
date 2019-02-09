@@ -1,0 +1,71 @@
+/ タイトル
+.form-group
+  = form.label(:title, class: "col-sm-2 control-label")
+  .col-sm-10
+    = form.text_field(:title, class: "form-control")
+
+/ ファイル
+.form-group
+  = form.label(:type037_attachment_files, class: "col-sm-2 control-label")
+  .col-sm-10
+    = form.file_field(:type037_attachment_files, class: "form-control", multiple: true)
+
+////////////////////////////////////////////////////////////////////////////////
+
+ruby:
+  app_id ||= ["app", SecureRandom.hex].join("-")
+  if current_record.new_record?
+    use_method = "post"
+    put_path = polymorphic_path([*ns_prefix, current_model])
+  else
+    use_method = "put"
+    put_path = polymorphic_path([*ns_prefix, current_record])
+  end
+
+div(id=app_id)
+  hr
+  .form-group
+    br
+    = form.label(:type037_attachment_files, class: "col-sm-2 control-label")
+    .col-sm-10
+      input(type="file" multiple @change="uploaded_handle" ref="multiple_file_input" class="form-control")
+
+      / current_record.type037_attachments.each do |type037_attachment|
+      / .col-md-3
+      /   = link_to(image_tag(type037_attachment.media_file.url), asset_path(type037_attachment.media_file.url), class: "thumbnail")
+
+      div
+        div 元から持っているファイル
+        template(v-for="e in type037_attachments")
+          img(:src="e.media_info.url" height="32")
+
+      div
+        div JS側がAPIに投げるもの
+        template(v-if="upfile_infos")
+          template(v-for="e in upfile_infos")
+            img(:src="e.data_base64_body" height="32")
+
+      div
+        div サーバー側が返してきたもの
+        template(v-if="stored_file_infos")
+          template(v-for="e in stored_file_infos")
+            img(:src="e.media_info.url" height="32")
+
+      br
+      pre
+        | errors_full_messages:
+        | {{errors_full_messages}}
+      pre
+        div JS側がAPIに投げるもの
+        | upfile_infos:
+        | {{upfile_infos}}
+      pre
+        div サーバー側が返してきたもの
+        | stored_file_infos:
+        | {{stored_file_infos}}
+  hr
+
+= javascript_pack_tag "type037_article_form"
+
+javascript:
+  new Type037ArticleForm({authenticity_token: "#{form_authenticity_token}", type037_attachments: #{current_record.type037_attachments.to_json(methods: :media_info).html_safe}, use_method: "#{use_method}", put_path: "#{put_path}"}).$mount("##{app_id}")
